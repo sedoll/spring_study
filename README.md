@@ -536,6 +536,7 @@
 
 ## log4jdbc.log4j.properties
 ```
+log4jdbc.drivers=org.mariadb.jdbc.Driver
 log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 ```
 

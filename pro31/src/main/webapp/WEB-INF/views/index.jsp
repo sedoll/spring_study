@@ -28,8 +28,8 @@
         <li><a href="${path1}/sample/get5.do?id=kkt&pw=1234">RequestMapping.GET 방식 : ModelAttribute+model</a></li>
         <li><a href="${path1}/sample/get6.do/kkt/1234">RequestMapping.GET 방식 : PathVariable+model</a></li>
         <li><a href="${path1}/sample/get7.do?id=kkt&pw=1234">RequestMapping.GET 방식 : RequestParam+ModelAndView</a></li>
-        <li><a href="${path1}/sample/list.do">샘플목록</a></li>
-        <li><a href=""></a></li>
+        <li><a href="${path1}/board/list.do">게시글 목록</a></li>
+        <li><a href="${path1}/sample2/list.do">샘플목록</a></li>
     </ul>
 </body>
 </html>
