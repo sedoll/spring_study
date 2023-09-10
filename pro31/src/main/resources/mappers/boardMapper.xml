@@ -5,11 +5,11 @@
 <mapper namespace="board">
     <!-- 공지사항 목록 -->
     <select id="boardList" resultType="kr.co.teaspoon.dto.Board">
-        select * from board order by regdate desc
+        select * from board order by resdate desc
     </select>
     <!-- 글 상세보기 -->
     <select id="boardDetail" resultType="kr.co.teaspoon.dto.Board">
-        select * from board where seq=#{seq}
+        select * from board where par=#{bno} and lev = 0
     </select>
     <!-- 글 수 카운트 -->
     <select id="totalCount" resultType="integer" >
@@ -19,12 +19,15 @@
         insert into board values (default, #{title}, #{content}, 'admin', default, default)
     </insert>
     <delete id="boardDelete">
-        delete from board where seq=#{seq}
+        delete from board where bno=#{bno}
     </delete>
     <update id="boardEdit">
-        update board set title=#{title}, content=#{content} where seq=#{seq}
+        update board set title=#{title}, content=#{content} where bno=#{bno}
     </update>
     <update id="countUp">
-        update board set visited=visited+1 where seq=#{seq}
+        update board set cnt=cnt+1 where bno=#{bno}
     </update>
+    <insert id="commentInsert">
+        insert into board values (default, #{title}, #{content}, 'admin', default, default)
+    </insert>
 </mapper>

@@ -21,17 +21,17 @@ public class BoardCtrl {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("list.do")		//board/list.do
+    @GetMapping("list.do")		// board/list.do
     public String getBoardList(Model model) throws Exception {
         List<Board> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
         return "/board/boardList";
     }
 
-    @GetMapping("detail.do")	//board/detail.do?seq=1
+    @GetMapping("detail.do")	// board/detail.do?bno=1
     public String getBoardDetail(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        Board dto = boardService.boardDetail(seq);
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        Board dto = boardService.boardDetail(bno);
         model.addAttribute("dto", dto);
         return "/board/boardDetail";
     }
@@ -52,24 +52,24 @@ public class BoardCtrl {
 
     @GetMapping("delete.do")
     public String boardDelete(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        boardService.boardDelete(seq);
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        boardService.boardDelete(bno);
         return "redirect:list.do";
     }
 
     @GetMapping("edit.do")
     public String editForm(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        Board dto = boardService.boardDetail(seq);
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        Board dto = boardService.boardDetail(bno);
         model.addAttribute("dto", dto);
         return "board/boardEdit";
     }
 
     @PostMapping("edit.do")
     public String boardEdit(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
+        int bno = Integer.parseInt(request.getParameter("bno"));
         Board dto = new Board();
-        dto.setSeq(seq);
+        dto.setBno(bno);
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         boardService.boardEdit(dto);

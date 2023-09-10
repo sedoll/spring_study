@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Board boardDetail(int seq) throws Exception {
-        return boardDAO.boardDetail(seq);
+    public Board boardDetail(int bno) throws Exception {
+        return boardDAO.boardDetail(bno);
     }
 
     @Override
@@ -30,12 +30,17 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void boardDelete(int seq) throws Exception {
-        boardDAO.boardDelete(seq);
+    public void boardDelete(int bno) throws Exception {
+        boardDAO.boardDelete(bno);
     }
 
     @Override
     public void boardEdit(Board dto) throws Exception {
         boardDAO.boardEdit(dto);
+    }
+
+    @Override
+    public void countUp(int bno) throws Exception {
+
     }
 }
