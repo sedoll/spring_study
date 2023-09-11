@@ -15,3 +15,4 @@ public interface MemberDAO {
     public Member loginCheck(String id) throws Exception;
     public Member login(String id) throws Exception;
 }
+

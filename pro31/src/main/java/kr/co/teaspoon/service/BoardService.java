@@ -11,4 +11,5 @@ public interface BoardService {
     public void boardDelete(int bno) throws Exception;
     public void boardEdit(Board dto) throws Exception;
     public void countUp(int bno) throws Exception;
+    public List<Board> commentList(int bno) throws Exception;
 }

@@ -320,14 +320,14 @@
                         </tr>
                         <tr>
                             <td>
-<%--                                <c:if test="${dto.author eq 'admin'}">--%>
+                                <c:if test="${dto.author eq sid && not empty sid}">
                                 <a href="${path}/board/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
-<%--                                </c:if>--%>
+                                </c:if>
                             </td>
                             <td>
-<%--                                <c:if test="${dto.author eq 'admin'}">--%>
+                                <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
                                 <a href="${path}/board/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
-<%--                                </c:if>--%>
+                               </c:if>
                             </td>
                             <td>${dto.author}</td>
                             <td>${dto.resdate}</td>
@@ -345,92 +345,70 @@
                     </tbody>
 
                 </table>
-<%--                <table class="tb2" id="myTable">--%>
-<%--                    <thead>--%>
-<%--                    <tr>--%>
-<%--                        <th class="item1">작성자</th>--%>
-<%--                        <th class="item2">댓글</th>--%>
-<%--                        <th class="item3">작성일</th>--%>
-<%--                        <th class="item4"></th>--%>
-<%--                    </tr>--%>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--                    <%--%>
-<%--                        for(int i=1; i<boardList.size(); i++) {--%>
-<%--                            d = ymd.parse(boardList.get(i).getResdate());  //날짜데이터로 변경--%>
-<%--                            date = ymd.format(d);    //형식을 포함한 문자열로 변경--%>
-<%--                            String author = boardList.get(i).getAuthor();--%>
-<%--                    %>--%>
-<%--                    <tr>--%>
-<%--                        <td class="item1"><%=author %></td>--%>
-<%--                        <td class="item2"><%=boardList.get(i).getContent() %></td>--%>
-<%--                        <td class="item3"><%=date %></td>--%>
-<%--                        <td class="item4">--%>
-<%--&lt;%&ndash;                        0813 댓글 수정버튼 표시안되어 코드 수정. by 백준철&ndash;%&gt;--%>
-<%--                        <% if (sid != null && sid.equals(author) ) { %>--%>
-<%--                        <a href="/board/updateAns.jsp?bno=<%=boardList.get(i).getBno()%>&lev=1" class="inbtn">수정</a>--%>
-<%--                        <% } %>--%>
-<%--                        <% if(sid!=null && (sid.equals(boardList.get(i).getAuthor()) || sid.equals("admin")) && boardList.get(i).getLev() != 0) { %>--%>
-<%--                        <a href="/board/deleteBoardpro.jsp?bno=<%=boardList.get(i).getBno()%>&lev=1" class="inbtn delete_btn"> 삭제 </a>--%>
-<%--                        <% } %>--%>
-<%--                    </td>--%>
-<%--                    </tr>--%>
-<%--                    <%--%>
-<%--                        }--%>
-<%--                    %>--%>
-<%--                    </tbody>--%>
-<%--                </table>--%>
-<%--                <script>--%>
-<%--                    $(document).ready( function () {--%>
-<%--                        $('#myTable').DataTable({--%>
-<%--                            // sorting 화살표 제거--%>
-<%--                            "targets": 'no-sort',--%>
-<%--                            "bSort": false,--%>
+                <table class="tb2" id="myTable">
+                    <thead>
+                    <tr>
+                        <th class="item1">작성자</th>
+                        <th class="item2">댓글</th>
+                        <th class="item3">작성일</th>
+                        <th class="item4"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                    <c:forEach var="lev" items="${comment }">
+                        <tr>
+                            <td class="item1">${lev.author}</td>
+                            <td class="item2">${lev.content}</td>
+                            <td class="item3">${lev.resdate}</td>
+                            <td class="item4">
+                                <c:if test="${sid eq lev.author || sid eq 'admin'}">
+                                    <a href="${path}/UpdateReview.do?cid=${lev.author}&par=${dto.bno}" class="inbtn">수정</a>
+                                    <a href="${path}/DeleteReview.do?cid=${lev.author}&par=${dto.bno}" class="inbtn delete_btn"> 삭제 </a>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <script>
+                    $(document).ready( function () {
+                        $('#myTable').DataTable({
+                            // sorting 화살표 제거
+                            "targets": 'no-sort',
+                            "bSort": false,
 
-<%--                            // 3번째 컬럼을 기준으로 내림차순 정렬--%>
-<%--                            order: [[3, 'asc']],--%>
-<%--                            pageLength : 5,--%>
-<%--                            searching: false, //검색 제거--%>
-<%--                            lengthChange: false, // show entries 제거--%>
-<%--                            info: false,--%>
+                            // 3번째 컬럼을 기준으로 내림차순 정렬
+                            order: [[3, 'asc']],
+                            pageLength : 5,
+                            searching: false, //검색 제거
+                            lengthChange: false, // show entries 제거
+                            info: false,
 
-<%--                            language: {--%>
-<%--                                emptyTable: '작성된 댓글이 없습니다.'--%>
-<%--                            }--%>
-<%--                        });--%>
-<%--                        $('#myTable').css({--%>
-<%--                            'border':'none',--%>
-<%--                        });--%>
+                            language: {
+                                emptyTable: '작성된 후기가 없습니다.'
+                            }
+                        });
+                        $('#myTable').css({
+                            'border':'none',
+                        });
 
-<%--                    } );--%>
-<%--                </script>--%>
-<%--                <form action="addAnspro.jsp" id="login_frm" class="frm">--%>
-<%--                    <table class="tb3">--%>
-<%--                        <tbody>--%>
-<%--                        <tr>--%>
-<%--                            <% if (sid != null) { %>--%>
-<%--                            <th><%=sid%></th>--%>
-<%--                            <th><textarea name="content" id="content" cols="100" rows="5" placeholder="댓글 입력" required ></textarea></th>--%>
-<%--                            <th><input type="submit" value="글쓰기" class="inbtn" id="ans_btn"></th>--%>
-<%--                            <input type="hidden" name="bno" value="<%=bno%>" readonly>--%>
-<%--                            <input type="hidden" name="id" value="<%=sid%>" readonly>--%>
-<%--                            <% } else {%>--%>
-<%--                            <p id="nologin_comment">댓글을 작성하려면 로그인하세요</p>--%>
-<%--                            <% } %>--%>
-<%--                        </tr>--%>
-<%--                        </tbody>--%>
-<%--                    </table>--%>
-<%--                </form>--%>
-
-
-                <%--
-                <div class="btn_group">
-                    <% if (sid != null &&( sid.equals("admin") || !sid.equals(""))) {%>
-                    <a href="/board/addAns.jsp?bno=<%=bno%>" class="inbtn" id="ans_btn">댓글 등록</a>
-                    <% } else {%>
-                    <p class="exp">회원만 댓글을 작성 할 수 있습니다.</p>
-                    <% } %>
-                </div> --%>
+                    } );
+                </script>
+                <form action="${path}/AddReview.do" id="login_frm" class="frm">
+                    <table class="tb3">
+                        <tbody>
+                        <tr>
+                            <c:if test="${not empty sid}">
+                                <th>${sid}</th>
+                                <th><textarea name="content" id="content" cols="100" rows="5" placeholder="리뷰 작성" required ></textarea></th>
+                                <th><input type="submit" value="글쓰기" class="inbtn" id="ans_btn"></th>
+                                <input type="hidden" name="pno" value="${dto.bno}" readonly>
+                            </c:if>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </section>
     </div>

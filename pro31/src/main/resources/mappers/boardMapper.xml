@@ -5,7 +5,7 @@
 <mapper namespace="board">
     <!-- 공지사항 목록 -->
     <select id="boardList" resultType="kr.co.teaspoon.dto.Board">
-        select * from board order by resdate desc
+        select * from board where lev = 0 order by resdate desc
     </select>
     <!-- 글 상세보기 -->
     <select id="boardDetail" resultType="kr.co.teaspoon.dto.Board">
@@ -16,7 +16,7 @@
         select count(*) from board
     </select>
     <insert id="boardInsert">
-        INSERT INTO board(title, content, author) VALUES(#{title}, #{content}, 'admin')
+        INSERT INTO board(title, content, author) VALUES(#{title}, #{content}, #{author})
     </insert>
     <delete id="boardDelete">
         delete from board where bno=#{bno}
@@ -28,6 +28,10 @@
         update board set cnt=cnt+1 where bno=#{bno}
     </update>
     <insert id="commentInsert">
-        insert into board values (default, #{title}, #{content}, 'admin', default, default)
+        insert into board(title, content, author, lev, par) values ('댓글', #{content}, #{author}, 1, #{bno})
     </insert>
+    <!-- 댓글 목록 -->
+    <select id="commentList" resultType="kr.co.teaspoon.dto.Board">
+        select * from board where par = #{bno} and lev = 1 order by resdate desc
+    </select>
 </mapper>

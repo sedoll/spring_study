@@ -43,4 +43,9 @@ public class BoardServiceImpl implements BoardService{
     public void countUp(int bno) throws Exception {
 
     }
+
+    @Override
+    public List<Board> commentList(int bno) throws Exception {
+        return boardDAO.commentList(bno);
+    }
 }

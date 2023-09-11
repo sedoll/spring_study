@@ -43,4 +43,9 @@ public class BoardDAOImpl implements BoardDAO {
     public void commentInsert(Board dto) throws Exception {
         sqlSession.insert("board.commentInsert", dto);
     }
+
+    @Override
+    public List<Board> commentList(int bno) throws Exception {
+        return sqlSession.selectList("board.commentList", bno);
+    }
 }

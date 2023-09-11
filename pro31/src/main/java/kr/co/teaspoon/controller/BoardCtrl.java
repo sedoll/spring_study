@@ -32,7 +32,10 @@ public class BoardCtrl {
     public String getBoardDetail(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
         Board dto = boardService.boardDetail(bno);
+        List<Board> comment = boardService.commentList(bno);
         model.addAttribute("dto", dto);
+        model.addAttribute("comment", comment);
+        System.out.println(comment.toString());
         return "/board/boardDetail";
     }
 
