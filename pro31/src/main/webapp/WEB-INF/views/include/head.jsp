@@ -1,13 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%-- 나중에 jsp가 헷갈릴 수 있으므로 path를 여러개 사용하는 경우 이름을 다르게 지정해준다.
-    path를 지정할 때 이름을 같게 하지 않게해라 같게하면 오류 생길 수도 있음
---%>
-<%
-    String path1 = request.getContextPath();
-    String sid = (String) session.getAttribute("id");
-    String sname = (String) session.getAttribute("name");
-    String sjob = (String) session.getAttribute("job");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path1" value="<%=request.getContextPath() %>" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-compatible" content="IE=edge"> <!-- 익스프로어 일 경우 엣지를 사용하라고 안내-->
 <meta http-equiv="author" content="TeenTalk"> <!-- 문서의 제작사 -->
@@ -27,21 +23,30 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="TeenTalk">
 <meta property="og:description" content="앞선 생각으로 더 큰 미래의 교육을 준비하는 기업">
-<meta property="og:image" content=<%=path1%>"/img/img1.jpg">
-<meta property="og:url" content=<%=path1%>"/img/img1.jpg">
+<meta property="og:image" content="${path1}/img/img1.jpg">
+<meta property="og:url" content="${path1}/img/img1.jpg">
 
-<!-- 파비콘 -->
-<link rel="shortcut icon" href=<%=path1%>"/img/logo.ico">
+<%--<!-- 파비콘 -->--%>
+<link rel="shortcut icon" href="${path1}/img/logo.ico">
 <!-- 애플 계열 모바일 -->
-<!-- <link rel="apple-touch-icon-precomposed" href="../img/logo_64.png"> -->
+<link rel="apple-touch-icon-precomposed" href="${path1}/img/logo_64.png">
 <!-- IE 계열 브라우저 -->
 <meta name="msapplication-TileColor" content="#FFFFFF">
-<meta name="msapplication-TileImage" content="./img/logo_48.png">
+<meta name="msapplication-TileImage" content="${path1}/img/logo_48.png">
 <!-- 파이어폭스, 오페라, 또는 구형 크롬/사파리 -->
-<link rel="icon" href=<%=path1%>"/img/logo_16.png" sizes="16x16">
-<link rel="icon" href=<%=path1%>"/img/logo_32.png" sizes="32x32">
-<link rel="icon" href=<%=path1%>"/img/logo_48.png" sizes="48x48">
-<link rel="icon" href=<%=path1%>"/img/logo_64.png" sizes="64x64">
+<link rel="icon" href="${path1}/img/logo_16.png" sizes="16x16">
+<link rel="icon" href="${path1}/img/logo_32.png" sizes="32x32">
+<link rel="icon" href="${path1}/img/logo_48.png" sizes="48x48">
+<link rel="icon" href="${path1}/img/logo_64.png" sizes="64x64">
+
+<%-- j쿼리 --%>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<%-- css 초기화 --%>
+<link rel="stylesheet" href="https://yarnpkg.com/en/package/normalize.css">
+
+<%-- bulma --%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
 <!-- 불법 복제 방지, 필수 -->
 <script>
