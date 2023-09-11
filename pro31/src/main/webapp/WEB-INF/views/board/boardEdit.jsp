@@ -91,43 +91,6 @@
         }
     </style>
 </head>
-
-<%--
-    Board q = new Board();
-    int bno = Integer.parseInt(request.getParameter("bno"));
-
-    DBC con = new MariaDBCon();
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-
-    conn = con.connect();
-    if(conn != null) {
-        System.out.println("DB 연결 성공");
-    } else {
-        System.out.println("DB 연결 실패");
-    }
-
-    try{
-        String sql = "select * from board where bno=? and lev=0";
-        pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, bno);
-        rs = pstmt.executeQuery();
-        if(rs.next()) {
-            q.setTitle(rs.getString("title"));
-            q.setAuthor(rs.getString("author"));
-            q.setContent(rs.getString("content"));
-        }
-    } catch (SQLException e) {
-        System.out.println("sql 연결 실패");
-        e.printStackTrace();
-    } catch (Exception e) {
-
-    } finally {
-        con.close(rs, pstmt, conn);
-    }
---%>
-
 <body>
 <div class="wrap">
     <!-- 헤더 부분 인클루드 -->

@@ -241,59 +241,6 @@
         }
     </style>
 </head>
-
-<%--
-    List<Board> boardList = new ArrayList<>();
-    int bno = Integer.parseInt(request.getParameter("bno"));
-
-    DBC con = new MariaDBCon();
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-
-    Date d;  //날짜데이터로 변경
-    String date;
-    SimpleDateFormat ymd = new SimpleDateFormat("yyyy-MM-dd");
-
-    try{
-        // 조회수 갱신 코드
-        conn = con.connect();
-        String sql = "update board set cnt=cnt+1 where par=? and lev=0";
-        System.out.println(bno);
-        pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, bno);
-        int cnt = pstmt.executeUpdate();
-        if(cnt > 0) {
-            System.out.println("조회수 갱신 완료");
-        } else {
-            System.out.println("조회수 갱신 실패");
-        }
-
-        // 해당 qno(par) 번호를 갖는 게시물 내용, 댓글 불러오기
-        String sql2 = "select * from board where par=? order by lev";
-        pstmt = conn.prepareStatement(sql2);
-        pstmt.setInt(1, bno);
-        rs = pstmt.executeQuery();
-        while(rs.next()) {
-            Board board = new Board();
-            board.setBno(rs.getInt("bno"));
-            board.setTitle(rs.getString("title"));
-            board.setAuthor(rs.getString("author"));
-            board.setContent(rs.getString("content"));
-            board.setResdate(rs.getString("resdate"));
-            board.setLev(rs.getInt("lev"));
-            board.setCnt(rs.getInt("cnt"));
-            boardList.add(board);
-        }
-    } catch (SQLException e) {
-        System.out.println("sql 연결 실패");
-        e.printStackTrace();
-    } catch (Exception e) {
-
-    } finally {
-        con.close(rs, pstmt, conn);
-    }
---%>
 <body>
 <div class="wrap">
     <!-- 헤더 부분 인클루드 -->
