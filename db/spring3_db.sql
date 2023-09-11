@@ -13,32 +13,49 @@ INSERT INTO sample VALUES(DEFAULT, '이순신');
 INSERT INTO sample VALUES(DEFAULT, '오세훈');
 INSERT INTO sample VALUES(DEFAULT, '김철수');
 
+DROP TABLE member;
+
 CREATE TABLE member(
 	id VARCHAR(16) PRIMARY KEY, -- 아이디
 	pw VARCHAR(330) NOT NULL, -- 비밀번호
 	NAME VARCHAR(100) NOT NULL, -- 이름
 	email VARCHAR(100) NOT NULL, -- 이메일
-	tel VARCHAR(13), -- 전화 번호
+	tel VARCHAR(13) NOT NULL, -- 전화 번호
+	addr1 VARCHAR(200), -- 주소1
+	addr2 VARCHAR(100), -- 주소2
+	postcode VARCHAR(10), -- 우편번호
 	regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 가입일
-	POINT INT DEFAULT 0, -- 포인트
+	birth DATE, -- 생일
+	pt INT DEFAULT 0, -- 포인트
+	visited INT DEFAULT 0,
 	job INT NOT NULL -- 직업 학생: 1, 선생님: 2
 );
 
 -- 관리자
-INSERT INTO member(id, pw, NAME, email, tel, job) 
-	VALUES('admin', '1234', '관리자', 'admin@edu.com', '010-1234-5678', 0);
+INSERT INTO member VALUES(
+'admin', '1234', '관리자', 'admin@edu.com', '010-1234-5678', 
+	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1998-04-22',
+	DEFAULT, DEFAULT, 0);
 
 -- 학부모
-INSERT INTO member(id, pw, NAME, email, tel, job) 
-	VALUES('hong', 'h5678', '홍길동', 'hong@edu.com', '010-1111-2222', 1);
-INSERT INTO member(id, pw, NAME, email, tel, job) 
-	VALUES('kang', 'kang12', '강감찬', 'kang@edu.com', '010-3333-4444', 1);
+INSERT INTO member VALUES(
+'hong', '1234', '홍길동', 'hong@edu.com', '010-2222-3333', 
+	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1980-04-22',
+	DEFAULT, DEFAULT, 1);
+	INSERT INTO member VALUES(
+'kang', '1234', '강감찬', 'kang@edu.com', '010-1212-1212', 
+	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1975-04-22',
+	DEFAULT, DEFAULT, 1);
 
 -- 선생
-INSERT INTO member(id, pw, NAME, email, tel, job) 
-	VALUES('son', 'sony1234', '손흥민', 'son@edu.com', '010-5555-6666', 2);
-INSERT INTO member(id, pw, NAME, email, tel, job) 
-	VALUES('lee', 'lee4885', '이순신', 'lee@edu.com', '010-8765-4321', 2);
+INSERT INTO member VALUES(
+'son', '1234', '손흥민', 'son@edu.com', '010-5555-6666', 
+	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1983-04-22',
+	DEFAULT, DEFAULT, 2);
+	INSERT INTO member VALUES(
+'lee', '1234', '이순신', 'lee@edu.com', '010-3434-3434', 
+	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1990-04-22',
+	DEFAULT, DEFAULT, 2);
 
 DROP TABLE board;
 

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 목록</title>
+    <title>회원 목록</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
 </head>
@@ -22,10 +22,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <p class="title">
-            공지사항
+            회원 목록
         </p>
         <p class="subtitle">
-            목록
+
         </p>
     </div>
 </section>
@@ -36,21 +36,21 @@
                 <thead>
                 <tr>
                     <th width="80">No</th>
-                    <th>Title</th>
-                    <th width="120">RegDate</th>
-                    <th width="100">Visited</th>
+                    <th>ID</th>
+                    <th width="120">Name</th>
+                    <th width="100">RegDate</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boardList }" var="board" varStatus="status">
+                <c:forEach items="${memberList }" var="member" varStatus="status">
                     <tr>
                         <td>${status.count }</td>
-                        <td><a href="${path}/board/detail.do?bno=${board.bno }">${board.title }</a></td>
+                        <td><a href="${path}/member/detail.do?id=${member.id }">${member.id }</a></td>
+                        <td>${member.name }</td>
                         <td>
-                            <fmt:parseDate value="${board.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:parseDate value="${member.regdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
                             <fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" />
                         </td>
-                        <td>${board.cnt }</td>
                     </tr>
                 </c:forEach>
                 </tbody>

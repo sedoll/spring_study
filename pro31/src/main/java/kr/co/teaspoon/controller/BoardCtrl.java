@@ -62,7 +62,7 @@ public class BoardCtrl {
         int bno = Integer.parseInt(request.getParameter("bno"));
         Board dto = boardService.boardDetail(bno);
         model.addAttribute("dto", dto);
-        return "board/boardEdit";
+        return "/board/boardEdit";
     }
 
     @PostMapping("edit.do")

@@ -9,14 +9,14 @@
     </select>
     <!-- 글 상세보기 -->
     <select id="boardDetail" resultType="kr.co.teaspoon.dto.Board">
-        select * from board where par=#{bno} and lev = 0
+        select * from board where bno=#{bno} and lev = 0
     </select>
     <!-- 글 수 카운트 -->
     <select id="totalCount" resultType="integer" >
         select count(*) from board
     </select>
     <insert id="boardInsert">
-        insert into board values (default, #{title}, #{content}, 'admin', default, default)
+        INSERT INTO board(title, content, author) VALUES(#{title}, #{content}, 'admin')
     </insert>
     <delete id="boardDelete">
         delete from board where bno=#{bno}

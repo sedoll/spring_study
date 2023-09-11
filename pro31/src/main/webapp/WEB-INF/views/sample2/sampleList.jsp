@@ -8,9 +8,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>샘플 목록</title>
+    <jsp:include page="../include/head.jsp"/>
 </head>
 <body>
-<h2>샘플 목록</h2>
+<jsp:include page="../include/header.jsp"/>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title">
+            sampleList
+        </p>
+        <p class="subtitle">
+            Primary subtitle
+        </p>
+    </div>
+</section>
+<div class="container">
 <c:if test="${!empty sampleList}">
     <ul>
         <c:forEach items="${sampleList }" var="sample">
@@ -24,5 +36,7 @@
 <c:if test="${empty sampleList}">
     <p>해당 목록이 존재하지 않습니다.</p>
 </c:if>
+</div>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>
