@@ -37,8 +37,8 @@
                         <a href="${path2}/board/list.do" class="navbar-item">
                             자유게시판
                         </a>
-                        <a href="${path2}/sample2/list.do" class="navbar-item">
-                            Sample
+                        <a href="${path2}/boardTea/list.do" class="navbar-item">
+                            선생님게시판
                         </a>
                         <hr class="navbar-divider">
                         <a class="navbar-item">

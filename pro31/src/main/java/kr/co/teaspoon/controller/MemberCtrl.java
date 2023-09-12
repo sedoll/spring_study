@@ -131,11 +131,14 @@ public class MemberCtrl {
         String pw = request.getParameter("pw");
         boolean check = memberService.loginCheck(id, pw);
         if(check) { // 로그인 성공
+            Member mem = new Member();
+            mem = memberService.getMember(id);
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('로그인 성공');</script>");
             out.flush();
             session.setAttribute("sid", id);
+            session.setAttribute("job", mem.getJob());
             return "/index";
         } else { // 로그인 실패
             response.setContentType("text/html; charset=UTF-8");

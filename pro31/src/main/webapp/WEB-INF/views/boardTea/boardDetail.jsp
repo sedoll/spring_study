@@ -243,7 +243,7 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                자유게시판
+                선생님 게시판
             </p>
             <p class="subtitle">
                 상세
@@ -263,12 +263,12 @@
                         <tr>
                             <td>
                                 <c:if test="${dto.author eq sid && not empty sid}">
-                                <a href="${path}/board/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
+                                <a href="${path}/boardTea/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
                                 </c:if>
                             </td>
                             <td>
                                 <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
-                                <a href="${path}/board/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
+                                <a href="${path}/boardTea/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
                                </c:if>
                             </td>
                             <td>${dto.author}</td>
@@ -304,8 +304,8 @@
                             <td class="item3">${lev.resdate}</td>
                             <td class="item4">
                                 <c:if test="${sid eq lev.author || sid eq 'admin'}">
-                                    <a href="${path}/board/edit.do?bno=${lev.bno}" class="inbtn">수정</a>
-                                    <a href="${path}/board/delete.do?bno=${lev.bno}" class="inbtn delete_btn"> 삭제 </a>
+                                    <a href="${path}/boardTea/edit.do?bno=${lev.bno}" class="inbtn">수정</a>
+                                    <a href="${path}/boardTea/delete.do?bno=${lev.bno}" class="inbtn delete_btn"> 삭제 </a>
                                 </c:if>
                             </td>
                         </tr>
@@ -336,7 +336,7 @@
 
                     } );
                 </script>
-                <form action="${path}/board/commentInsert.do" id="login_frm" class="frm" method="post">
+                <form action="${path}/boardTea/commentInsert.do" id="login_frm" class="frm" method="post">
                     <table class="tb3">
                         <tbody>
                         <tr>

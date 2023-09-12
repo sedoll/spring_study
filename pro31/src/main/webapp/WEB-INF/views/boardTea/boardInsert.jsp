@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판 수정</title>
+    <title>게시판 입력</title>
     <%@ include file="../include/head.jsp" %>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
@@ -97,39 +97,34 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                자유게시판
+                선생님 게시판
             </p>
             <p class="subtitle">
-                수정
+                작성
             </p>
         </div>
     </section>
     <div class="contents" id="contents">
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">게시글 수정</h2>
-                    <form action="${path}/board/edit.do" id="login_frm" class="frm" method="post">
-                        <table class="tb1">
-                            <tbody>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="text" name="title" id="title" class="indata" value="${dto.title}" placeholder="제목 입력" ${dto.title eq "댓글" ? 'readonly' : ''} autofocus required>
-                                    </td>
-                                    <input type="hidden" name="bno" value="${dto.bno}" readonly>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><textarea name="content" id="content" class="" cols="50" rows="15" maxlength="100" placeholder="내용 입력" required>${dto.content}</textarea></td>
-                                    <input type="hidden" name="lev" id="lev" value="0">
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="submit" value="수정" class="inbtn">
-                                        <input type="reset" value="취소" class="inbtn" onclick="window.history.back();">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                <form action="${path}/boardTea/insert.do" id="login_frm" class="frm" method="post">
+                    <table class="tb1">
+                        <tbody>
+                        <tr>
+                            <td colspan="2"><input type="text" name="title" id="title" class="indata" value="${dto.title}" placeholder="제목 입력" autofocus required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><textarea name="content" id="content" class="" cols="50" rows="15" maxlength="100" placeholder="내용 입력" required>${dto.content}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="글쓰기" class="inbtn">
+                                <input type="reset" value="취소" class="inbtn" onclick="window.history.back();">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </section>
     </div>

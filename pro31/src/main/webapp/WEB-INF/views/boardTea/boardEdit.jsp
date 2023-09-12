@@ -97,7 +97,7 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                자유게시판
+                선생님 게시판
             </p>
             <p class="subtitle">
                 수정
@@ -108,7 +108,7 @@
         <section class="page" id="page1">
             <div class="page_wrap">
                 <h2 class="page_tit">게시글 수정</h2>
-                    <form action="${path}/board/edit.do" id="login_frm" class="frm" method="post">
+                    <form action="${path}/boardTea/edit.do" id="login_frm" class="frm" method="post">
                         <table class="tb1">
                             <tbody>
                                 <tr>

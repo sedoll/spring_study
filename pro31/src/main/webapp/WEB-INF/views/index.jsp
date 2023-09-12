@@ -28,7 +28,9 @@
     <div class="container is-fullhd">
         <h2>티스푼 메인 페이지</h2>
         <div class="container">
+            <%-- 나중에 이부분 제거 --%>
             회원 : ${sid}
+            직업 : ${job}
         </div>
         <ul class="list">
             <li><a href="${path}/sample/main.do">RequestMapping 방식 : Get</a></li>

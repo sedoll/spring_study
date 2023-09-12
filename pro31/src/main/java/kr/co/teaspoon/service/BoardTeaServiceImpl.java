@@ -1,7 +1,7 @@
 package kr.co.teaspoon.service;
 
 import kr.co.teaspoon.dao.BoardDAO;
-import kr.co.teaspoon.dao.BoardDAOImpl;
+import kr.co.teaspoon.dao.BoardTeaDAOImpl;
 import kr.co.teaspoon.dto.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BoardServiceImpl implements BoardService{
+public class BoardTeaServiceImpl implements BoardService{
 
     @Autowired
-    private BoardDAO boardDAO;
+    private BoardTeaDAOImpl boardDAO;
 
     @Override
     public List<Board> boardList() throws Exception {

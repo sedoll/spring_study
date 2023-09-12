@@ -2,8 +2,7 @@ package kr.co.teaspoon.controller;
 
 import kr.co.teaspoon.dto.Board;
 import kr.co.teaspoon.service.BoardService;
-import kr.co.teaspoon.service.BoardServiceImpl;
-import lombok.Setter;
+import kr.co.teaspoon.service.BoardTeaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,24 +11,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
-@RequestMapping("/board/*")
-public class BoardCtrl {
+@RequestMapping("/boardTea/*")
+public class BoardTeaCtrl {
 
     @Autowired
-    private BoardService boardService;
+    private BoardTeaServiceImpl boardService;
 
     @Autowired
     HttpSession session; // 세션 생성
 
     @GetMapping("list.do")		// board/list.do
-    public String getBoardList(Model model) throws Exception {
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
-        return "/board/boardList";
+    public String getBoardList(HttpServletResponse response, Model model) throws Exception {
+        if(session.getAttribute("sid") != null &&("admin".equals(session.getAttribute("sid")) || session.getAttribute("job").equals("2"))) {
+            List<Board> boardList = boardService.boardList();
+            model.addAttribute("boardList", boardList);
+            return "/boardTea/boardList";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('해당 페이지는 선생님만 접근 가능합니다.');</script>");
+            out.flush();
+            return "/index";
+        }
     }
 
     @GetMapping("detail.do")	// board/detail.do?bno=1
@@ -40,12 +49,12 @@ public class BoardCtrl {
         model.addAttribute("dto", dto);
         model.addAttribute("comment", comment);
         System.out.println(comment.toString());
-        return "/board/boardDetail";
+        return "/boardTea/boardDetail";
     }
 
     @GetMapping("insert.do")
     public String insertForm(HttpServletRequest request, Model model) throws Exception {
-        return "/board/boardInsert";
+        return "/boardTea/boardInsert";
     }
 
     @PostMapping("insert.do")
@@ -81,7 +90,7 @@ public class BoardCtrl {
         int bno = Integer.parseInt(request.getParameter("bno"));
         Board dto = boardService.boardDetail(bno);
         model.addAttribute("dto", dto);
-        return "/board/boardEdit";
+        return "/boardTea/boardEdit";
     }
 
     @PostMapping("edit.do")
