@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="<%=request.getContextPath() %>" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -97,13 +101,13 @@
         <section class="page" id="page1">
             <div class="page_wrap">
                 <h2 class="page_tit">회원 유형</h2>
-                <form action="join.jsp" method="post" class="frm">
+                <form action="${path}/member/join.do" method="post" class="frm">
                     <div>
                         <ul class="join_type">
                             <li>
                                 <img class="profile" src="/img/boy.png" alt="">
                                 <input type="radio" name="job" value="1" id="stu" checked>
-                                <label for="stu">학생</label><br>
+                                <label for="stu">학부모</label><br>
                             </li>
                             <li>
                                 <img class="profile" src="/img/teacher.png" alt="">

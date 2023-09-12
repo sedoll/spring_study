@@ -28,9 +28,7 @@
     <div class="container is-fullhd">
         <h2>티스푼 메인 페이지</h2>
         <div class="container">
-            이름 : ${myName }
-            <hr>
-            현재 : ${today }
+            회원 : ${sid}
         </div>
         <ul class="list">
             <li><a href="${path}/sample/main.do">RequestMapping 방식 : Get</a></li>

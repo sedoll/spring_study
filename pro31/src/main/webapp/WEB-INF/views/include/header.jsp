@@ -20,7 +20,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item">
+                <a href="${path2}" class="navbar-item">
                     Home
                 </a>
 
@@ -50,6 +50,11 @@
 
             <div class="navbar-end">
                 <div class="navbar-item">
+                    <div>
+                        <c:if test="${not empty sid}">
+                            ${sid} 회원님 환영합니다.
+                        </c:if>
+                    </div>
                     <div class="buttons">
                         <c:if test="${not empty sid}"> <%-- 로그인한 경우 --%>
                             <a href="${path2}/member/mypage.do" class="button is-primary">
