@@ -49,6 +49,8 @@
         <bean id="boardDAO" class="kr.co.teaspoon.dao.BoardDAOImpl"/>
         <bean id="boardTeaService" class="kr.co.teaspoon.service.BoardTeaServiceImpl"/>
         <bean id="boardTeaDAO" class="kr.co.teaspoon.dao.BoardTeaDAOImpl"/>
+        <bean id="boardParService" class="kr.co.teaspoon.service.BoardParServiceImpl"/>
+        <bean id="boardParDAO" class="kr.co.teaspoon.dao.BoardParDAOImpl"/>
         <bean id="memberService" class="kr.co.teaspoon.service.MemberServiceImpl"/>
         <bean id="memberDAO" class="kr.co.teaspoon.dao.MemberDAOImpl"/>
 

@@ -40,6 +40,9 @@
                         <a href="${path2}/boardTea/list.do" class="navbar-item">
                             선생님게시판
                         </a>
+                        <a href="${path2}/boardPar/list.do" class="navbar-item">
+                            학부모게시판
+                        </a>
                         <hr class="navbar-divider">
                         <a class="navbar-item">
                             Report an issue
