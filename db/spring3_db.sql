@@ -57,6 +57,7 @@ INSERT INTO member VALUES(
 	'경기 성남시 분당구 대왕판교로 477', '102호', '13480', DEFAULT, '1990-04-22',
 	DEFAULT, DEFAULT, 2);
 
+-- 비밀번호 1234 spring 암호화 버전
 UPDATE member SET pw='$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi'
 
 DROP TABLE board;

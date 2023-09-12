@@ -50,7 +50,7 @@ public class MemberCtrl {
     // 마이페이지
     @GetMapping("mypage.do")
     public String mypage(HttpServletRequest request, Model model) throws Exception {
-        String id = request.getParameter("id");
+        String id = (String) session.getAttribute("sid");
         Member member = memberService.getMember(id);
         model.addAttribute("member", member);
         return "/member/mypage";
