@@ -117,3 +117,16 @@ CREATE TABLE board_tea(
 	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
 		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
 );
+
+CREATE TABLE board_par(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(1000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	lev INT DEFAULT 0, -- 게시글 0, 답글 1 이상
+	par INT, -- 부모 게시글 번호
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
+		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
