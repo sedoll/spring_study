@@ -49,16 +49,26 @@ public class MemberCtrl {
     
     // 마이페이지
     @GetMapping("mypage.do")
-    public String mypage(Model model) throws Exception {
-//        String id = (String) session.getAttribute("sid");
-        String id = "admin";
+    public String mypage(HttpServletRequest request, Model model) throws Exception {
+        String id = request.getParameter("id");
         Member member = memberService.getMember(id);
         model.addAttribute("member", member);
         return "/member/mypage";
     }
 
-    // 회원 정보 수정
-    
+    //회원정보 변경
+    @RequestMapping(value="update.do", method=RequestMethod.POST)
+    public String memberUpdate(Member mem, Model model) throws Exception {
+        String pwd = "";
+        if(mem.getPw().length()<=16) {
+            pwd = pwEncoder.encode(mem.getPw());
+            mem.setPw(pwd);
+        }
+        System.out.println(mem.toString());
+        memberService.memberUpdate(mem);
+        return "redirect:/";
+    }
+
 
     //회원 가입 - 약관 동의 페이지 로딩
     @GetMapping("term.do")

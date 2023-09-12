@@ -76,9 +76,9 @@
                             <tr>
                                 <th><label for="findBtn" onclick="findAddr()">주소</label></th>
                                 <td>
-                                    <input type="text" name="addr1" id="addr1" class="input" value="${member.addr1 }"><br>
+                                    <input type="text" name="addr1" id="addr1" class="input" value="${member.addr1 }" required readonly><br>
                                     <input type="text" name="addr2" id="addr2" class="input" value="${member.addr2 }"><br>
-                                    <input type="text" name="postcode" id="postcode"  class="input" value="${member.postcode }">
+                                    <input type="text" name="postcode" id="postcode"  class="input" value="${member.postcode }" required readonly>
                                     <input type="button" value="주소찾기" onclick="findAddr()" id="findBtn" class="btn is-primary">
                                 </td>
                             </tr>
@@ -89,7 +89,7 @@
                                     <span style="display:none">
                                         <fmt:formatDate var="br" value="${birth }" pattern="yyyy-MM-dd" />
                                     </span>
-                                    <input type="date" name="birth" id="birth" value="${br }" class="input">
+                                    <input type="date" name="birth" id="birth" value="${br }" class="input" required readonly>
                                 </td>
                             </tr>
                             <tr>

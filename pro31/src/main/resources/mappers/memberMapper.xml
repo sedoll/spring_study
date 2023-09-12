@@ -20,8 +20,7 @@
 
     <!-- 회원 수정 -->
     <update id="memberUpdate">
-        update member set pw=#{pw}, email=#{email}, tel=#{tel}, addr1=#{addr1}, addr2=#{addr2}, postcode=#{postcode},
-            birth=#{birth} where id=#{id}
+        update member set pw=#{pw }, name=#{name }, email=#{email }, tel=#{tel }, addr1=#{addr1 }, addr2=#{addr2 }, postcode=#{postcode } where id = #{id }
     </update>
 
     <!-- 회원 가입 -->

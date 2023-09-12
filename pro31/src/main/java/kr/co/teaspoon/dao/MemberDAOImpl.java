@@ -34,7 +34,7 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     public void memberUpdate(Member member) throws Exception {
-        sqlSession.update("member.memberUpdate");
+        sqlSession.update("member.memberUpdate", member);
     }
 
     @Override

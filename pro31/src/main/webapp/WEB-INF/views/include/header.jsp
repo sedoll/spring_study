@@ -30,7 +30,7 @@
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        게시판
+                        커뮤니티
                     </a>
 
                     <div class="navbar-dropdown">

@@ -1,7 +1,6 @@
 package kr.co.teaspoon.dao;
 
 import kr.co.teaspoon.dto.Board;
-import kr.co.teaspoon.dto.Sample;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
