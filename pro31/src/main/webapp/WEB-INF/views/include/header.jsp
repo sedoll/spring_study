@@ -24,8 +24,8 @@
                     Home
                 </a>
 
-                <a class="navbar-item">
-                    Documentation
+                <a href="${path2}/free/list.do" class="navbar-item">
+                    파일업로드 게시판
                 </a>
 
                 <div class="navbar-item has-dropdown is-hoverable">
