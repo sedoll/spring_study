@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
@@ -24,11 +25,22 @@ public class InfoStuCtrl {
     @Autowired
     private InfoStuServiceImpl infoService;
 
+    @Autowired
+    HttpSession session; // 세션 생성
+
     @GetMapping("list.do")		//info/list.do
-    public String getinfoList(Model model) throws Exception {
-        List<Infomation> infomationList = infoService.infoList();
-        model.addAttribute("infoList", infomationList);
-        return "/infoStu/infoList";
+    public String getinfoList(HttpServletResponse response, Model model) throws Exception {
+        if(session.getAttribute("sid") != null && !"".equals(session.getAttribute("sid"))) {
+            List<Infomation> infomationList = infoService.infoList();
+            model.addAttribute("infoList", infomationList);
+            return "/infoStu/infoList";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('해당 페이지는 회원만 접근 가능합니다.');</script>");
+            out.flush();
+            return "/index";
+        }
     }
 
     @GetMapping("detail.do")	//info/detail.do?bno=1

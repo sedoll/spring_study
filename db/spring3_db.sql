@@ -185,3 +185,15 @@ CREATE TABLE info_uni(
 );
 
 INSERT INTO free(title, content, author) VALUES('본문 제목1', '본문 내용1', 'admin');
+
+
+CREATE TABLE fileinfo(
+	articleno INT,
+	savefolder VARCHAR(500),
+	oroginfile VARCHAR(500),
+	savefile VARCHAR(500)
+)
+
+CREATE TABLE guestbook (
+	articleno INT PRIMARY KEY AUTO_INCREMENT
+	
