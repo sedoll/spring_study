@@ -261,12 +261,12 @@
                         <tr>
                             <td>
                                 <c:if test="${dto.author eq sid && not empty sid}">
-                                <a href="${path}/free/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
+                                <a href="${path}/infoStu/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
                                 </c:if>
                             </td>
                             <td>
                                 <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
-                                <a href="${path}/free/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
+                                <a href="${path}/infoStu/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
                                </c:if>
                             </td>
                             <td>${dto.author}</td>

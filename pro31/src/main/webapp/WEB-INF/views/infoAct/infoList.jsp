@@ -40,10 +40,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${freeList }" var="board" varStatus="status">
+                <c:forEach items="${infoList }" var="board" varStatus="status">
                     <tr>
                         <td>${status.count }</td>
-                        <td><a href="${path}/free/detail.do?bno=${board.bno }">${board.title }</a></td>
+                        <td><a href="${path}/infoAct/detail.do?bno=${board.bno }">${board.title }</a></td>
                         <td>
                             <fmt:parseDate value="${board.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
                             <fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" />
@@ -55,7 +55,7 @@
             </table>
              <c:if test='${sid eq "admin"}'>
             <div class="button-group">
-                <a class="button" href="${path}/free/insert.do">글쓰기</a>
+                <a class="button" href="${path}/infoAct/insert.do">글쓰기</a>
             </div>
              </c:if>
         </div>

@@ -36,7 +36,7 @@
     <div class="content" id="contents">
         <div class="row column text-center">
             <div class="container">
-                <form action="${path }/free/edit.do" method="post">
+                <form action="${path }/infoAct/edit.do" method="post">
                     <table id="table1">
                         <tbody>
                         <tr>
@@ -53,14 +53,14 @@
                                     ${dto.content }
                                 </textarea>
                                 <script>
-                                    CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path}/free/imageUpload.do'});
+                                    CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path}/infoAct/imageUpload.do'});
                                 </script>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <input type="submit" class="submit button is-danger" value="글 수정" >
-                                <a class="button is-info" href="${path }/free/list.do">글 목록</a>
+                                <a class="button is-info" href="${path }/infoAct/list.do">글 목록</a>
                             </td>
                         </tr>
                         </tbody>

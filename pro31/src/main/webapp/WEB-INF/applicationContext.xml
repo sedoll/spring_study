@@ -55,6 +55,10 @@
         <bean id="memberDAO" class="kr.co.teaspoon.dao.MemberDAOImpl"/>
         <bean id="freeService" class="kr.co.teaspoon.service.FreeServiceImpl"/>
         <bean id="freeDAO" class="kr.co.teaspoon.dao.FreeDAOImpl"/>
+        <bean id="infoActService" class="kr.co.teaspoon.service.InfoActServiceImpl"/>
+        <bean id="infoActDAO" class="kr.co.teaspoon.dao.InfoActDAOImpl"/>
+        <bean id="infoStuService" class="kr.co.teaspoon.service.InfoStuServiceImpl"/>
+        <bean id="infoStuDAO" class="kr.co.teaspoon.dao.InfoStuDAOImpl"/>
 
         <!-- @Transactional 어노테이션 처리 -->
         <tx:annotation-driven transaction-manager="transactionManager" />

@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유 게시판 글쓰기</title>
+    <title>대외활동 글쓰기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
     <!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
@@ -25,10 +25,10 @@
             <li class="hero is-medium is-link">
                 <div class="hero-body">
                     <p class="title">
-                        Medium hero
+                        대외활동
                     </p>
                     <p class="subtitle">
-                        Medium subtitle
+                        글쓰기
                     </p>
                 </div>
             </li>
@@ -36,8 +36,6 @@
     </figure>
     <div class="content" id="contents">
         <div class="row column text-center">
-            <h2 class="h1">자유게시판 글쓰기</h2>
-            <hr>
             <div class="container">
                 <form action="${path }/free/insert.do" method="post">
                     <table id="table1">

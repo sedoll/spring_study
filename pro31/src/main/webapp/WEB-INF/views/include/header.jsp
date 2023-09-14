@@ -24,9 +24,25 @@
                     Home
                 </a>
 
-                <a href="${path2}/free/list.do" class="navbar-item">
-                    파일업로드 게시판
-                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        정보
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a href="${path2}/infoStu/list.do" class="navbar-item">
+                            교육 정보
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/" class="navbar-item">
+                            대입 정보
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/infoAct/list.do" class="navbar-item">
+                            대외 활동 정보
+                        </a>
+                    </div>
+                </div>
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
@@ -37,15 +53,13 @@
                         <a href="${path2}/board/list.do" class="navbar-item">
                             자유게시판
                         </a>
+                        <hr class="navbar-divider">
                         <a href="${path2}/boardTea/list.do" class="navbar-item">
                             선생님게시판
                         </a>
+                        <hr class="navbar-divider">
                         <a href="${path2}/boardPar/list.do" class="navbar-item">
                             학부모게시판
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            Report an issue
                         </a>
                     </div>
                 </div>
