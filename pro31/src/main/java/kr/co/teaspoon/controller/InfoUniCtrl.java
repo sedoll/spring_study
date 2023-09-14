@@ -1,7 +1,7 @@
 package kr.co.teaspoon.controller;
 
 import kr.co.teaspoon.dto.Infomation;
-import kr.co.teaspoon.service.InfoActServiceImpl;
+import kr.co.teaspoon.service.InfoUniServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +22,13 @@ import java.util.UUID;
 public class InfoUniCtrl {
 
     @Autowired
-    private InfoActServiceImpl infoService;
+    private InfoUniServiceImpl infoService;
 
     @GetMapping("list.do")		//info/list.do
     public String getinfoList(Model model) throws Exception {
         List<Infomation> infomationList = infoService.infoList();
         model.addAttribute("infoList", infomationList);
-        return "/infoAct/infoList";
+        return "/infoUni/infoList";
     }
 
     @GetMapping("detail.do")	//info/detail.do?bno=1
@@ -36,12 +36,12 @@ public class InfoUniCtrl {
         int bno = Integer.parseInt(request.getParameter("bno"));
         Infomation dto = infoService.infoDetail(bno);
         model.addAttribute("dto", dto);
-        return "/infoAct/infoDetail";
+        return "/infoUni/infoDetail";
     }
 
     @GetMapping("insert.do")
     public String insertForm(HttpServletRequest request, Model model) throws Exception {
-        return "/infoAct/infoInsert";
+        return "/infoUni/infoInsert";
     }
 
     @PostMapping("insert.do")
@@ -65,7 +65,7 @@ public class InfoUniCtrl {
         int bno = Integer.parseInt(request.getParameter("bno"));
         Infomation dto = infoService.infoDetail(bno);
         model.addAttribute("dto", dto);
-        return "/infoAct/infoEdit";
+        return "/infoUni/infoEdit";
     }
 
     @PostMapping("edit.do")

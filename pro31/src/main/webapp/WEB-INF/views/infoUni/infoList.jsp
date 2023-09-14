@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대외활동 목록</title>
+    <title>목록</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
 </head>
@@ -20,7 +20,7 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <p class="title">
-            대외활동
+            대입 정보
         </p>
         <p class="subtitle">
             목록
@@ -43,7 +43,7 @@
                 <c:forEach items="${infoList }" var="board" varStatus="status">
                     <tr>
                         <td>${status.count }</td>
-                        <td><a href="${path}/infoAct/detail.do?bno=${board.bno }">${board.title }</a></td>
+                        <td><a href="${path}/infoUni/detail.do?bno=${board.bno }">${board.title }</a></td>
                         <td>
                             <fmt:parseDate value="${board.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
                             <fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" />
@@ -55,7 +55,7 @@
             </table>
              <c:if test='${sid eq "admin"}'>
             <div class="button-group">
-                <a class="button" href="${path}/infoAct/insert.do">글쓰기</a>
+                <a class="button" href="${path}/infoUni/insert.do">글쓰기</a>
             </div>
              </c:if>
         </div>

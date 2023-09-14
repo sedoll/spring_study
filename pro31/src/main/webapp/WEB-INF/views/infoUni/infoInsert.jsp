@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대외활동 글쓰기</title>
+    <title>글쓰기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
     <!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
@@ -25,7 +25,7 @@
             <li class="hero is-medium is-link">
                 <div class="hero-body">
                     <p class="title">
-                        대외활동
+                        대입 정보
                     </p>
                     <p class="subtitle">
                         글쓰기
@@ -37,7 +37,7 @@
     <div class="content" id="contents">
         <div class="row column text-center">
             <div class="container">
-                <form action="${path }/infoAct/insert.do" method="post">
+                <form action="${path }/infoUni/insert.do" method="post">
                     <table id="table1">
                         <tbody>
                         <tr>
@@ -51,14 +51,14 @@
                             <td>
                                 <textarea name="content" id="content" class="textarea" placeholder="내용 입력" rows="8" cols="100" maxlength="1400" required></textarea>
                                 <script>
-                                    CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path}/infoAct/imageUpload.do'});
+                                    CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path}/infoUni/imageUpload.do'});
                                 </script>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <input type="submit" class="submit button is-info" value="글 등록" >
-                                <a class="button is-primary" href="${path }/infoAct/list.do">글 목록</a>
+                                <a class="button is-primary" href="${path }/infoUni/list.do">글 목록</a>
                             </td>
                         </tr>
                         </tbody>

@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대외활동 글쓰기</title>
+    <title>글쓰기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
     <!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
@@ -25,7 +25,7 @@
             <li class="hero is-medium is-link">
                 <div class="hero-body">
                     <p class="title">
-                        대외활동
+                        교육 정보
                     </p>
                     <p class="subtitle">
                         글쓰기

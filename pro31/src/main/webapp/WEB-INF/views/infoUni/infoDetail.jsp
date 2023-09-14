@@ -243,7 +243,7 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                대외활동
+                대입 정보
             </p>
             <p class="subtitle">
                 상세
@@ -261,12 +261,12 @@
                         <tr>
                             <td>
                                 <c:if test="${dto.author eq sid && not empty sid}">
-                                <a href="${path}/infoAct/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
+                                <a href="${path}/infoUni/edit.do?bno=${dto.bno}" class="inbtn">수정</a>
                                 </c:if>
                             </td>
                             <td>
                                 <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
-                                <a href="${path}/infoAct/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
+                                <a href="${path}/infoUni/delete.do?bno=${dto.bno}" class="inbtn delete_btn" >삭제</a>
                                </c:if>
                             </td>
                             <td>${dto.author}</td>

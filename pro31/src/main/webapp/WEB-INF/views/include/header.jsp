@@ -34,7 +34,7 @@
                             교육 정보
                         </a>
                         <hr class="navbar-divider">
-                        <a href="${path2}/" class="navbar-item">
+                        <a href="${path2}/infoUni/list.do" class="navbar-item">
                             대입 정보
                         </a>
                         <hr class="navbar-divider">

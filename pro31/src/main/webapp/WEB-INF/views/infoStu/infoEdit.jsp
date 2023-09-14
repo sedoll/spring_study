@@ -24,7 +24,7 @@
             <li class="hero is-medium is-link">
                 <div class="hero-body">
                     <p class="title">
-                        대외활동
+                        교육 정보
                     </p>
                     <p class="subtitle">
                         글수정

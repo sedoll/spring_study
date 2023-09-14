@@ -243,7 +243,7 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                대외활동
+                교육 정보
             </p>
             <p class="subtitle">
                 상세
