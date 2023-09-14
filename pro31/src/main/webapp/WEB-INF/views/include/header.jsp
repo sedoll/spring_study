@@ -63,6 +63,19 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        학교
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a href="${path2}/menu/list.do" class="navbar-item">
+                            식단표
+                        </a>
+                        <hr class="navbar-divider">
+                    </div>
+                </div>
             </div>
 
             <div class="navbar-end">

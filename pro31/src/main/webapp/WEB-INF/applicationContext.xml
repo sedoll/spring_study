@@ -63,6 +63,7 @@
         <bean id="infoUniDAO" class="kr.co.teaspoon.dao.InfoUniDAOImpl"/>
         <bean id="guestBookService" class="kr.co.teaspoon.service.GuestBookServiceImpl"/>
         <bean id="guestBookDAO" class="kr.co.teaspoon.dao.GuestBookDAOImpl"/>
+        <bean id="menuService" class="kr.co.teaspoon.service.MenuService"/>
 
         <!-- @Transactional 어노테이션 처리 -->
         <tx:annotation-driven transaction-manager="transactionManager" />
