@@ -31,7 +31,7 @@
     <div class="row column text-center">
         <div class="container">
             <%-- post 방식 --%>
-            <h2>학교</h2>
+            <h2>학교 선택</h2>
             <form action="${path}/menu/list.do">
                 <div class="select">
                     <select name="name" id="name" autofocus required>
