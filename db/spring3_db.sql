@@ -194,6 +194,7 @@ CREATE TABLE fileinfo(
 	savefile VARCHAR(500)
 );
 
+
 CREATE TABLE guestbook (
 	articleno INT PRIMARY KEY AUTO_INCREMENT,
 	userid VARCHAR(100),
@@ -201,3 +202,18 @@ CREATE TABLE guestbook (
 	content VARCHAR(2000),
 	regtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP() -- 작성일
 	);
+
+DROP TABLE school;
+-- 학교 정보
+CREATE TABLE school(
+	eo_code VARCHAR(10),
+	eo_name VARCHAR(100),
+	sc_code VARCHAR(50),
+	sc_name VARCHAR(100)
+	);
+
+-- school 데이터 개수
+SELECT COUNT(*) FROM school;
+
+-- 학교 찾기 테스트 구문
+SELECT * FROM school WHERE sc_name LIKE '%고산초%' LIMIT 1

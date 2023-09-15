@@ -1,8 +1,6 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.Infomation;
-import kr.co.teaspoon.service.MemberService;
-import kr.co.teaspoon.service.MenuService;
+import kr.co.teaspoon.service.MenuServiceImpl;
 import kr.co.teaspoon.util.Week;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +21,12 @@ import java.util.Map;
 public class MenuCtrl {
 
     @Autowired
-    private MenuService menuService;
+    private MenuServiceImpl menuService;
 
     @Autowired
     HttpSession session; // 세션 생성
 
+    /*
     @GetMapping("list.do")		//info/list.do
     public String getinfoList(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 
@@ -96,8 +93,9 @@ public class MenuCtrl {
         model.addAttribute("calList", calList);
         model.addAttribute("ntrList", ntrList);
         return "/menu/menuList";
-    }
+    }*/
 
+    /*
     @PostMapping("list.do")		//info/list.do
     public String postinfoList(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 
@@ -164,5 +162,5 @@ public class MenuCtrl {
         model.addAttribute("calList", calList);
         model.addAttribute("ntrList", ntrList);
         return "/menu/menuList";
-    }
+    }*/
 }

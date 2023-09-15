@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class MenuService {
+public class MenuServiceImpl {
 
     private List<String> ddishList = new ArrayList<>(); // 식단
     private List<String> mlsvList = new ArrayList<>(); // 날짜
@@ -22,7 +22,7 @@ public class MenuService {
     private List<String> calList = new ArrayList<>(); // 칼로리
     private List<String> ntrList = new ArrayList<>(); // 영양
 
-    public void menuServiceSet(Map codeS, Map codeK, List<String> date, String schoolName, int minValue, int maxValue) {
+    public void menuServiceSet(String codeS, String codeK, List<String> date, int minValue, int maxValue) {
         Map<String, String> result = new HashMap<>(); // 결과
 
         MenuKey key = new MenuKey(); // api 키
@@ -30,7 +30,7 @@ public class MenuService {
         try {
             // API 엔드포인트 URL
             String apiUrl = "https://open.neis.go.kr/hub/mealServiceDietInfo?KEY="+key.getKey()+"&Type=xml&pIndex="+minValue+
-                    "&pSize="+maxValue+"&ATPT_OFCDC_SC_CODE="+codeK.get(schoolName)+"&SD_SCHUL_CODE="+codeS.get(schoolName)+"&MLSV_FROM_YMD="+date.get(0)+"&MLSV_TO_YMD="+date.get(1);
+                    "&pSize="+maxValue+"&ATPT_OFCDC_SC_CODE="+codeK+"&SD_SCHUL_CODE="+codeS+"&MLSV_FROM_YMD="+date.get(0)+"&MLSV_TO_YMD="+date.get(1);
             System.out.println(apiUrl);
             // API 요청 보내기
             Document doc = Jsoup.connect(apiUrl).get();
