@@ -192,8 +192,12 @@ CREATE TABLE fileinfo(
 	savefolder VARCHAR(500),
 	oroginfile VARCHAR(500),
 	savefile VARCHAR(500)
-)
+);
 
 CREATE TABLE guestbook (
-	articleno INT PRIMARY KEY AUTO_INCREMENT
-	
+	articleno INT PRIMARY KEY AUTO_INCREMENT,
+	userid VARCHAR(100),
+	SUBJECT VARCHAR(100),
+	content VARCHAR(2000),
+	regtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP() -- 작성일
+	);
