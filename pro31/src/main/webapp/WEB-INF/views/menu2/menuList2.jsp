@@ -20,10 +20,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <p class="title">
-            식단표
+            ${not empty schoolName ? schoolName : '학교'}
         </p>
         <p class="subtitle">
-            ${schoolName}등학교
+            식단표
         </p>
     </div>
 </section>

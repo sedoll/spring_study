@@ -23,7 +23,7 @@
             식단표
         </p>
         <p class="subtitle">
-            ${schoolName}등학교
+            ${schoolName}
         </p>
     </div>
 </section>

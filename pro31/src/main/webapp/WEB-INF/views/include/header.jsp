@@ -70,12 +70,12 @@
                     </a>
 
                     <div class="navbar-dropdown">
-                        <a href="${path2}/menu/list.do" class="navbar-item">
-                            식단표
-                        </a>
-                        <hr class="navbar-divider">
+<%--                        <a href="${path2}/menu/list.do" class="navbar-item">--%>
+<%--                            식단표--%>
+<%--                        </a>--%>
+<%--                        <hr class="navbar-divider">--%>
                         <a href="${path2}/menu2/list.do" class="navbar-item">
-                            식단표2
+                            식단표
                         </a>
                         <hr class="navbar-divider">
                     </div>
