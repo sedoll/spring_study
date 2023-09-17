@@ -66,7 +66,7 @@
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        학교
+                        기타
                     </a>
 
                     <div class="navbar-dropdown">
@@ -76,6 +76,10 @@
 <%--                        <hr class="navbar-divider">--%>
                         <a href="${path2}/menu2/list.do" class="navbar-item">
                             식단표
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/qna/list.do" class="navbar-item">
+                            QnA
                         </a>
                         <hr class="navbar-divider">
                     </div>

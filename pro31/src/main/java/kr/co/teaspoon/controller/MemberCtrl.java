@@ -103,6 +103,7 @@ public class MemberCtrl {
     //회원 가입 - 회원 가입 처리
     @RequestMapping(value="insert.do", method = RequestMethod.POST)
     public String memberWrite(Member member, Model model) throws Exception {
+        System.out.println(member.toString());
         String ppw = member.getPw();
         String pw = pwEncoder.encode(ppw);
         member.setPw(pw);
