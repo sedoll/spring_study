@@ -34,7 +34,7 @@
             <h2>학교 선택</h2>
             <form action="${path}/menu2/list.do" method="post">
                 <input type="text" name="name" id="name" class="input" placeholder="학교 이름 입력" required autofocus>
-                <input class="button" type="submit" value="확인">
+                <input class="button is-primary" type="submit" value="확인">
             </form>
                 <hr>
             <%-- get 방식 --%>

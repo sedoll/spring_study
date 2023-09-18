@@ -26,6 +26,27 @@
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
+                        고객센터
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a href="${path2}/infoStu/list.do" class="navbar-item">
+                            공지사항
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/infoUni/list.do" class="navbar-item">
+                            FAQ
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/qna/list.do" class="navbar-item">
+                            QnA(문의)
+                        </a>
+                        <hr class="navbar-divider">
+                    </div>
+                </div>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
                         정보
                     </a>
 
@@ -66,7 +87,7 @@
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        기타
+                        내자녀
                     </a>
 
                     <div class="navbar-dropdown">
@@ -76,10 +97,6 @@
 <%--                        <hr class="navbar-divider">--%>
                         <a href="${path2}/menu2/list.do" class="navbar-item">
                             식단표
-                        </a>
-                        <hr class="navbar-divider">
-                        <a href="${path2}/qna/list.do" class="navbar-item">
-                            QnA
                         </a>
                         <hr class="navbar-divider">
                     </div>

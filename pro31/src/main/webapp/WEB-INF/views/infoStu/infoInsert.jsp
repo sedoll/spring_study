@@ -22,7 +22,7 @@
     <jsp:include page="../include/header.jsp"></jsp:include>
     <figure class="visual" id="vs1">
         <ul class="imgbox">
-            <li class="hero is-medium is-link">
+            <li class="hero is-medium is-primary">
                 <div class="hero-body">
                     <p class="title">
                         교육 정보
@@ -57,8 +57,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input type="submit" class="submit button is-info" value="글 등록" >
-                                <a class="button is-primary" href="${path }/infoStu/list.do">글 목록</a>
+                                <input type="submit" class="submit button is-primary" value="글 등록" >
+                                <a class="button" href="${path }/infoStu/list.do">글 목록</a>
                             </td>
                         </tr>
                         </tbody>

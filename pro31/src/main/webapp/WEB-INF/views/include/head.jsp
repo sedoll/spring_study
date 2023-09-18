@@ -48,6 +48,10 @@
 <%-- bulma --%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
+<!-- datatables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
 <!-- 불법 복제 방지, 필수 -->
 <script>
     // document.oncontextmenu = function () {return false;}
