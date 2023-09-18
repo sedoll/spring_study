@@ -41,7 +41,7 @@
                         <tr>
                             <th style="background-color:#dcdcdc">비밀번호</th>
                             <td>
-                                <input type="text" name="pw" id="pw" class="input" placeholder="비밀번호" maxlength="18" required>
+                                <input type="password" name="pw" id="pw" class="input" placeholder="비밀번호" maxlength="18" required>
                                 <input name="bno" type="hidden" value="${bno}" >
                             </td>
                         </tr>

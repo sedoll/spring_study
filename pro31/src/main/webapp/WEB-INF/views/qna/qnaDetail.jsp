@@ -325,7 +325,7 @@
                             info: false,
 
                             language: {
-                                emptyTable: '작성된 댓글가 없습니다.'
+                                emptyTable: '작성된 댓글(이)가 없습니다.'
                             }
                         });
                         $('#myTable').css({

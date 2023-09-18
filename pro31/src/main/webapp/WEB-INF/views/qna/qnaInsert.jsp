@@ -47,7 +47,8 @@
                         <tr>
                             <th style="background-color:#dcdcdc">비밀번호</th>
                             <td>
-                                <input type="text" name="pw" id="pw" class="input" placeholder="비밀글로 하고 싶은 경우 비밀번호 입력" maxlength="18">
+                                <input type="password" name="pw" id="pw" class="input" placeholder="비밀글로 하고 싶은 경우 비밀번호 입력" maxlength="18">
+                                <div id="keyShow" class="button is-primary">SHOW</div>
                             </td>
                         </tr>
                         <tr>
@@ -66,6 +67,17 @@
                     </table>
                 </form>
             </div>
+            <script>
+                $("#keyShow").on("click", function() {
+                    if ($("#pw").attr("type") == "password") {
+                        $("#pw").attr("type", "text");
+                        $($(this)).text("H I D E");
+                    } else {
+                        $("#pw").attr("type", "password");
+                        $($(this)).text("SHOW");
+                    }
+                });
+            </script>
         </div>
     </div>
     <!-- 푸터 부분 인클루드 -->

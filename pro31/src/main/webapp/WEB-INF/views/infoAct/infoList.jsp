@@ -66,7 +66,7 @@
                         info: false,
                         dom: 't<f>p',
                         language: {
-                            emptyTable: '등록된 상품이 없습니다.'
+                            emptyTable: '등록된 글이 없습니다.'
                         }
 
                     });

@@ -62,7 +62,7 @@
             </table>
              <c:if test='${not empty sid}'>
                 <div class="button-group">
-                    <a class="button" href="${path}/qna/insert.do">글쓰기</a>
+                    <a class="button is-primary" href="${path}/qna/insert.do">글쓰기</a>
                 </div>
              </c:if>
             <script>
@@ -73,7 +73,7 @@
                         info: false,
                         dom: 't<f>p',
                         language: {
-                            emptyTable: '등록된 상품이 없습니다.'
+                            emptyTable: '등록된 글이 없습니다.'
                         }
 
                     });

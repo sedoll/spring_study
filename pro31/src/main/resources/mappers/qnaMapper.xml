@@ -5,7 +5,7 @@
 <mapper namespace="qna">
     <!-- 공지사항 목록 -->
     <select id="qnaList" resultType="kr.co.teaspoon.dto.Qna">
-        select * from qna where lev = 0 order by resdate desc
+        select * from qna where lev = 0 order by resdate
     </select>
     <!-- 글 상세보기 -->
     <select id="qnaDetail" resultType="kr.co.teaspoon.dto.Qna">
