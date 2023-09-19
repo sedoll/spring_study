@@ -11,20 +11,20 @@
 
     <!--  접근 자원에 대한 권한 설정 -->
     <resources mapping="/resources/**" location="/resources/" />
-    <resources mapping="/data/**" location="/data/" />
-    <resources mapping="/admin/**" location="/WEB-INF/views/admin" />
     <resources mapping="/board/**" location="/WEB-INF/views/board" />
-    <resources mapping="/check/**" location="/WEB-INF/views/check" />
-    <resources mapping="/databank/**" location="/WEB-INF/views/databank" />
-    <resources mapping="/free/**" location="/WEB-INF/views/free" />
+    <resources mapping="/boardPar/**" location="/WEB-INF/views/boardPar" />
+    <resources mapping="/boardTea/**" location="/WEB-INF/views/boardTea" />
     <resources mapping="/include/**" location="/WEB-INF/views/include" />
     <resources mapping="/member/**" location="/WEB-INF/views/member" />
     <resources mapping="/notice/**" location="/WEB-INF/views/notice" />
     <resources mapping="/qna/**" location="/WEB-INF/views/qna" />
-    <resources mapping="/reservation/**" location="/WEB-INF/views/reservation" />
-    <resources mapping="/util/**" location="/WEB-INF/views/util" />
     <resources mapping="/css/**" location="/WEB-INF/views/css" />
     <resources mapping="/img/**" location="/WEB-INF/views/img" />
+    <resources mapping="/news/**" location="/WEB-INF/views/news" />
+    <resources mapping="/infoAct/**" location="/WEB-INF/views/infoAct" />
+    <resources mapping="/infoStu/**" location="/WEB-INF/views/infoStu" />
+    <resources mapping="/infoUni/**" location="/WEB-INF/views/infoUni" />
+    <resources mapping="/menu/**" location="/WEB-INF/views/menu" />
 
     <!-- 컨트롤러에서 던진 URL : /notice/noticeList -->
     <!-- 실제 존재하는 URL : /WEB-INF/views/notice/noticeList.jsp -->

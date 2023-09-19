@@ -253,3 +253,12 @@ INSERT INTO faq(question, answer) VALUES('자주 묻는 질문7', '자주 묻는
 INSERT INTO faq(question, answer) VALUES('자주 묻는 질문8', '자주 묻는 질문8 더미글입니다.');
 INSERT INTO faq(question, answer) VALUES('자주 묻는 질문9', '자주 묻는 질문9 더미글입니다.');
 INSERT INTO faq(question, answer) VALUES('자주 묻는 질문10', '자주 묻는 질문10 더미글입니다.');
+
+-- 공지사항
+create table notice(
+	no int primary KEY AUTO_INCREMENT, -- notice 글 번호
+	title varchar(200) not NULL,	-- 제목
+	content varchar(1000), -- 내용
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt int DEFAULT 0 -- 조회수
+);

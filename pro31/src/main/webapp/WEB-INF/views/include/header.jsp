@@ -62,6 +62,11 @@
                         <a href="${path2}/infoAct/list.do" class="navbar-item">
                             대외 활동 정보
                         </a>
+                        <hr class="navbar-divider">
+                        <a href="${path2}/news/list.do" class="navbar-item">
+                            뉴스
+                        </a>
+                        <hr class="navbar-divider">
                     </div>
                 </div>
 
