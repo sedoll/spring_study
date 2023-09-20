@@ -90,6 +90,6 @@ public class NewsCtrl {
         model.addAttribute("urlList", hrefList);
         model.addAttribute("companyList", companyList);
         model.addAttribute("textList", textList);
-        return "/news/newsList";
+        return "/index";
     }
 }

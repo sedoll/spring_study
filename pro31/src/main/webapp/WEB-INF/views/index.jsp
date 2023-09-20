@@ -18,30 +18,41 @@
     <section class="hero is-primary">
         <div class="hero-body">
             <p class="title">
-                Primary hero
+                티스푼
             </p>
             <p class="subtitle">
-                Primary subtitle
+                메인
             </p>
         </div>
     </section>
-    <div class="container is-fullhd">
-        <h2>티스푼 메인 페이지</h2>
-        <div class="container">
-            <%-- 나중에 이부분 제거 --%>
-            회원 : ${sid}
-            직업 : ${job}
+    <div class="content" id="content">
+        <div class="row column text-center">
+            <div class="container">
+                <h2>${not empty newsName ? newsName : '뉴스'} 검색</h2>
+                <form action="${path}/news/list.do" method="post">
+                    <input type="text" name="search" id="search" class="input" placeholder="뉴스 제목 입력" required autofocus>
+                    <input class="button is-primary" type="submit" value="확인">
+                </form>
+                <hr>
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content" style="margin-left: 150px;  margin-right: 150px;">
+                            <c:forEach var="item" items="${titleList}" varStatus="status"> <%-- 가져온 url중 64-72번째만 나오게한다--%>
+                                <br>
+                                <p>
+                                    <a href="${urlList.get(status.index)}" target="_blank"><strong style="color: black;font-size: 30px;font-weight: bold;">${titleList.get(status.index)}</strong></a>   <small>${companyList.get(status.index)}</small>
+                                    <br><br>
+                                        ${textList.get(status.index)}..<a href="${urlList.get(status.index)}" style="color: black">더보기</a>
+                                <hr>
+                                </p>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </article>
+                <hr>
+            </div>
+
         </div>
-        <ul class="list">
-            <li><a href="${path}/sample/main.do">RequestMapping 방식 : Get</a></li>
-            <li><a href="${path}/sample/get1.do?id=kkt&pw=1234">GetMapping 방식 : request+model</a></li>
-            <li><a href="${path}/sample/get2.do?id=kkt&pw=1234">RequestMapping.GET 방식 : request+model</a></li>
-            <li><a href="${path}/sample/get3.do?id=kkt&pw=1234">RequestMapping.GET 방식 : RequestParam+model</a></li>
-            <li><a href="${path}/sample/get4.do?id=kkt&pw=1234">RequestMapping.GET 방식 : dto+model</a></li>
-            <li><a href="${path}/sample/get5.do?id=kkt&pw=1234">RequestMapping.GET 방식 : ModelAttribute+model</a></li>
-            <li><a href="${path}/sample/get6.do/kkt/1234">RequestMapping.GET 방식 : PathVariable+model</a></li>
-            <li><a href="${path}/sample/get7.do?id=kkt&pw=1234">RequestMapping.GET 방식 : RequestParam+ModelAndView</a></li>
-        </ul>
     </div>
     <jsp:include page="./include/footer.jsp"/>
 </body>

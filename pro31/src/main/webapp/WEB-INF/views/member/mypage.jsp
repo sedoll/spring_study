@@ -27,10 +27,10 @@
                     </p>
                     <p class="subtitle">
                         <c:if test="${sid!='admin' }">
-                            회원 정보 수정
+                            ${sid}
                         </c:if>
                         <c:if test="${sid=='admin' }">
-                            관리자 회원 정보 수정하기
+                            관리자
                         </c:if>
                     </p>
                 </div>

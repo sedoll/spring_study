@@ -20,13 +20,15 @@
     <jsp:include page="../include/header.jsp"></jsp:include>
     <figure class="visual" id="vs1">
         <ul class="imgbox">
-            <li class="hero is-medium is-link">
+            <li class="hero is-medium is-primary">
                 <div class="hero-body">
                     <p class="title">
-                        Medium hero
+                        회원 정보 상세
                     </p>
                     <p class="subtitle">
-                        Medium subtitle
+                        <c:if test="${sid=='admin' }">
+                            관리자
+                        </c:if>
                     </p>
                 </div>
             </li>
@@ -35,13 +37,6 @@
     <div class="content" id="content">
         <div class="row column text-center">
             <div class="container">
-                <c:if test="${sid=='admin' }">
-                    <h2 class="page_tit">회원 정보 수정</h2>
-                </c:if>
-                <c:if test="${sid!='admin' }">
-                    <h2 class="page_tit">마이 페이지</h2>
-                </c:if>
-                <hr>
                 <form action="${path }/member/update.do" method="post" onsubmit="return updateCheck(this)">
                     <div class="table_form_wrap">
                         <table class="table_form">

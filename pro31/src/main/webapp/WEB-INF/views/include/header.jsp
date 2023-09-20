@@ -7,8 +7,8 @@
 <header id="header">
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            <a class="navbar-item" href="${path2}">
+                <img src="${path2}/resources/img/logo_noBackground_blue.png" width="120">
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -20,10 +20,6 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a href="${path2}" class="navbar-item">
-                    Home
-                </a>
-
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         고객센터
@@ -61,10 +57,6 @@
                         <hr class="navbar-divider">
                         <a href="${path2}/infoAct/list.do" class="navbar-item">
                             대외 활동 정보
-                        </a>
-                        <hr class="navbar-divider">
-                        <a href="${path2}/news/list.do" class="navbar-item">
-                            뉴스
                         </a>
                         <hr class="navbar-divider">
                     </div>
