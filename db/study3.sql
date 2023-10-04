@@ -6,15 +6,15 @@ DROP TABLE test;
 
 -- study3
 CREATE TABLE test(
-	num INT PRIMARY KEY AUTO_INCREMENT,
+	num INT,
 	title VARCHAR(200)
 );
 
-INSERT test(title) VALUES('제목1');
-INSERT test(title) VALUES('제목2');
-INSERT test(title) VALUES('제목3');
-INSERT test(title) VALUES('제목4');
-INSERT test(title) VALUES('제목5');
+INSERT test VALUES(1, '제목1');
+INSERT test VALUES(2, '제목2');
+INSERT test VALUES(3, '제목3');
+INSERT test VALUES(4, '제목4');
+INSERT test VALUES(5, '제목5');
 
 
 -- study4

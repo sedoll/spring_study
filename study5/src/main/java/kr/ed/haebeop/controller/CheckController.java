@@ -1,18 +1,25 @@
 package kr.ed.haebeop.controller;
 
+import kr.ed.haebeop.domain.Check;
+import kr.ed.haebeop.domain.CheckVO;
+import kr.ed.haebeop.test.CheckValidator;
+import kr.ed.haebeop.test.CheckValidator2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/check/")
 public class CheckController {
+
+    private CheckVO chk1;
+
     @GetMapping("check1")   //http://localhost:8084/check/check1 GET
     public String check1(Model model) {
         return "/check/check1";
@@ -35,4 +42,73 @@ public class CheckController {
         model.addAttribute("pw", req.getParameter("pw"));
         return "/check/check2_result";
     }
+
+    @GetMapping("check3")   //http://localhost:8084/check/check3 GET
+    public String check3(Model model) {
+        return "/check/check3";
+    }
+
+    @GetMapping("check3pro") //http://localhost:8084/check/check3 POST
+    public String check3Pro(HttpServletRequest req, Model model){
+        model.addAttribute("id", req.getParameter("id"));
+        model.addAttribute("pw", req.getParameter("pw"));
+        return "/check/check3_result";
+    }
+
+    @GetMapping("check4")   //http://localhost:8084/check/check4 GET
+    public String check4(Model model) {
+        return "/check/check4";
+    }
+
+    @PostMapping("check4pro") //http://localhost:8084/check/check4 POST
+    public String check4Pro(@ModelAttribute("check") Check check, Model model, BindingResult result){
+        String page = "/check/check4_result";   //폼의 유효성 검증시 알맞은 데이터이면
+        CheckValidator ckVal = new CheckValidator();
+        ckVal.validate(check, result);
+        if(result.hasErrors()){//폼의 유효성 검증시 에러가 있으면, 에러페이지로 변경
+            page = "/check/error4";
+        }
+        return page;
+    }
+
+    //하나의 컨트롤러에서는 오로지 하나의 Vailidator만을 쓸 수 밖에 없다는 단점이 있음
+    @InitBinder
+    protected void initBinder(WebDataBinder binder){
+        binder.setValidator(new CheckValidator()); // check4, 5를 쓸거면 없는걸로 | check6을 쓸거면 2를 사용
+    }
+
+    @GetMapping("check5")   //http://localhost:8084/check/check4 GET
+    public String check5(Model model) {
+        return "/check/check5";
+    }
+
+    @PostMapping("check5pro")
+    public String check5Pro(@ModelAttribute("check") @Valid Check check, Model model, BindingResult result){
+        String page = "/check/check5_result";   //폼의 유효성 검증시 알맞은 데이터이면
+        if(result.hasErrors()){//폼의 유효성 검증시 에러가 있으면, 에러페이지로 변경
+            page = "/check/error5";
+        }
+        return page;
+    }
+
+    @GetMapping("check6")
+    public String check6(@ModelAttribute("chk") CheckVO chk, Model model) {
+        model.addAttribute("chk", chk);
+        return "/check/check6";
+    }
+
+    @PostMapping("check6")
+    public String check6Pro(@ModelAttribute("chk") @Valid CheckVO chk, BindingResult result, Model model){
+        String page = "/check/check6";
+        model.addAttribute("chk", chk);
+        return page;
+    }
+
+    /*
+    @RequestMapping("check6")
+    public String check6(@ModelAttribute("chk") @Valid CheckVO chk, BindingResult result, Model model) {
+        model.addAttribute("chk", chk);
+        return "/check/check6";
+    }
+     */
 }

@@ -16,4 +16,14 @@ public class TestRepositoryImpl implements TestRepository {
     public List<TestVO> testList() throws Exception {
         return sqlSession.selectList("test.testList");
     }
+
+    @Override
+    public TestVO getTest(int num) throws Exception {
+        return sqlSession.selectOne("test.getTest");
+    }
+
+    @Override
+    public void testInsert(TestVO test) throws Exception {
+        sqlSession.insert("test", test);
+    }
 }

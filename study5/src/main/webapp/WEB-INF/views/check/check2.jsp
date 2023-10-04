@@ -37,12 +37,12 @@
             var idReg = /^[a-z0-9]{5,12}$/g;    //정규표현식(유효성검증식)
             if(!idReg.test(id)){
                 alert("아이디 입력 형식이 맞지 않습니다.");
-                return;
+                return false;
             }
             var pwReg = /^[a-zA-Z0-9]{8,12}$/g;
             if(!pwReg.test(pw)){
                 alert("비밀번호 입력 형식이 맞지 않습니다.");
-                return;
+                return false;
             }
         }
         </script>

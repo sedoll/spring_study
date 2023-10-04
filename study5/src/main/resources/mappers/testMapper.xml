@@ -6,7 +6,10 @@
     <select id="testList" resultType="kr.ed.haebeop.domain.TestVO">
         select * from test
     </select>
+    <select id="getTest" resultType="kr.ed.haebeop.domain.TestVO">
+        select * from test where num = #{num}
+    </select>
     <insert id="testInsert">
-        insert into test(title) values (#{title})
+        insert into test values (#{num}, #{title})
     </insert>
 </mapper>

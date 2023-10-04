@@ -10,7 +10,14 @@
 </head>
 <body>
     <h2>Hello World!</h2>
-    <a href="${path}/check/check1"> check1 </a>
-    <a href="${path}/check/check2"> check2 </a>
+    <a href="${path}/check/check1"> check1 </a><br>
+    <a href="${path}/check/check2"> check2 </a><br>
+    <a href="${path}/check/check3"> check3 </a><br>
+    <a href="${path}/check/check4"> check4 </a><br>
+    <a href="${path}/check/check5"> check5 </a><br>
+    <a href="${path}/check/check6"> check6 </a><br>
+    <a href="${path}/json/insertForm"> insertForm </a><br>
+    <a href="${path}/json/insertForm2"> insertForm2 </a><br>
+    <a href="${path}/ajax/"> ajaxHome </a><br>
 </body>
 </html>

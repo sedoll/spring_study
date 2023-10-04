@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface TestService {
     public List<TestVO> testList() throws Exception;
+    public TestVO getTest(int num) throws Exception;
+    public void testInsert(TestVO test) throws Exception;
 }
