@@ -26,11 +26,11 @@ public class CheckValidator implements Validator {
         // 아이디 패턴
         Pattern pat1 = Pattern.compile("^[a-z0-9]{5,12}$", Pattern.CASE_INSENSITIVE);
         // 비밀번호 패턴
-        Pattern pat2 = Pattern.compile("^[a-zA-Z0-9]{8,12}", Pattern.CASE_INSENSITIVE);
+        Pattern pat2 = Pattern.compile("^[a-zA-Z0-9]{8,12}$", Pattern.CASE_INSENSITIVE);
         if(!pat1.matcher(check.getId()).matches()) { // 아이디가 패턴에 맞지 않는 경우
             errors.rejectValue("id", "check.id.invalid"); // 에러 문구 출력
         }
-        if(!pat2.matcher(check.getId()).matches()) {
+        if(!pat2.matcher(check.getPw()).matches()) {
             errors.rejectValue("pw", "check.pw.invalid");
         }
     }

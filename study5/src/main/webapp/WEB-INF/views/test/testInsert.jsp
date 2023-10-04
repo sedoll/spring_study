@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <%-- j쿼리 추가 --%>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>

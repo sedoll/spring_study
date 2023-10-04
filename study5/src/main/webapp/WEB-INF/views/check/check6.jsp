@@ -15,10 +15,11 @@
         <h2>hibernate Validator에서 유효성 검사</h2>
         <hr>
         <form:form action="./check6" method="post" modelAttribute="chk">
-            아이디 : <form:input path="id"/><br>
+            아이디 : <form:input path="id"/><br><br>
             <form:errors path="id" element="div" delimiter=" "/>
 
-            비밀번호 : <form:password path="pw"/><br>
+            <%-- password 타입은 input과 다르게 전송하면 사라진다. --%>
+            비밀번호 : <form:password path="pw"/><br><br>
             <form:errors path="pw" element="div" delimiter=" "/>
 
             <button class="btn" type="submit"> 전송 </button>

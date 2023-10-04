@@ -19,25 +19,26 @@ public class CheckValidator2 implements Validator {
         System.out.println("validate action");
         CheckVO check = (CheckVO)obj;
 
-        Pattern pat1 = Pattern.compile("^[a-z0-9]$", Pattern.CASE_INSENSITIVE);
-        Pattern pat2 = Pattern.compile("^[a-zA-Z0-9]$", Pattern.CASE_INSENSITIVE);
-
-        if(!(pat1.matcher(check.getId()).matches())){
-            error.rejectValue("id", "check.id.invalid", "아이디 형식이 일치하지 않습니다.");
-        }
-        if(!(pat2.matcher(check.getPw()).matches())){
-            error.rejectValue("pw", "check.pw.invalid", "비밀번호 형식이 올바르지 않습니다.");
-        }
+        // spring 에서는 패턴을 넣을 때 그냥 $가 아닌 +$를 해줘야 한다
+        Pattern pat1 = Pattern.compile("^[a-z0-9]+$", Pattern.CASE_INSENSITIVE);
+        Pattern pat2 = Pattern.compile("^[a-zA-Z0-9]+$", Pattern.CASE_INSENSITIVE);
 
         String id = check.getId();
         String pw = check.getPw();
 
+        if(!(pat1.matcher(id).matches())){
+            error.rejectValue("id", "check.id.invalid", "아이디 형식이 일치하지 않습니다.");
+        }
+        if(!(pat2.matcher(pw).matches())){
+            error.rejectValue("pw", "check.pw.invalid", "비밀번호 형식이 올바르지 않습니다.");
+        }
+
         if(id == null || id.trim().isEmpty()) {
-            error.rejectValue("id", "not value");
+            error.rejectValue("id", "not value", "아이디가 비어 있습니다.");
         }
 
         if(pw == null || pw.trim().isEmpty()) {
-            error.rejectValue("pw", "not value");
+            error.rejectValue("pw", "not value", "비밀번호가 비어 있습니다.");
         }
 
         //id가 8~12 이하인지 확인

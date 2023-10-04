@@ -7,19 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스프링에서 유효성 검사 2 - check4.jsp</title>
+    <title>Springframework Validator에서 @initBinder+@Valid 유효성 검사 - check5.jsp</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Springframework Validator에서 @initBinder+@Valid 유효성 검사</h2>
-        <hr>
-        <form action="./check5pro" method="post">
-            <!-- 영문 소문자와 숫자 조합 글자 길이 5~12 글자 사이의 유효성 패턴 -->
-            id : <input type="text" name="id" id="id" /><br><br>
-            <!-- 영문 소문자 대문자, 숫자 조합 8~12 글자 사이의 유효성 패턴 -->
-            pw : <input type="password" name="pw" id="pw" /><br><br>
-            <button type="submit" id="submit-btn">확인</button>
-        </form>
-    </div>
+<div class="container">
+    <h2>Springframework Validator에서 @initBinder+@Valid 유효성 검사</h2>
+    <hr>
+    <form action="./check5pro" method="post">
+        <!-- 영문 소문자와 숫자 조합 글자 길이 5~12 글자 사이의 유효성 패턴 -->
+        id : <input type="text" name="id" id="id" /><br><br>
+        <!-- 영문 소문자 대문자, 숫자 조합 8~12 글자 사이의 유효성 패턴 -->
+        pw : <input type="password" name="pw" id="pw" /><br><br>
+        <button type="submit" id="submit-btn">확인</button>
+    </form>
+</div>
 </body>
 </html>

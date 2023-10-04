@@ -18,8 +18,6 @@ import javax.validation.Valid;
 @RequestMapping("/check/")
 public class CheckController {
 
-    private CheckVO chk1;
-
     @GetMapping("check1")   //http://localhost:8084/check/check1 GET
     public String check1(Model model) {
         return "/check/check1";
@@ -55,6 +53,23 @@ public class CheckController {
         return "/check/check3_result";
     }
 
+    // 하나의 컨트롤러에서는 오로지 하나의 Vailidator만을 쓸 수 밖에 없다는 단점이 있음
+    // 근데 ModelAttribute 이름을 지정해주면 여러개에서 사용이 가능
+    // check4, 5를 테스트 하고 싶으면 CheckValidator()
+    // check6 을 테스트 하고 싶으면 CheckValidator2() 사용
+
+    // check4, 5에 대한 Validator
+    @InitBinder("check")
+    protected void initBinderForCheck(WebDataBinder binder){
+        binder.setValidator(new CheckValidator());
+    }
+
+    // check6에 대한 Validator
+    @InitBinder("chk")
+    protected void initBinderForChk(WebDataBinder binder){
+        binder.setValidator(new CheckValidator2());
+    }
+
     @GetMapping("check4")   //http://localhost:8084/check/check4 GET
     public String check4(Model model) {
         return "/check/check4";
@@ -69,12 +84,6 @@ public class CheckController {
             page = "/check/error4";
         }
         return page;
-    }
-
-    //하나의 컨트롤러에서는 오로지 하나의 Vailidator만을 쓸 수 밖에 없다는 단점이 있음
-    @InitBinder
-    protected void initBinder(WebDataBinder binder){
-        binder.setValidator(new CheckValidator()); // check4, 5를 쓸거면 없는걸로 | check6을 쓸거면 2를 사용
     }
 
     @GetMapping("check5")   //http://localhost:8084/check/check4 GET

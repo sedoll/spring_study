@@ -7,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Springframework Validator에서 @initBinder+@Valid Result</title>
 </head>
 <body>
-<h2>check4 결과</h2>
-    <hr>
-    <p>${check.id}</p>
-    <p>${check.pw}</p>
+<h2>check5 결과</h2>
+<hr>
+<p>id : ${check.id}</p>
+<p>pw : ${check.pw}</p>
 </body>
 </html>
