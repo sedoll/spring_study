@@ -28,3 +28,20 @@ INSERT emp(first_name) VALUES('lee');
 INSERT emp(first_name) VALUES('park');
 INSERT emp(first_name) VALUES('choi');
 INSERT emp(first_name) VALUES('oh');
+
+
+-- study6
+CREATE TABLE USER(
+	id VARCHAR(20) PRIMARY KEY,
+	pw VARCHAR(350) NOT NULL,
+	NAME VARCHAR(50) NOT NULL,
+	email VARCHAR(150),
+	tel VARCHAR(20),
+	addr1 VARCHAR(200),
+	addr2 VARCHAR(200),
+	postcode VARCHAR(20),
+	regdate DATETIME DEFAULT CURRENT_TIME,
+	birth DATE DEFAULT CURRENT_TIME,
+	pt INT,
+	visited INT
+);

@@ -19,5 +19,6 @@
     <a href="${path}/json/insertForm"> insertForm </a><br>
     <a href="${path}/json/insertForm2"> insertForm2 </a><br>
     <a href="${path}/ajax/"> ajaxHome </a><br>
+    <a href="${path}/admin/list"> userList </a><br>
 </body>
 </html>

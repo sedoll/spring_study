@@ -53,18 +53,18 @@
 
 
     <!-- 인터셉터 : 글쓰기와 같은 회원권한을 가진 경우는 반드시 로그인 페이지를 거쳐서 시도할 것  -->
-    <!-- <beans:bean id="sampleIntercepter" class="kr.co.teaspoon.util.SampleInterceptor" />
-    <beans:bean id="adminIntercepter" class="kr.co.teaspoon.util.AdminInterceptor" />
+    <beans:bean id="userIntercepter" class="kr.ed.haebeop.util.UserInterceptor" />
+    <beans:bean id="adminIntercepter" class="kr.ed.haebeop.util.AdminInterceptor" />
     <interceptors>
         <interceptor>
             <mapping path="/free/**"/>
-            <beans:ref bean="sampleIntercepter" />
+            <beans:ref bean="userIntercepter" />
         </interceptor>
         <interceptor>
             <mapping path="/admin/**"/>
             <beans:ref bean="adminIntercepter" />
         </interceptor>
-    </interceptors> -->
+    </interceptors>
     <!-- free 디렉토리의 view(.jsp)를 접근하려면 SampleInterceptor 클래스에
     제시한 조건이 맞으면 접근 가능하게 할 수 있도록 함 -->
     <!-- admin 디렉토리의 view(.jsp)를 접근하려면 AdminInterceptor 클래스에
