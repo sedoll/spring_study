@@ -40,7 +40,7 @@ public class UserController {
     //본인의 회원 정보 보기
     @RequestMapping(value="read", method = RequestMethod.GET)
     public String userRead(Model model, HttpServletRequest request) throws Exception {
-        String id = (String) session.getAttribute("sid");
+        String id = request.getParameter("id");
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         return "/user/userRead";

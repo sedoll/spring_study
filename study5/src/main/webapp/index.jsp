@@ -10,6 +10,7 @@
 </head>
 <body>
     <h2>Hello World!</h2>
+    <%--
     <a href="${path}/check/check1"> check1 </a><br>
     <a href="${path}/check/check2"> check2 </a><br>
     <a href="${path}/check/check3"> check3 </a><br>
@@ -18,7 +19,10 @@
     <a href="${path}/check/check6"> check6 </a><br>
     <a href="${path}/json/insertForm"> insertForm </a><br>
     <a href="${path}/json/insertForm2"> insertForm2 </a><br>
-    <a href="${path}/ajax/"> ajaxHome </a><br>
+    <a href="${path}/ajax/"> ajaxHome </a><br> --%>
+    <a href="${path}/user/loginForm"> login </a><br>
+    <a href="${path}/user/agree"> join </a><br>
+    <a href="${path}/user/read"> mypage </a><br>
     <a href="${path}/admin/list"> userList </a><br>
 </body>
 </html>

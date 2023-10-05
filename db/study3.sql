@@ -45,3 +45,6 @@ CREATE TABLE USER(
 	pt INT,
 	visited INT
 );
+
+INSERT INTO user(id, pw, NAME) VALUES('admin', '$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi', '관리자');
+INSERT INTO user(id, pw, NAME) VALUES('hong', '$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi', '홍길동');

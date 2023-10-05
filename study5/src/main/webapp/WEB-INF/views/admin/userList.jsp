@@ -43,7 +43,7 @@
         <c:forEach items="${userList }" var="mem" varStatus="status">
             <tr>
                 <td>${status.count }</td>
-                <td><a href="${path2 }/user/getUser?id=${mem.id }">${mem.id }</a></td>
+                <td><a href="${path2 }/user/read?id=${mem.id }">${mem.id }</a></td>
                 <td>${mem.name }</td>
                 <td>${mem.regdate }</td>
                 <td>${mem.pt }</td>
