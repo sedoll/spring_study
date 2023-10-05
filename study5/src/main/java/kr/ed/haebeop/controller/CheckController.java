@@ -54,7 +54,7 @@ public class CheckController {
     }
 
     // 하나의 컨트롤러에서는 오로지 하나의 Vailidator만을 쓸 수 밖에 없다는 단점이 있음
-    // 근데 ModelAttribute 이름을 지정해주면 여러개에서 사용이 가능
+    // 근데 ModelAttribute 이름을 지정해주면 여러개에서 사용이 가능, 근데 나중에 에러 터질 수 있으니 컨트롤러에는 하나에서 작성
     // check4, 5를 테스트 하고 싶으면 CheckValidator()
     // check6 을 테스트 하고 싶으면 CheckValidator2() 사용
 

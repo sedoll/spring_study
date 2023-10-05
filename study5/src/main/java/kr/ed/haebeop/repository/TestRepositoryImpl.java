@@ -24,6 +24,6 @@ public class TestRepositoryImpl implements TestRepository {
 
     @Override
     public void testInsert(TestVO test) throws Exception {
-        sqlSession.insert("test", test);
+        sqlSession.insert("test.testInsert", test);
     }
 }
