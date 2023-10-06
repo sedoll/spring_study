@@ -25,14 +25,13 @@
         select id, pw, name from user where id = #{id}
     </select>
     <insert id="userInsert">
-        insert into user values(#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2},
-                                #{postcode}, #{regdate}, #{birth}, #{pt}, #{visited})
+        insert into user values (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2}, #{postcode}, default, #{birth}, default, default);
     </insert>
-    <update id="userUpdate">
-        insert into user values(#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2},
-                                #{postcode}, #{regdate}, #{birth}, #{pt}, #{visited})
-    </update>
     <delete id="userDelete">
-        delete from user where id = #{id}
+        delete from user where id=#{id}
     </delete>
+    <update id="userUpdate">
+        update user set pw=#{pw }, name=#{name }, email=#{email }, tel=#{tel },
+                        addr1=#{addr1 }, addr2=#{addr2 }, postcode=#{postcode } where id = #{id }
+    </update>
 </mapper>

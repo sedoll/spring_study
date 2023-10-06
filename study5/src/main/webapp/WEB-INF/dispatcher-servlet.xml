@@ -25,6 +25,7 @@
     <resources mapping="/util/**" location="/WEB-INF/views/util" />
     <resources mapping="/test/**" location="/WEB-INF/views/test" />
     <resources mapping="/error/**" location="/WEB-INF/views/error" />
+    <resources mapping="/file/**" location="/WEB-INF/views/file" />
 
     <!-- 컨트롤러에서 던진 URL : /notice/noticeList -->
     <!-- 실제 존재하는 URL : /WEB-INF/views/notice/noticeList.jsp -->
@@ -43,8 +44,9 @@
     </beans:bean>
 
     <!-- 멀티파트 업로드 디렉토리 지정 -->
+    <!-- 파일이 들어갈 디렉토리 절대경로 -->
     <beans:bean id="uploadPath" class="java.lang.String">
-        <beans:constructor-arg value="D:\kim\springStudy\study2\src\main\webapp\resources\upload" />
+        <beans:constructor-arg value="D:\spring_study\study5\src\main\webapp\resources\upload" />
     </beans:bean>
 
     <!-- 기본 메인 패키지 및 컨트롤러 패키지 설정 -->
