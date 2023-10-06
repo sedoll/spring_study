@@ -26,7 +26,8 @@ public class ChatController {
 
     @GetMapping("home")
     public String loadHome(Model model){
-        return "/chat/home";
+        // return "/chat/home"; // 내가 만든거
+        return "/chat/chat"; // 강사님이 만든거
     }
 
     @PostMapping("createRoom")
