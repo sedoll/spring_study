@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>파일 업로드3</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -40,10 +41,20 @@
                             <input type="text" class="file-path validate">
                         </div>
                         <span class="helper-text">첨부파일로 업로드 가능한 용량은 최대 50MB 입니다.</span>
+                        <button type="button" class="btn waves-effect waves-light red btnSubFile">
+                            <i class="material-icons left">delete</i>
+                            파일 삭제
+                        </button>
                     </div>
                 </div>
                 <div class="row center-align">
                     <div class="col s12 l8 offset-l2">
+                        <div class="col s6">
+                            <button id="btnAddFile" type="button" class="btn-large waves-effect waves-light">
+                                <i class="material-icons left">file_add</i>
+                                파일 추가
+                            </button>
+                        </div>
                         <div class="col s6">
                             <button type="submit" class="btn-large waves-effect waves-light">
                                 <i class="material-icons left">file_upload</i>

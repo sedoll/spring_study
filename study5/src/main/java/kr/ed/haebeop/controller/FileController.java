@@ -32,7 +32,8 @@ public class FileController {
     @GetMapping("fileUpload")
     public String uploadForm() {return "/file/fileUpload";}
     
-    // 이미지 업로드 처리
+    // 이미지 업로드 처리, 
+    // 한 개의 파일 전송
     @PostMapping("fileUpload")
     public String upload(MultipartHttpServletRequest multipartHttpServletRequest) throws ServletException, IOException {
         List<MultipartFile> fileList =multipartHttpServletRequest.getFiles("file");
@@ -52,6 +53,7 @@ public class FileController {
     public String uploadForm2() { return "/file/fileUpload2"; }
 
     // List<MultipartFile> 여기에 사용하는 이름은 연결된 jsp 내의 form의 file name 속성과 같이 사용해야 한다.
+    // 다중 파일 전송
     @PostMapping("fileUpload2")
     public String upload2(HttpServletRequest request, RedirectAttributes attr, List<MultipartFile> files) throws IOException {
         log.info("files 매개변수 : "+files);
@@ -74,6 +76,7 @@ public class FileController {
         return "/";
     }
 
+    // 실제 서버에서 구동할 때 사용하는 파일 업로드 코드
     private String getDateFolder() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
@@ -81,7 +84,7 @@ public class FileController {
         return str;
     }
 
-
+    // 한개의 파일 전송
     @GetMapping("fileUpload3")
     public String uploadForm3() {return "/file/fileUpload3"; }
 
