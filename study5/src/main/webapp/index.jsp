@@ -30,5 +30,7 @@
     <a href="${path}/file/fileUpload"> fileupload (개발 서버용, 1개만 업로드) </a><br>
     <a href="${path}/file/fileUpload2"> fileupload2 (운영 서버용, 여러개 업로드)</a><br>
     <a href="${path}/file/fileUpload3"> fileupload3 (운영 서버용, 여러개 업로드)</a><br>
+    <a href="${path}/locale/lang1"> lang1</a><br>
+    <a href="${path}/calender/home"> calender</a><br>
 </body>
 </html>

@@ -67,13 +67,13 @@
                             파일 추가
                         </button>
                     </div>
-                    <div class="col s6">
+                    <div class="col s4">
                         <button type="button" class="btn-large waves-effect waves-light" id="upBtn">
                             <i class="material-icons left">file_upload</i>
                             업로드
                         </button>
                     </div>
-                    <div class="col s6">
+                    <div class="col s4">
                         <a class="btn-large waves-effect waves-light" href="/file/list">
                             <i class="material-icons left">list</i>
                             목록
