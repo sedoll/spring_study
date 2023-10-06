@@ -3,10 +3,7 @@ package kr.ed.haebeop.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -89,7 +86,7 @@ public class FileController {
     public String uploadForm3() {return "/file/fileUpload3"; }
 
     @ResponseBody
-    @RequestMapping("/fileUpload3")
+    @RequestMapping(value = "/fileUpload3", method = RequestMethod.POST)
     public List<String> upload3(MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
         List<MultipartFile> fileList = multipartHttpServletRequest.getFiles("file");
         List<String> fileNames = new ArrayList<>();

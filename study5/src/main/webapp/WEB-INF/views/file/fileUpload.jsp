@@ -41,17 +41,27 @@
                             <input type="text" class="file-path validate">
                         </div>
                         <span class="helper-text">첨부파일로 업로드 가능한 용량은 최대 50MB 입니다.</span>
+                        <button type="button" class="btn waves-effect waves-light red btnSubFile">
+                            <i class="material-icons left">delete</i>
+                            파일 삭제
+                        </button>
                     </div>
                 </div>
                 <div class="row center-align">
-                    <div class="col s12 l8 offset-l2">
-                        <div class="col s6">
+                    <div class="col s12">
+                        <div class="col s4">
+                            <button id="btnAddFile" type="button" class="btn-large waves-effect waves-light">
+                                <i class="material-icons left">add</i>
+                                파일 추가
+                            </button>
+                        </div>
+                        <div class="col s4">
                             <button type="submit" class="btn-large waves-effect waves-light">
                                 <i class="material-icons left">file_upload</i>
                                 업로드
                             </button>
                         </div>
-                        <div class="col s6">
+                        <div class="col s4">
                             <a class="btn-large waves-effect waves-light" href="/file/list">
                                 <i class="material-icons left">list</i>
                                 목록
@@ -73,6 +83,49 @@
 <script>
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
+</script>
+<script>
+    $(document).ready(function () {
+        var fileContainer = $('#fileContainer');
+        var btnAddFile = $('#btnAddFile');
+        var fileCount = 1; // 첨부파일 선택상자 개수
+
+        btnAddFile.click(function () {
+            if (fileCount >= 5) {
+                alert('첨부파일은 최대 5개까지만 업로드 가능합니다.');
+                return false;
+            }
+            fileCount++; // 추가된 첨부파일 선택상자 개수 반영
+
+            var input = '<div class="file-field input-field col s12">' +
+                '<div class="btn">' +
+                '<span><i class="material-icons left">attach_file</i>첨부 파일</span>' +
+                '<input type="file" name="file">' +
+                '</div>' +
+                '<div class="file-path-wrapper">' +
+                '<input type="text" class="file-path validate">' +
+                '</div>' +
+                '<span class="helper-text">첨부파일로 업로드 가능한 용량은 최대 50MB 입니다.</span>' +
+                '<button class="btn waves-effect waves-light red btnSubFile" type="button">' +
+                '<i class="material-icons left">delete</i>파일 삭제' +
+                '</button>' +
+                '</div>';
+
+            fileContainer.append(input);
+        });
+
+        // 파일 삭제 버튼 클릭 시
+        $(document).on('click', '.btnSubFile', function () {
+            var fileField = $(this).closest('.file-field');
+            if (fileCount === 1) {
+                alert('첨부파일은 최소 1개까지만 업로드 가능합니다.');
+                return false;
+            }
+
+            fileField.remove();
+            fileCount--; // 파일 업로드 컨트롤 개수 감소
+        });
+    });
 </script>
 </body>
 </html>

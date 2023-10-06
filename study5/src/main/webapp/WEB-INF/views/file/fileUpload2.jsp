@@ -48,20 +48,20 @@
                     </div>
                 </div>
                 <div class="row center-align">
-                    <div class="col s12 l8 offset-l2">
-                        <div class="col s6">
+                    <div class="col s12">
+                        <div class="col s4">
                             <button id="btnAddFile" type="button" class="btn-large waves-effect waves-light">
-                                <i class="material-icons left">file_add</i>
+                                <i class="material-icons left">add</i>
                                 파일 추가
                             </button>
                         </div>
-                        <div class="col s6">
+                        <div class="col s4">
                             <button type="submit" class="btn-large waves-effect waves-light">
                                 <i class="material-icons left">file_upload</i>
                                 업로드
                             </button>
                         </div>
-                        <div class="col s6">
+                        <div class="col s4">
                             <a class="btn-large waves-effect waves-light" href="/file/list">
                                 <i class="material-icons left">list</i>
                                 목록
