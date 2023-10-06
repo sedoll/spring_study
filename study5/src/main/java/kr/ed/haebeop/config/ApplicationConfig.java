@@ -1,14 +1,12 @@
 package kr.ed.haebeop.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.ed.haebeop.domain.CheckVO;
 import kr.ed.haebeop.persistence.UserPersistence;
 import kr.ed.haebeop.persistence.UserPersistenceImpl;
 import kr.ed.haebeop.repository.TestRepository;
 import kr.ed.haebeop.repository.TestRepositoryImpl;
-import kr.ed.haebeop.service.TestService;
-import kr.ed.haebeop.service.TestServiceImpl;
-import kr.ed.haebeop.service.UserService;
-import kr.ed.haebeop.service.UserServiceImpl;
+import kr.ed.haebeop.service.*;
 import kr.ed.haebeop.test.transaction.TransactionRepository;
 import kr.ed.haebeop.test.transaction.TransactionService;
 import org.apache.ibatis.session.SqlSession;
@@ -47,4 +45,7 @@ public class ApplicationConfig {
 
     @Bean
     public BCryptPasswordEncoder pwdEncoder() { return new BCryptPasswordEncoder(); }
+
+    @Bean
+    public ObjectMapper mapper() { return new ObjectMapper(); }
 }

@@ -26,6 +26,7 @@
     <resources mapping="/test/**" location="/WEB-INF/views/test" />
     <resources mapping="/error/**" location="/WEB-INF/views/error" />
     <resources mapping="/file/**" location="/WEB-INF/views/file" />
+    <resources mapping="/chat/**" location="/WEB-INF/views/chat" />
 
     <!-- 컨트롤러에서 던진 URL : /notice/noticeList -->
     <!-- 실제 존재하는 URL : /WEB-INF/views/notice/noticeList.jsp -->

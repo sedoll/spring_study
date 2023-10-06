@@ -32,5 +32,6 @@
     <a href="${path}/file/fileUpload3"> fileupload3 (운영 서버용, 여러개 업로드)</a><br>
     <a href="${path}/locale/lang1"> lang1</a><br>
     <a href="${path}/calender/home"> calender</a><br>
+    <a href="${path}/chat/home"> chat</a><br>
 </body>
 </html>

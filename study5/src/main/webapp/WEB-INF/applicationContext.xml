@@ -46,6 +46,8 @@
     <bean id="testRepository" class="kr.ed.haebeop.repository.TestRepositoryImpl" />
     <bean id="userService" class="kr.ed.haebeop.service.UserServiceImpl"/>
     <bean id="userPersistence" class="kr.ed.haebeop.persistence.UserPersistenceImpl" />
+    <bean id="mapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+    <bean id="chatService" class="kr.ed.haebeop.service.ChatService" />
 
     <!-- @Transactional 어노테이션 처리 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
