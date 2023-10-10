@@ -263,6 +263,20 @@
     <version>${org.springframework-version}</version>
   </dependency>
 
+  <!-- 범용 json(20200518) -->
+  <dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20200518</version>
+  </dependency>
+
+  <!-- 심플 json(0.4) -->
+  <dependency>
+    <groupId>org.apache.clerezza.ext</groupId>
+    <artifactId>org.json.simple</artifactId>
+    <version>0.4</version>
+  </dependency>
+
   <!-- java의 validation 라이브러리 validation-api 2.0.1.Final -->
   <dependency>
     <groupId>javax.validation</groupId>

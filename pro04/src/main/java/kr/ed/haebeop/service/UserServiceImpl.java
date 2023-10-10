@@ -1,7 +1,7 @@
 package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.User;
-import kr.ed.haebeop.persistence.UserPersistence;
+import kr.ed.haebeop.persistence.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,33 +14,33 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserPersistence userPersistence;
+    private UserMapper userMapper;
     
     BCryptPasswordEncoder pwdEncoder;
 
     @Override
     public List<User> userList() throws Exception {
-        return userPersistence.userList();
+        return userMapper.userList();
     }
 
     @Override
     public User getUser(String id) throws Exception {
-        return userPersistence.getUser(id);
+        return userMapper.getUser(id);
     }
 
     @Override
     public void userInsert(User dto) throws Exception {
-        userPersistence.userInsert(dto);
+        userMapper.userInsert(dto);
     }
 
     @Override
     public User signIn(User mdto) throws Exception {
-        return userPersistence.signIn(mdto);
+        return userMapper.signIn(mdto);
     }
 
     @Override
     public User loginCheck(User mdto) throws Exception {
-        return userPersistence.loginCheck(mdto);
+        return userMapper.loginCheck(mdto);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
         mdto.setId(request.getParameter("id"));
         mdto.setPw(request.getParameter("pw"));
 
-        User login = userPersistence.login(mdto);
+        User login = userMapper.login(mdto);
 
         loginSuccess =  pwdEncoder.matches(mdto.getPw(), login.getPw());
         if(login != null && loginSuccess==true) {
@@ -65,11 +65,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void userUpdate(User mdto) throws Exception {
-        userPersistence.userUpdate(mdto);
+        userMapper.userUpdate(mdto);
     }
 
     @Override
     public void userDelete(String id) throws Exception {
-        userPersistence.userDelete(id);
+        userMapper.userDelete(id);
     }
 }

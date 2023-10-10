@@ -42,5 +42,6 @@ public class ServletContext implements WebMvcConfigurer {
         registry.addResourceHandler("/news/**").addResourceLocations("/news/");
         registry.addResourceHandler("/notice/**").addResourceLocations("/notice/");
         registry.addResourceHandler("/qna/**").addResourceLocations("/qna/");
+        registry.addResourceHandler("/test/**").addResourceLocations("/test/");
     }
 }
