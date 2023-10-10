@@ -30,6 +30,8 @@ INSERT emp(first_name) VALUES('choi');
 INSERT emp(first_name) VALUES('oh');
 
 
+DROP TABLE user;
+
 -- study6
 CREATE TABLE USER(
 	id VARCHAR(20) PRIMARY KEY,
@@ -42,8 +44,8 @@ CREATE TABLE USER(
 	postcode VARCHAR(20),
 	regdate DATETIME DEFAULT CURRENT_TIME,
 	birth DATE DEFAULT CURRENT_TIME,
-	pt INT,
-	visited INT
+	pt INT DEFAULT 0,
+	visited INT DEFAULT 0
 );
 
 INSERT INTO user(id, pw, NAME) VALUES('admin', '$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi', '관리자');
