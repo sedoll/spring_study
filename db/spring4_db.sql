@@ -1,5 +1,12 @@
 -- pro04
 
+-- 핵심기능 : 공지사항, 자료실, 회원, 자유게시판, 강의별 댓글, 교재와 시범강의
+
+-- 부가기능 : 파일업로드, 채팅 및 쪽지, 타계정 또는 SNS로 로그인, 수강평, 달력
+-- 가입시 축하 메일 보내기, 비밀번호 변경시 이메일 보내기
+-- 온라인 평가, 진도 관리 등
+
+
 CREATE DATABASE haebeop;
 
 USE haebeop
@@ -71,7 +78,9 @@ CREATE TABLE instructor(
 	email VARCHAR(100)
 	);
 
--- 강의(강의코드(PK), 강의명,  강의파일, 과목코드(FK), 강사코드(FK), 수강인원)
+-- 강의(강의코드(PK), 강의명,  강의동영상파일, 과목코드(FK), 강사코드(FK), 수강인원, 최대수강인원)
+DROP TABLE lecture;
+
 CREATE TABLE lecture(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(200) NOT NULL,
@@ -79,12 +88,15 @@ CREATE TABLE lecture(
 	sno INT,
 	ino INT,
 	cnt INT DEFAULT 0,
+	max_cnt INT,
 	FOREIGN KEY(sno) REFERENCES subject(no), 
 	FOREIGN KEY(ino) REFERENCES instructor(no)
 	);
 	
 
 -- 수강(수강코드(PK), 강의코드(FK), 학생아이디(FK), 수강총시간, 수강완료 여부)
+DROP table course;
+
 CREATE TABLE course(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
 	lec_no INT,
@@ -106,3 +118,13 @@ CREATE TABLE textbook(
 	cost INT DEFAULT 0,
 	memo VARCHAR(1000)
 	);
+
+-- 강의 배정
+-- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위
+-- 하나의 과목당 여러 강의를 모두 등록해야한다.
+
+
+-- 수강 신청
+-- 강의 정보를 보고, 학생이 수강 신청을 하는 행위,
+-- 학생별로 모든 강의 정보가 등록되어야 하며, 
+-- 만약 수강신청시 수강인원이 초과될 경우 수강신청을 할 수 없다.
