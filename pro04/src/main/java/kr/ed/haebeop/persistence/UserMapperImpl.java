@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserPersistenceImpl implements UserPersistence{
+public class UserMapperImpl implements UserMapper {
 
     @Autowired
     private SqlSession sqlSession;

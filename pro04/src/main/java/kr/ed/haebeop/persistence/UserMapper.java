@@ -4,7 +4,7 @@ import kr.ed.haebeop.domain.User;
 
 import java.util.List;
 
-public interface UserPersistence {
+public interface UserMapper {
 
     public List<User> userList() throws Exception;
     public User getUser(String id) throws Exception;
