@@ -12,18 +12,64 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>티스푼 메인 페이지</title>
     <jsp:include page="./include/head.jsp"/>
+    <!-- 슬라이드 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <style>
+        .swiper {
+            max-height: 100vh;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
     <jsp:include page="./include/header.jsp"/>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <p class="title">
-                티스푼
-            </p>
-            <p class="subtitle">
-                메인
-            </p>
+    <section class="hero-area has-background-primary" id="parallax" style="padding-top: 0;">
+
+        <!-- slidebar banner -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="${path }/resources/img/index_1.png" alt="메인페이지 배너1" style="width: 100vw">
+                </div>
+                <div class="swiper-slide">
+                    <img src="${path }/resources/img/index_2.png" alt="메인페이지 배너2" style="width: 100vw">
+                </div>
+                <div class="swiper-slide">
+                    <img src="${path }/resources/img/index_3.png" alt="메인페이지 배너3" style="width: 100vw">
+                </div>
+                <div class="swiper-slide">
+                    <img src="${path }/resources/img/index_4.png" alt="메인페이지 배너4" style="width: 100vw">
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
+
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                loop: true, // 무한 루프
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
     </section>
     <div class="content" id="content">
         <div class="row column text-center">

@@ -31,7 +31,7 @@ public class ServletContext implements WebMvcConfigurer {
         registry.addResourceHandler("/check/**").addResourceLocations("/check/");
         registry.addResourceHandler("/api/**").addResourceLocations("/api/");
         registry.addResourceHandler("/util/**").addResourceLocations("/util/");
-        registry.addResourceHandler("/user/**").addResourceLocations("/user/");
+        registry.addResourceHandler("/member/**").addResourceLocations("/member/");
         registry.addResourceHandler("/chat/**").addResourceLocations("/chat/");
         registry.addResourceHandler("/board/**").addResourceLocations("/board/");
         registry.addResourceHandler("/faq/**").addResourceLocations("/faq/");
@@ -43,5 +43,6 @@ public class ServletContext implements WebMvcConfigurer {
         registry.addResourceHandler("/notice/**").addResourceLocations("/notice/");
         registry.addResourceHandler("/qna/**").addResourceLocations("/qna/");
         registry.addResourceHandler("/test/**").addResourceLocations("/test/");
+        registry.addResourceHandler("/main/**").addResourceLocations("/main/");
     }
 }

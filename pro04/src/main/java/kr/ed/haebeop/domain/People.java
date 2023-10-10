@@ -1,7 +1,6 @@
 package kr.ed.haebeop.domain;
 
 import lombok.*;
-
 @Setter
 @Getter
 @ToString
@@ -11,3 +10,4 @@ public class People {
     private String id;
     private String pw;
 }
+

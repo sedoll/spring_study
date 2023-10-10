@@ -11,6 +11,249 @@ CREATE DATABASE haebeop;
 
 USE haebeop
 
+CREATE TABLE board(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(1000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	lev INT DEFAULT 0, -- 게시글 0, 답글 1 이상
+	par INT, -- 부모 게시글 번호
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
+		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+INSERT INTO board(title, content, author) VALUES('본문 제목1', '본문 내용1', 'admin');
+UPDATE board SET par=bno WHERE bno=1;
+
+INSERT INTO board(title, content, author) VALUES('본문 제목2', '본문 내용2', 'hong'); 
+UPDATE board SET par=bno WHERE bno=2;
+
+INSERT INTO board(title, content, author) VALUES('본문 제목3', '본문 내용3', 'kang');
+UPDATE board SET par=bno WHERE bno=3;
+
+INSERT INTO board(title, content, author) VALUES('본문 제목4', '본문 내용4', 'lee');
+UPDATE board SET par=bno WHERE bno=4;
+
+INSERT INTO board(title, content, author) VALUES('본문 제목5', '본문 내용5', 'son');
+UPDATE board SET par=bno WHERE bno=5;
+
+INSERT INTO board(title, content, author) VALUES('본문 제목6', '본문 내용6', 'hong');
+UPDATE board SET par=bno WHERE bno=6; 
+
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 7);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 7);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 6);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 5);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 4);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 3);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 2);
+INSERT INTO board(title, content, author, lev, par) VALUES('댓글', '댓글내용', 'admin', 1, 1);
+
+select * from board where par = 7 and lev = 1 order by resdate DESC;
+
+
+CREATE TABLE board_tea(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(1000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	lev INT DEFAULT 0, -- 게시글 0, 답글 1 이상
+	par INT, -- 부모 게시글 번호
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+CREATE TABLE board_par(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(1000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	lev INT DEFAULT 0, -- 게시글 0, 답글 1 이상
+	par INT, -- 부모 게시글 번호
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+-- 공지사항(notice) 테이블 생성
+create table notice(
+	no int primary KEY AUTO_INCREMENT, -- notice 글 번호
+	title varchar(200) not NULL,	-- 제목
+	content varchar(1000), -- 내용
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt int DEFAULT 0 -- 조회수
+);
+
+-- 공지사항 더미글 추가 10건
+
+INSERT INTO notice(title, content) VALUES ('공지사항1', '공지사항1 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항2', '공지사항2 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항3', '공지사항3 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항4', '공지사항4 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항5', '공지사항5 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항6', '공지사항6 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항7', '공지사항7 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항8', '공지사항8 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항9', '공지사항9 더미글입니다.');
+INSERT INTO notice(title, content) VALUES ('공지사항10', '공지사항10 더미글입니다.');
+
+-- 자주 묻는 질문 (FAQ) 테이블 생성
+
+CREATE TABLE faq (
+    fno int PRIMARY KEY AUTO_INCREMENT, -- faq 글 번호
+    question VARCHAR(1000) NOT NULL, -- 질문
+    answer VARCHAR(1000) NOT NULL -- 답변
+);
+
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문1', '자주 묻는 질문1 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문2', '자주 묻는 질문2 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문3', '자주 묻는 질문3 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문4', '자주 묻는 질문4 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문5', '자주 묻는 질문5 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문6', '자주 묻는 질문6 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문7', '자주 묻는 질문7 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문8', '자주 묻는 질문8 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문9', '자주 묻는 질문9 더미글입니다.');
+INSERT INTO faq(question, answer) VALUES('자주 묻는 질문10', '자주 묻는 질문10 더미글입니다.');
+
+
+-- 대외활동 정보
+CREATE TABLE info_act(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(2000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	rec INT DEFAULT 0,
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
+		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+-- 학습 정보
+CREATE TABLE info_stu(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(2000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	rec INT DEFAULT 0,
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
+		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+-- 대학 정보
+CREATE TABLE info_uni(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(2000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	rec INT DEFAULT 0,
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+INSERT INTO free(title, content, author) VALUES('본문 제목1', '본문 내용1', 'admin');
+
+
+-- qna
+CREATE TABLE qna(
+	bno INT PRIMARY KEY AUTO_INCREMENT, -- qna 글 번호
+	title VARCHAR(200) NOT NULL, -- 제목
+	content VARCHAR(1000), -- 내용
+	author VARCHAR(16), -- 작성자
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+	cnt INT DEFAULT 0, -- 조회수
+	lev INT DEFAULT 0, -- 게시글 0, 답글 1 이상
+	par INT, -- 부모 게시글 번호
+	pw VARCHAR(330), -- 비밀글, 비밀번호
+	FOREIGN KEY(author) REFERENCES member(id) ON DELETE 		
+		CASCADE -- 작성자를 member id를 이용해 외래키로 사용
+);
+
+-- 학교 정보
+CREATE TABLE school(
+	eo_code VARCHAR(10),
+	eo_name VARCHAR(100),
+	sc_code VARCHAR(50),
+	sc_name VARCHAR(100)
+	);
+
+-- 자료실 db
+CREATE TABLE fileobj (
+	no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	postno INT NOT NULL,
+	savefolder VARCHAR(400),
+	originfile VARCHAR(400),
+	savefile VARCHAR(800),
+	filesize LONG,
+	uploaddate VARCHAR(100)
+);
+
+CREATE TABLE fileboard (
+	postno int NOT NULL AUTO_INCREMENT PRIMARY KEY,	-- 글 번호
+	title VARCHAR(100) not null,   -- 글제목
+	content VARCHAR(1500) not null,    -- 글내용
+	regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
+	visited INT DEFAULT 0   -- 조회수
+);
+
+-- 성적 게시판
+CREATE TABLE grade( 
+	no INTEGER auto_increment PRIMARY KEY,
+	sname VARCHAR(150) NOT NULL ,
+	pid VARCHAR(150) NOT null ,
+	kor INTEGER ,
+	math INTEGER,
+	eng INTEGER ,
+	social INTEGER ,
+	science INTEGER ,
+	exam VARCHAR(80),
+	tname VARCHAR(150),
+	regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+						
+-- sname : 학생 이름, pid: 부모님 아이디, exam : 시험 유형(?), tname: 선생님 성함 
+						  
+DROP TABLE grade;
+
+INSERT INTO grade VALUES(DEFAULT, '홍길동', 'oh12345', 90, 50, 50, 50, 50, '1학기 중간고사', '이순신', default);
+
+-- 관리자 게시판 관리 테이블
+CREATE TABLE report (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    board_bno INT,
+    reporter VARCHAR(16),
+    reason VARCHAR(255),
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY(board_bno) REFERENCES board(bno) ON DELETE CASCADE,
+    FOREIGN KEY(reporter) REFERENCES member(id) ON DELETE CASCADE
+);
+CREATE TABLE report_tea (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    board_bno INT,
+    reporter VARCHAR(16),
+    reason VARCHAR(255),
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY(board_bno) REFERENCES board_tea(bno) ON DELETE CASCADE,
+    FOREIGN KEY(reporter) REFERENCES member(id) ON DELETE CASCADE
+);
+CREATE TABLE report_par (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    board_bno INT,
+    reporter VARCHAR(16),
+    reason VARCHAR(255),
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY(board_bno) REFERENCES board_par(bno) ON DELETE CASCADE,
+    FOREIGN KEY(reporter) REFERENCES member(id) ON DELETE CASCADE
+);
+
+
 CREATE TABLE test(
 	num INT,
 	title VARCHAR(200)

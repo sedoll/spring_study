@@ -11,7 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"kr.ed.haebeop.service", "kr.ed.haebeop.repository"})
@@ -58,5 +62,26 @@ public class RootConfig {
         commonsMultipartResolver.setMaxInMemorySize(100000000);
         return commonsMultipartResolver;
         
+    }
+
+    @Bean
+    public JavaMailSender mailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.naver.com");
+        mailSender.setPort(465);
+        mailSender.setUsername("spospotv@naver.com");
+        mailSender.setPassword("a2217512");
+        mailSender.setDefaultEncoding("utf-8");
+
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.auth", "true");
+        javaMailProperties.put("mail.smtp.ssl.enable", "true");
+        javaMailProperties.put("mail.smtp.starttls.enable", "true");
+        javaMailProperties.put("mail.smtps.ssl.checkserveridentity", "true");
+        javaMailProperties.put("mail.smtps.ssl.trust", "*");
+        javaMailProperties.put("mail.debug", "true");
+        javaMailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        mailSender.setJavaMailProperties(javaMailProperties);
+        return mailSender;
     }
 }
