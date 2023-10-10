@@ -27,4 +27,29 @@ public class TestServiceImpl implements TestService {
     public void testInsert(TestVO test) throws Exception {
         testMapper.testInsert(test);
     }
+
+    @Override
+    public List<TestVO> testList2() {
+        return testMapper.testList2();
+    }
+
+    @Override
+    public TestVO getTest2(int num) {
+        return null;
+    }
+
+    @Override
+    public void insert2(TestVO test) {
+
+    }
+
+    @Override
+    public void update2(TestVO test) {
+
+    }
+
+    @Override
+    public void delete2(int num) {
+
+    }
 }

@@ -12,7 +12,9 @@
     <title>index</title>
 </head>
 <body>
-<a href="${path}/test/testList">db 출력 테스트</a>
+<a href="${path}/test/testList">db 출력 테스트 1</a>
+<a href="${path}/test/testList2">db 출력 테스트 2</a>
+<a href="${path}/test/testList3">db 출력 테스트 3</a>
 <a href="${path}/json/insertForm">db 입력 테스트</a>
 </body>
 </html>

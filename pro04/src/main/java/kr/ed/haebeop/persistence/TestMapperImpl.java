@@ -26,4 +26,29 @@ public class TestMapperImpl implements TestMapper {
     public void testInsert(TestVO test) throws Exception {
         sqlSession.insert("test.testInsert", test);
     }
+
+    @Override
+    public List<TestVO> testList2() {
+        return sqlSession.selectList("testList2");
+    }
+
+    @Override
+    public TestVO getTest2(int num) {
+        return null;
+    }
+
+    @Override
+    public void insert2(TestVO test) {
+
+    }
+
+    @Override
+    public void update2(TestVO test) {
+
+    }
+
+    @Override
+    public void delete2(int num) {
+
+    }
 }

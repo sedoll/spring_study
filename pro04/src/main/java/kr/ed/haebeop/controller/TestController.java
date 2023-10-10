@@ -2,6 +2,7 @@ package kr.ed.haebeop.controller;
 
 import kr.ed.haebeop.domain.People;
 import kr.ed.haebeop.domain.TestVO;
+import kr.ed.haebeop.persistence.TestMapper2;
 import kr.ed.haebeop.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,26 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private TestMapper2 testMapper2;
+
     @GetMapping("testList")
     public String getTestList(Model model) throws Exception {
         List<TestVO> testList = testService.testList();
+        model.addAttribute("testList", testList);
+        return "/test/testList";
+    }
+
+    @GetMapping("testList2")
+    public String getTestList2(Model model) throws Exception {
+        List<TestVO> testList = testService.testList2();
+        model.addAttribute("testList", testList);
+        return "/test/testList";
+    }
+
+    @GetMapping("testList3")
+    public String getTestList3(Model model) throws Exception {
+        List<TestVO> testList = testMapper2.testList3();
         model.addAttribute("testList", testList);
         return "/test/testList";
     }
