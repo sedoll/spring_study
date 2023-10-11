@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <footer class="has-background-dark footer-section" style="padding-top: 0; height: 330px; margin-top: 200px;">
     <div class="section">
         <div class="container">
