@@ -4,9 +4,8 @@
     .sidemenu {
         position: fixed;
         width: 120px;
-        top: 50%;
-        margin-top: -50px;
-        right: 10px;
+        bottom: 30px;
+        left: 30px;
         background: rgba(255, 255, 255, 0.8);
         z-index: 999;
         transition: opacity 0.3s ease;
@@ -45,6 +44,7 @@
 
     .sidemenu ul li a:hover {
         color: #000;
+        background-color: #205bbc;
     }
 
     .sidemenu ul li:last-child {
@@ -64,7 +64,7 @@
 <script>
     $(document).ready(function () {
         $(window).scroll(function () {
-            $(".sidemenu").css("top", "50%");
+            $(".sidemenu").css({"bottom": "30px", "left" : "30px"});
         });
     });
     $(document).ready(function () {

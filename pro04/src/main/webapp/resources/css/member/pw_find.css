@@ -25,19 +25,17 @@ section{
 }
 .content2{
     margin: 0 auto;
-
     width : 440px;
     height : 434.02px;
     border-radius: 6px;
     box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
     color: #4a4a4a;
     display: block;
-    padding: 2rem;
+    padding: 3rem;
     padding-top: 70px;
     display : flex;
     flex-direction: column;
-
-
+    background-color: #BED4E9;
 }
 
 #check{
@@ -48,7 +46,7 @@ section{
     background-color : #4a89dc; */
     border : 1px solid #dddddd;
     background-color : #dddddd;
-    color : #fff;
+    color : black;
     padding : 5px;
     border-radius : 5px;
     align-self : center;

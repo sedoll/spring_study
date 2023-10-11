@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -22,14 +22,14 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
     <!-- 스타일 초기화 -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="${path}/resources/css/reset.css">
     <!-- 웹 폰트 -->
-    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="${path}/resources/css/font.css">
 
     <!-- css 모듈화 -->
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/hd.css">
-    <link rel="stylesheet" href="../css/ft.css">
+    <link rel="stylesheet" href="${path}/resources/css/common.css">
+    <link rel="stylesheet" href="${path}/resources/css/hd.css">
+    <link rel="stylesheet" href="${path}/resources/css/ft.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height: 180vh; background-image: url("../img/login.jpg");
@@ -42,11 +42,6 @@
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
         .page_tit { font-size:48px; text-align: center;  color:#fff;
             padding-bottom: 1.3em; }
-
-        .breadcrumb { clear:both;
-            width:1200px; margin: 0 auto; text-align: right; color:#fff;
-            padding-top: 28px; padding-bottom: 28px; }
-        .breadcrumb a { color:#fff; }
 
         .tb1 {
             width: 1200px;
@@ -105,10 +100,6 @@
             border-bottom: 1px solid #7e7e7e;
         }
 
-
-
-
-
         .tb2{
             width: 1200px;
         }
@@ -156,11 +147,6 @@
             color: #fff;
         }
 
-        .delete_btn {
-            background-color: red;
-            color: #fff;
-        }
-
         .inbtn:hover, .delete_btn:hover {
             background-color: #555;
         }
@@ -168,10 +154,6 @@
         .frm {
             margin-top: 50px;
         }
-
-        /*.frm tr > * {*/
-        /*    margin-right: 10px;*/
-        /*}*/
 
         .btn_group {
             margin-top: 50px;
@@ -184,8 +166,6 @@
             padding: 7px 15px;
             text-align: center;
         }
-
-
 
         .tb3{
             width: 1200px;

@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>비밀번호 찾기</title>
 
-
     <link rel="stylesheet" href="${path}/resources/css/member/pw_find.css"/>
     <link rel="stylesheet" href="${path}/resources/css/member/member.css"/>
 
@@ -44,14 +43,14 @@
                         <label for="email">이메일</label>
                         <div class="error">유효하지 않은 이메일주소 입니다</div>
                     </div>
-
                     <input type="submit" id="check" value="비밀번호 찾기">
                 </form>
             </div>
-
         </div>
     </div>
 </section>
-
+<footer class="ft" id="ft">
+    <%@ include file="../include/footer.jsp" %>
+</footer>
 </body>
 </html>

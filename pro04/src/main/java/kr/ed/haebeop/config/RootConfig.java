@@ -61,8 +61,13 @@ public class RootConfig {
         commonsMultipartResolver.setMaxUploadSize(100000000);
         commonsMultipartResolver.setMaxInMemorySize(100000000);
         return commonsMultipartResolver;
-        
     }
+
+    @Bean(name = "uploadPath")
+    public String uploadPath() { // 멀티파트 업로드 디렉토리 지정
+        return "D:\\spring_study\\pro04\\src\\main\\webapp\\resources\\upload";
+    }
+
 
     @Bean
     public JavaMailSender mailSender() {

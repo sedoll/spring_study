@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -141,14 +141,6 @@
             <div class="hero-body has-text-centered">
                 <p class="title is-size-3">회원 유형 선택</p>
             </div>
-            <nav class="breadcrumb is-small has-bullet-separator is-right" aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="#">Bulma</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Components</a></li>
-                    <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
-                </ul>
-            </nav>
         </section>
     <section class="page" id="page1">
         <div class="page_wrap">
@@ -157,14 +149,18 @@
                     <ul class="join_type">
                         <li class="frontfile">
                             <figure class="image front" style="width: 300px; height: 300px">
-                            <img class="is-rounded" src="${path}/resources/img/mother2.png" alt="학부모">
+                                <label for="stu">
+                                    <img class="is-rounded" src="${path}/resources/img/mother2.png" alt="학부모">
+                                </label>
                             </figure>
                             <input type="radio" name="job" value="1" id="stu" checked class="term-radio1">
                             <label for="stu">학부모</label><br>
                         </li>
                         <li class="beforefile">
                             <figure class="image before" style="width: 300px; height: 300px">
-                            <img class="is-rounded" src="${path}/resources/img/teacher_icon2.png" alt="교사">
+                                <label for="tea">
+                                    <img class="is-rounded" src="${path}/resources/img/teacher_icon2.png" alt="교사">
+                                </label>
                             </figure>
                                 <input type="radio" name="job" value="2" id="tea" class="term-radio2">
                             <label for="tea">교사</label><br>
@@ -185,14 +181,59 @@
 </footer>
 </body>
 <script>
-$('#stu').hover(
-    function(){$('.front').css({'border' : '2px solid #0a0a0a'}); },
-    function (){$('.front').css({'border' : '2px solid #dddddd'});}
-);
+// $('#stu').hover(
+//     function(){$('.front').css({'border' : '2px solid #0a0a0a'}); },
+//     function (){$('.front').css({'border' : '2px solid #dddddd'});}
+// );
+//
+// $('#tea').hover(
+//     function(){$('.before').css({'border' : '2px solid #0a0a0a'}); },
+//     function (){$('.before').css({'border' : '2px solid #dddddd'});}
+// );
+// $(document).ready(function() {
+//     // 학부모(학생) 라디오 버튼 체크 확인
+//     $('#stu').on('change', function() {
+//         if ($(this).is(':checked')) {
+//             // 라디오 버튼이 체크되었을 때 실행할 코드
+//             console.log('학부모(학생) 라디오 버튼이 체크되었습니다.');
+//         } else {
+//             // 라디오 버튼이 체크 해제되었을 때 실행할 코드
+//             console.log('학부모(학생) 라디오 버튼이 체크 해제되었습니다.');
+//         }
+//     });
+//
+//     // 교사 라디오 버튼 체크 확인
+//     $('#tea').on('change', function() {
+//         if ($(this).is(':checked')) {
+//             // 라디오 버튼이 체크되었을 때 실행할 코드
+//             console.log('교사 라디오 버튼이 체크되었습니다.');
+//         } else {
+//             // 라디오 버튼이 체크 해제되었을 때 실행할 코드
+//             console.log('교사 라디오 버튼이 체크 해제되었습니다.');
+//         }
+//     });
+// });
+$(document).ready(function() {
+    // 학부모(학생) 라디오 버튼에 대한 이벤트 처리
+    $('#stu').on('change', function() {
+        if ($(this).is(':checked')) {
+            $('.front').addClass('add-border');
+            $('.before').removeClass('add-border');
+        } else {
+            $('.front').removeClass('add-border');
+        }
+    });
 
-$('#tea').hover(
-    function(){$('.before').css({'border' : '2px solid #0a0a0a'}); },
-    function (){$('.before').css({'border' : '2px solid #dddddd'});}
-);
+    // 교사 라디오 버튼에 대한 이벤트 처리
+    $('#tea').on('change', function() {
+        if ($(this).is(':checked')) {
+            $('.before').addClass('add-border');
+            $('.front').removeClass('add-border');
+        } else {
+            $('.before').removeClass('add-border');
+        }
+    });
+});
+
 </script>
 </html>

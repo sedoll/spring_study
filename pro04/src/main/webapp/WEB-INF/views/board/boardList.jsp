@@ -18,6 +18,9 @@
             height: 250px;
             margin-top: 40px;
         }
+        #myTable{
+            max-height: 600px;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +78,6 @@
                     language: {
                         emptyTable: '등록된 글이 없습니다.'
                     }
-
                 });
             } );
             $(document).ready(function() {

@@ -39,6 +39,7 @@
         .login{
             margin: 0 auto;
             width: 440px;
+            background-color: #BED4E9;
         }
 
         #logo-6{
@@ -65,6 +66,9 @@
             margin-left: 20px;
         }
 
+        img {
+            margin-bottom: 20px;
+        }
 
 
     </style>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -24,10 +24,8 @@
 <!-- 헤더 부분 인클루드 -->
 <jsp:include page="../include/header.jsp"></jsp:include>
 <div class ="body_content">
-
     <div class="main-content">
         <div class="content-wrap">
-
             <div class="content-section">
                 <h5 class ="font"> 비밀번호찾기</h5>
                 <form action="pw_set.do" method="post">
@@ -40,17 +38,12 @@
                         <input type="submit" id="check" value="확인">
                     </div>
                 </form>
-
             </div>
-
-
         </div>
-
     </div>
-
-
-
 </div><!-- 바디컨텐트 -->
-
+<footer class="ft" id="ft">
+    <%@ include file="../include/footer.jsp" %>
+</footer>
 </body>
 </html>

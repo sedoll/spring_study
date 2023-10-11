@@ -260,5 +260,20 @@
 <script src="${path}/resources/theme/plugins/shuffle/shuffle.min.js"></script>
 <!-- Main Script -->
 <script src="${path}/resources/theme/js/script.js"></script>
+
+<!-- 상담 api -->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/652532e4eb150b3fb99ff97a/1hccktjhr';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
