@@ -335,6 +335,20 @@ CREATE TABLE lecture(
 	FOREIGN KEY(sno) REFERENCES subject(no), 
 	FOREIGN KEY(ino) REFERENCES instructor(no)
 	);
+
+-- 상품(pro02 에 있던거 강의 테이블이랑 비교하려고 여기 그냥 넣었음)
+CREATE TABLE product(
+	no INT AUTO_INCREMENT PRIMARY key,
+	cate VARCHAR(50) NOT null,
+	pname VARCHAR(100) NOT null,
+	pcomment VARCHAR(2000) NOT null,
+	plist VARCHAR(2000),
+	price INT DEFAULT 1000,
+	imgsrc1 VARCHAR(300),
+	imgsrc2 VARCHAR(300),
+	imgsrc3 VARCHAR(300),
+	resdate timestamp DEFAULT CURRENT_TIMESTAMP()
+);
 	
 
 -- 수강(수강코드(PK), 강의코드(FK), 학생아이디(FK), 수강총시간, 수강완료 여부)

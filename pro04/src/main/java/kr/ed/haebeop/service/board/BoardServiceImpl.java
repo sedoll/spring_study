@@ -1,8 +1,7 @@
-package kr.ed.haebeop.service;
+package kr.ed.haebeop.service.board;
 
 import kr.ed.haebeop.domain.Board;
 import kr.ed.haebeop.domain.Report;
-import kr.ed.haebeop.repository.BoardRepository;
 import kr.ed.haebeop.repository.BoardRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
-package kr.ed.haebeop.controller;
+package kr.ed.haebeop.controller.board;
 
 import kr.ed.haebeop.domain.Board;
 import kr.ed.haebeop.domain.Report;
-import kr.ed.haebeop.service.BoardParServiceImpl;
+import kr.ed.haebeop.service.board.BoardParServiceImpl;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

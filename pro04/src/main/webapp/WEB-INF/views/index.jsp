@@ -167,6 +167,9 @@
                             로그아웃
                         </a>
                     </c:if>
+                    <a href="${path}/product/proList" class="button is-link2 is-rounded b2" >
+                        상품 테스트
+                    </a>
                 </div>
             </div>
         </div>

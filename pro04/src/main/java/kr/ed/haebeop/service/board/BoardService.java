@@ -1,4 +1,4 @@
-package kr.ed.haebeop.service;
+package kr.ed.haebeop.service.board;
 
 import kr.ed.haebeop.domain.Board;
 import kr.ed.haebeop.domain.Report;

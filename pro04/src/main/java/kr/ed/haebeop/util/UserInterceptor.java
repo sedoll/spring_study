@@ -13,7 +13,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         boolean flag = false;
         HttpSession session = request.getSession(false); // 자동 로그인 방지
-        if(session.getAttribute("user")!=null && session !=null) {
+        if(session.getAttribute("sid")!=null && session !=null) {
             flag = true;
             System.out.println("** 인터셉터 통과 , 요청 주소 **"+request.getRequestURI());
         } else {

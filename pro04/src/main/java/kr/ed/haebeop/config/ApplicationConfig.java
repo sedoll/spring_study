@@ -1,15 +1,18 @@
 package kr.ed.haebeop.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.ed.haebeop.domain.Faq;
 import kr.ed.haebeop.persistence.*;
 import kr.ed.haebeop.repository.*;
 import kr.ed.haebeop.service.*;
+import kr.ed.haebeop.service.board.BoardParServiceImpl;
+import kr.ed.haebeop.service.board.BoardServiceImpl;
+import kr.ed.haebeop.service.board.BoardTeaServiceImpl;
+import kr.ed.haebeop.service.info.InfoActServiceImpl;
+import kr.ed.haebeop.service.info.InfoStuServiceImpl;
+import kr.ed.haebeop.service.info.InfoUniServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @Configuration
 @ComponentScan(basePackages = {"kr.ed.haebeop"})
@@ -105,6 +108,13 @@ public class ApplicationConfig {
     @Bean
     public QnaService qnaService() {return new QnaServiceImpl();}
 
+    // cart
+    @Bean
+    public CartService cartService() {return new CartServiceImpl();}
+
+    //product
+    @Bean
+    public ProductServiceImpl productService() {return new ProductServiceImpl();}
 
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }

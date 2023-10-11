@@ -1,4 +1,4 @@
-package kr.ed.haebeop.service;
+package kr.ed.haebeop.service.info;
 
 import kr.ed.haebeop.domain.Infomation;
 import kr.ed.haebeop.repository.InfoUniRepositoryImpl;

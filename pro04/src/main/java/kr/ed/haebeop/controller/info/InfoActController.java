@@ -1,7 +1,7 @@
-package kr.ed.haebeop.controller;
+package kr.ed.haebeop.controller.info;
 
 import kr.ed.haebeop.domain.Infomation;
-import kr.ed.haebeop.service.InfoActServiceImpl;
+import kr.ed.haebeop.service.info.InfoActServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package kr.ed.haebeop.controller;
+package kr.ed.haebeop.controller.file;
 
 import kr.ed.haebeop.domain.FileBoard;
 import kr.ed.haebeop.domain.FileDTO;

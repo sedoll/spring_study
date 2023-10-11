@@ -1,4 +1,4 @@
-package kr.ed.haebeop.controller;
+package kr.ed.haebeop.controller.file;
 
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
