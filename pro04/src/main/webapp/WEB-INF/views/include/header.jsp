@@ -77,6 +77,17 @@
 
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link is-arrowless">
+                    <strong>강의</strong>
+                </a>
+                <div class="navbar-dropdown is-transparent is-size-6 is-dark is-outlined">
+                    <a href="${path2}/lecture/lecList" class="button is-link2 is-rounded b2" >
+                        강의 목록
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-arrowless">
                     <strong>고객센터</strong>
                 </a>
                 <div class="navbar-dropdown is-transparent is-size-6 is-dark is-outlined">

@@ -282,6 +282,8 @@ CREATE TABLE member(
 	job INT -- 직업
 );
 
+UPDATE member SET pw='$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi' WHERE pw='1234';
+
 -- 공지사항(순번, 제목, 내용, 작성자, 작성일, 읽은 횟수)
 create table notice(
 	no int primary KEY AUTO_INCREMENT, -- notice 글 번호
@@ -313,6 +315,9 @@ CREATE TABLE SUBJECT(
 	cost INT NOT NULL
 	);
 
+INSERT INTO subject VALUES(DEFAULT, '국어', 13000);
+
+
 -- 강사(강사코드(PK), 강사명, 연락처, 이메일)
 CREATE TABLE instructor(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
@@ -320,21 +325,46 @@ CREATE TABLE instructor(
 	tel VARCHAR(20),
 	email VARCHAR(100)
 	);
+	
+INSERT INTO instructor VALUES(DEFAULT, '관리자', '01011111111', 'edu@naver.com');
 
 -- 강의(강의코드(PK), 강의명,  강의동영상파일, 과목코드(FK), 강사코드(FK), 수강인원, 최대수강인원)
-DROP TABLE lecture;
+-- 외래 키 체크를 비활성화
+-- SET FOREIGN_KEY_CHECKS = 0;
 
+-- 테이블 삭제
+-- DROP TABLE lecture;
+
+-- 외래 키 체크를 다시 활성화
+-- SET FOREIGN_KEY_CHECKS = 1;
+
+-- 파일 저장할 때 다른 이름으로 저장되도록 하기
+
+-- 231012 온라인, 오프라인 추가 요망
 CREATE TABLE lecture(
-	NO INT PRIMARY KEY AUTO_INCREMENT,
-	title VARCHAR(200) NOT NULL,
-	sfile VARCHAR(1000),
-	sno INT,
-	ino INT,
-	cnt INT DEFAULT 0,
-	max_cnt INT,
+	NO INT PRIMARY KEY AUTO_INCREMENT, -- 강의 번호
+	title VARCHAR(200) NOT NULL, -- 강의 제목
+	content VARCHAR(2000), -- 강의 소개 글
+	simg VARCHAR(1000), -- 목록 프로필 이미지
+	sfile1 VARCHAR(1000), -- ot 영상
+	sfile2 VARCHAR(1000), -- 강의 영상1
+	sfile3 VARCHAR(1000), -- 강의 영상2
+	sfile4 VARCHAR(1000), -- 강의 영상3
+	sfile5 VARCHAR(1000), -- 강의 영상4
+	sno INT, -- 과목코드(FK)
+	ino INT, -- 강사코드(FK)
+	cnt INT DEFAULT 0, -- 조회수
+	lec INT DEFAULT 0, -- 현재 수강인원
+	studytype INT, -- 1인 경우 온라인, 2인 경우 오프라인
+	lec_max INT, -- 최대 수강인원
+	monthon INT, -- 온라인 강의인 경우 수강일
+	aplctClss1 DATE, -- 수강신청 시작일
+	aplctClss2 DATE, -- 수강신청 종료일
+	studystart DATE, -- 강의 시작일
+	studyend DATE, -- 강의 종료일
 	FOREIGN KEY(sno) REFERENCES subject(no), 
-	FOREIGN KEY(ino) REFERENCES instructor(no)
-	);
+	FOREIGN KEY(ino) REFERENCES instructor(NO)
+);
 
 -- 상품(pro02 에 있던거 강의 테이블이랑 비교하려고 여기 그냥 넣었음)
 CREATE TABLE product(

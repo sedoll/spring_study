@@ -116,6 +116,9 @@ public class ApplicationConfig {
     @Bean
     public ProductServiceImpl productService() {return new ProductServiceImpl();}
 
+    // lecture
+    @Bean
+    public LectureServiceImpl lectureService() {return new LectureServiceImpl();}
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }
 }

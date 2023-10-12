@@ -11,29 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4541e1ca-8a82-4273-acdd-669984c3b837" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../db/spring4_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../db/spring4_db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/config/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/board/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/BoardParController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/board/BoardParController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/BoardTeaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/board/BoardTeaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/file/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/FileDownLoadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/file/FileDownLoadView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/InfoActController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/info/InfoActController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/InfoStuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/info/InfoStuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/InfoUniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/info/InfoUniController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/BoardParServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/board/BoardParServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/board/BoardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/board/BoardServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/BoardTeaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/board/BoardTeaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/InfoActServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/info/InfoActServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/InfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/info/InfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/InfoStuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/info/InfoStuServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/InfoUniServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/service/info/InfoUniServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/UserInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ed/haebeop/util/UserInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
-        <option value="CSS File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="CSS File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -74,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/spring_study/pro04/src/main/webapp/WEB-INF/views/admin",
+    "last_opened_file_path": "D:/spring_study/pro04/src/main/webapp/WEB-INF/views/lecture",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -89,18 +73,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\spring_study\pro04\src\main\webapp\WEB-INF\views\admin" />
-      <recent name="D:\spring_study\pro04\src\main\webapp\WEB-INF\views" />
-      <recent name="D:\spring_study\pro04\src\main\java\kr\ed\haebeop\domain" />
-      <recent name="D:\spring_study\pro04\src\main\java\kr\ed\haebeop\util" />
-      <recent name="D:\spring_study\pro04\target\pro04\WEB-INF\views" />
+      <recent name="D:\spring_study\pro04\src\main\webapp\WEB-INF\views\lecture" />
+      <recent name="D:\spring_study\pro04\src\main\webapp\resources\css" />
+      <recent name="D:\spring_study\pro04\src\main\webapp\resources\img" />
+      <recent name="D:\spring_study\pro04\src\main\webapp\WEB-INF\views\css" />
+      <recent name="D:\spring_study\pro04\src\main\webapp\resources\js" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kr.ed.haebeop.controller" />
+      <recent name="kr.ed.haebeop.service" />
+      <recent name="kr.ed.haebeop.persistence" />
       <recent name="kr.ed.haebeop.domain" />
       <recent name="kr.ed.haebeop.repository" />
-      <recent name="kr.ed.haebeop.controller" />
-      <recent name="kr.ed.haebeop.persistence" />
-      <recent name="kr.ed.haebeop.config" />
     </key>
   </component>
   <component name="RunManager">
@@ -216,7 +200,9 @@
       <workItem from="1696982706751" duration="464000" />
       <workItem from="1696986300283" duration="9016000" />
       <workItem from="1697003118808" duration="9354000" />
-      <workItem from="1697013830725" duration="7072000" />
+      <workItem from="1697013830725" duration="7583000" />
+      <workItem from="1697069919426" duration="12000" />
+      <workItem from="1697073538275" duration="19485000" />
     </task>
     <servers />
   </component>
