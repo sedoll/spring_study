@@ -5,7 +5,7 @@
 <mapper namespace="member">
     <!-- 회원 목록 보기 -->
     <select id="memberList" resultType="kr.ed.haebeop.domain.Member">
-        select * from member order by regdate desc
+        select * from member where id not in ('admin') order by regdate desc
     </select>
 
     <!-- 회원 상세 정보 보기 -->

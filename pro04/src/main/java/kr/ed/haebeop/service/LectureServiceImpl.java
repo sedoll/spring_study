@@ -1,6 +1,7 @@
 package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.Lecture;
+import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.persistence.LectureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,12 @@ public class LectureServiceImpl {
     public Lecture getLecture(int no) {
         return lectureMapper.getLecture(no);
     }
-    public int addLecture(Lecture lec) {
-        return lectureMapper.addLecture(lec);
+    public void addLecture(Lecture lec) { lectureMapper.addLecture(lec);}
+    public void updateLecture(Lecture lec) {lectureMapper.updateLecture(lec);}
+    public void delLecture(int no) {
+        lectureMapper.delLecture(no);
     }
-    public int updateLecture(Lecture lec) {
-        return lectureMapper.updateLecture(lec);
-    }
-    public int delLecture(int no) {
-        return lectureMapper.delLecture(no);
-    }
+    public void countUp(int no) {lectureMapper.countUp(no);}
 
 //    public List<RedirectView> getReviewList(int no) {
 //        ReviewDAO dao = new ReviewDAO();

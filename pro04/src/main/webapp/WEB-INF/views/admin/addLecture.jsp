@@ -10,29 +10,16 @@
     <title>상품 정보 작성</title>
     <%@ include file="../include/head.jsp" %>
 
-    <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
-
     <!-- 플러그인 연결-->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <!-- 스타일 초기화 -->
-    <!-- 스타일 초기화 -->
-    <link rel="stylesheet" href="${path}/css/reset.css">
-    <!-- 웹 폰트 -->
-    <link rel="stylesheet" href="${path}/css/font.css">
 
-    <!-- css 모듈화 -->
-    <link rel="stylesheet" href="${path}/css/common.css">
-    <link rel="stylesheet" href="${path}/css/hd.css">
-    <link rel="stylesheet" href="${path}/css/ft.css">
-    <link rel="stylesheet" href="${path}/css/asidebar.css">
     <style>
         /* 본문 영역 스타일 */
         .contents { clear:both; min-height: 100vh; background-image: url("${path}/img/login.jpg");
             background-repeat: no-repeat; background-position: center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 200vh; position:relative; }
+        .page { clear:both; width: 100vw; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
@@ -44,7 +31,7 @@
             padding-top: 28px; padding-bottom: 28px; }
         .breadcrumb a { color:#fff; }
 
-        .tb1 { width:600px; margin:0 auto; font-size: 24px;}
+        .tb1 { margin:0 auto; font-size: 24px;}
         .tb1 th { width: 200px; line-height: 32px; padding-top:16px; padding-bottom:16px;
             border-bottom: 1px solid #333; border-top: 1px solid #333; box-sizing: border-box; text-align: center;}
         .tb1 td { width: 400px; line-height: 32px; padding-top:16px; padding-bottom:16px;
@@ -73,8 +60,8 @@
         .indata {
             display:inline-block;
             width: 590px;
-            height: 32px;
-            line-height: 32px;
+            height: 40px;
+            line-height: 40px;
             text-indent:10px;
             font-size:16px;
             border: 1px solid #ccc;
@@ -90,8 +77,6 @@
             border-radius: 5px;
             font-size: 16px;
         }
-
-
     </style>
 </head>
 <body>
@@ -99,89 +84,122 @@
     <header class="hd" id="hd">
         <%@ include file="../include/header.jsp" %>
     </header>
+    <figure class="visual" id="vs1">
+        <ul class="imgbox">
+            <li class="hero is-medium is-white">
+                <div class="hero-body has-text-centered">
+                    <p class="title is-size-3">
+                        강의
+                    </p>
+                    <p class="subtitle is-size-5">
+                        등록
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </figure>
     <div class="contents" id="contents">
-        <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/">상품추가</a>
-                &gt; <a href="/">상품 추가</a></p>
-        </div>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">상품 추가</h2>
                 <form action="${path}/lecture/addLecture" class="frm" method="post" enctype="multipart/form-data">
                     <table class="tb1">
                         <tbody>
                         <tr>
-                            <th>카테고리</th>
+                            <th>과목</th>
                             <td colspan="2">
-<%--                                <select name="cate" id="c1" class="indata" autofocus required>--%>
-<%--                                    <option value="" selected>선택안함</option>--%>
-<%--                                    <option value="국어">국어</option>--%>
-<%--                                    <option value="수학">수학</option>--%>
-<%--                                    <option value="영어">영어</option>--%>
-<%--                                    <option value="과학">과학</option>--%>
-<%--                                </select>--%>
+                                <select name="cate" id="cate" class="indata" autofocus required>
+                                    <option value="국어" selected>국어</option>
+                                    <option value="수학">수학</option>
+                                    <option value="영어">영어</option>
+                                    <option value="과학">과학</option>
+                                    <option value="과학">사회</option>
+                                </select>
+                            </td>
+                        </tr>
 
-<%--                                <select name="c2" id="c2" class="indata" autofocus required>--%>
-<%--                                    <option value="" selected>선택안함</option>--%>
-<%--                                    <option value="교과서"  id="op1" >교과서</option>--%>
-<%--                                    <option value="참고서" id="op2">참고서</option>--%>
-<%--                                    <option value="문제집" id="op3">문제집</option>--%>
-<%--                                    <option value="기타" id="op4">기타</option>--%>
-<%--                                    <option value="일반서적" id="op5">일반서적</option>--%>
-<%--                                    <option value="유아" id="op6">유아</option>--%>
-<%--                                    <option value="해외" id="op7">해외</option>--%>
-<%--                                </select>--%>
+                        <tr>
+                            <th>수강 대상</th>
+                            <td colspan="2">
+                                <select name="level1" id="level1" class="indata" autofocus required>
+                                    <option value="초등학교" selected>초등학교</option>
+                                    <option value="중학교">중학교</option>
+                                    <option value="고등학교">고등학교</option>
+                                </select>
 
-<%--                                <script>--%>
-<%--                                    var c1 = document.getElementById("c1");--%>
-<%--                                    var c2 = document.getElementById("c2");--%>
-<%--                                    var op1 = document.querySelectorAll("#op1,#op2,#op3,#op4");--%>
-<%--                                    var op2 = document.querySelectorAll("#op5,#op6,#op7");--%>
+                                <select name="level2" id="level2" class="indata" autofocus required>--%>
+                                    <option value="1학년" id="op1" selected>1학년</option>
+                                    <option value="2학년" id="op2">2학년</option>
+                                    <option value="3학년" id="op3">3학년</option>
+                                    <option value="4학년" id="op4">4학년</option>
+                                    <option value="5학년" id="op5">5학년</option>
+                                    <option value="6학년" id="op6">6학년</option>
+                                </select>
 
+                                <script>
+                                    var c1 = document.getElementById("level1");
+                                    var c2 = document.getElementById("level2");
+                                    var op1 = document.querySelectorAll("#op1,#op2,#op3");
+                                    var op2 = document.querySelectorAll("#op4,#op5,#op6");
 
-<%--                                    c1.addEventListener("change", function() {--%>
-<%--                                        if (c1.value === "기타") {--%>
-<%--                                            op2.forEach(option => {--%>
-<%--                                                option.style.display = "block";--%>
-<%--                                            });--%>
+                                    c1.addEventListener("change", function() {
+                                        if (c1.value === "초등학교") {
+                                            op2.forEach(option => {
+                                                option.style.display = "block";
+                                            });
+                                        } else {
+                                            op1.forEach(option => {
+                                                option.style.display = "block";
+                                            });
 
-<%--                                            op1.forEach(option => {--%>
-<%--                                                option.style.display = "none";--%>
-<%--                                            });--%>
-
-<%--                                        } else {--%>
-<%--                                            op1.forEach(option => {--%>
-<%--                                                option.style.display = "block";--%>
-<%--                                            });--%>
-
-<%--                                            op2.forEach(option => {--%>
-<%--                                                option.style.display = "none";--%>
-<%--                                            });--%>
-
-
-
-<%--                                        }--%>
-<%--                                    });--%>
-<%--                                </script>--%>
-
-
+                                            op2.forEach(option => {
+                                                option.style.display = "none";
+                                            });
+                                        }
+                                    });
+                                </script>
                             </td>
                         </tr>
                         <tr>
                             <th>강의 이름</th>
-                            <td colspan="2"><input type="text" name="title" id="pname" class="indata" placeholder="상품 이름 입력" required></td>
+                            <td colspan="2"><input type="text" name="title" id="title" class="indata" placeholder="상품 이름 입력" required></td>
+                        </tr>
+                        <tr>
+                            <th>강사 이름</th>
+                            <td colspan="2">
+                                <select name="ino" id="ino" class="indata" autofocus required>
+                                    <c:forEach items="${instList}" var="inst" varStatus="status">
+                                        <option value="${inst.no}">${inst.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>강의 설명</th>
-                            <td colspan="2"> <textarea name="content" id="pcomment" cols="50" rows="15" placeholder="상품 설명 입력" required></textarea></td>
+                            <td colspan="2"> <textarea name="content" id="content" cols="50" rows="15" placeholder="상품 설명 입력" required></textarea></td>
                         </tr>
                         <tr>
-                            <th>상품 목차</th>
-                            <td colspan="2"> <textarea name="plist" id="plistt" cols="50" rows="8" placeholder="목차(설명) 입력" required></textarea></td>
+                            <th>강의 가격</th>
+                            <td colspan="2"><input type="number" name="price" id="price" class="indata" placeholder="가격 입력" required></td>
                         </tr>
                         <tr>
-                            <th>상품 가격</th>
-                            <td colspan="2"><input type="text" name="price" id="price" class="indata" placeholder="가격 입력" required></td>
+                            <th>최대 수강인원</th>
+                            <td colspan="2"><input type="text" name="lec_max" id="lec_max" class="indata" placeholder="최대 수강인원" required></td>
+                        </tr>
+                        <tr>
+                            <th>수강신청 시작일</th>
+                            <td colspan="2"><input type="date" name="aplctClss1" id="aplctClss1" class="indata" placeholder="수강신청 시작일" required></td>
+                        </tr>
+                        <tr>
+                            <th>수강신청 마감일</th>
+                            <td colspan="2"><input type="date" name="aplctClss2" id="aplctClss2" class="indata" placeholder="수강신청 마감일" required></td>
+                        </tr>
+                        <tr>
+                            <th>강의 시작일</th>
+                            <td colspan="2"><input type="date" name="studystart" id="studystart" class="indata" placeholder="강의 시작일" required></td>
+                        </tr>
+                        <tr>
+                            <th>강의 종료일</th>
+                            <td colspan="2"><input type="date" name="studyend" id="studyend" class="indata" placeholder="강의 종료일" required></td>
                         </tr>
                         <tr>
                             <th>표지 이미지</th>

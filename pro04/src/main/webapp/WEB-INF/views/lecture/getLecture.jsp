@@ -1,8 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.*" %>
-<%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="<%=request.getContextPath() %>" />
@@ -46,6 +42,9 @@
         .inbtn:hover {
             background-color: #2558a8; /* 버튼 호버 배경색 */
         }
+        table .lec{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -58,7 +57,6 @@
         <section class="page" id="page1">
             <div class="page_wrap">
                 <h2 class="page_tit">강의 상세</h2>
-
                 <div class="product">
                     <div class="productimg">
                         <h3>OT(맛보기 영상)</h3>
@@ -103,40 +101,35 @@
                                 <th colspan="2">${pro.title}</th>
                             </tr>
                             <tr class="pprice">
-                                <th>강좌 수준</th>
-                                <td>중1</td>
-                                <%--                                <td>${pro.price} 원</td>--%>
+                                <th>과목</th>
+                                <td>${pro.cate}</td>
                             </tr>
-                            <tr class="pcate">
-                                <th>학습 단계</th>
-                                <td>기초 수학</td>
-                                <%--                                <td>카테고리: ${pro.cname}</td>--%>
+                            <tr class="pprice">
+                                <th>강좌 수준</th>
+                                <td>${pro.slevel}</td>
                             </tr>
                             <tr class="pdate">
                                 <th>수강 기간</th>
-                                <td>231012-231112</td>
-                                <%--                                <td>출간일: ${pro.resdate}</td>--%>
+                                <td>${pro.studyStart} ~ ${pro.studyEnd}</td>
                             </tr>
                             <tr class="pda">
                                 <th>강사</th>
-                                <td>홍길동</td>
-                                <%--                                <td>출간일: ${pro.resdate}</td>--%>
+                                <td>${inst.name}</td>
                             </tr>
-                            <tr class="test1">
-                                <th>타입</th>
-                                <td>온라인</td>
-                                <%--                                <td>출간일: ${pro.resdate}</td>--%>
+                            <tr class="pda">
+                                <th>이메일</th>
+                                <td>${inst.email}</td>
                             </tr>
                             <tr class="test2">
                                 <th>영상 수</th>
-                                <td>5</td>
-                                <%--                                <td>출간일: ${pro.resdate}</td>--%>
+                                <td>${cnt}</td>
                             </tr>
                             <tr class="pbtn">
                                 <c:if test="${not empty sid}">
                                 <c:set var="isLiked" value="${likedProductIds.contains(pro.no)}" />
-                                <td><a href="${path}/AddPayment.do?pno=${pro.no}" class="button is-success inbtn">수강하기</a>
-                                    <a href="${path}/AddCart.do?pno=${pro.no}" class="button is-info inbtn">장바구니</a>
+                                <td colspan="2">
+                                    <a href="${path}/AddPayment.do?pno=${pro.no}" class="button is-success inbtn">수강신청</a>
+                                    <a href="${path}/cart/cartInsert.do?lec_no=${pro.no}" class="button is-info inbtn">장바구니</a>
                                     <c:choose>
                                     <c:when test="${isLiked}">
                                     <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="inbtn" data-product-id="${pro.no}" style="color: #ff5050">♥</a>
@@ -146,6 +139,7 @@
                                     </c:otherwise>
                                     </c:choose>
                                     </c:if>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="adminbtn">
@@ -219,155 +213,39 @@
                 </table>
                 <table class="table is-fullwidth">
                     <tr>
-                        <td class="adminbtn">
+                        <td class="adminbtn" style="text-align: center">
                             <c:if test="${not empty pro.sfile2}">
-                            <div class="player">
-                                <div class="vdo_fr">
-                                    <video id="video">
-                                        <source src="${path}/resources/upload/${pro.sfile2}" type="video/mp4" />
-                                    </video>
-                                </div>
-                                <div id="timebar">
-                                    <span id="currentTime"></span>
-                                </div>
-                                <div id="buttonbar">
-                                    <button id="restart" class="player_btn"></button>
-                                    <button id="rew" class="player_btn"></button>
-                                    <button id="play" class="player_btn"></button>
-                                    <button id="pause" class="player_btn"></button>
-                                    <button id="stop" class="player_btn"></button>
-                                    <button id="fastFwd" class="player_btn"></button>
-                                    <button id="mute" class="player_btn"></button>
-                                    <button id="unmute" class="player_btn"></button>
-                                    <input id="vol" type="range" value="500" min="0" max="1000">
-                                    <button id="vmup" class="player_btn"></button>
-                                    <button id="vmdown" class="player_btn"></button>
-                                    <button id="volTxt">100%</button>
-                                    <button id="sizeup" class="player_btn"></button>
-                                    <button id="sizedown" class="player_btn"></button>
-                                    <button id="full" class="player_btn"></button>
-                                    <button id="original" class="player_btn"></button>
-                                </div>
-                                <div id="progress">
-                                    <div id="progressBar"></div>
-                                </div>
-                            </div>
+                                <video controls width="640">
+                                    <source src="${path}/resources/upload/${pro.sfile2}" type="video/mp4" />
+                                </video>
                             </c:if>
-                            <script src="${path}/resources/js/vdo.js"></script>
                         </td>
                     </tr>
                     <tr>
-                        <td class="adminbtn">
+                        <td class="adminbtn" style="text-align: center">
                             <c:if test="${not empty pro.sfile3}">
-                                <div class="player">
-                                    <div class="vdo_fr">
-                                        <video id="video">
-                                            <source src="${path}/resources/upload/${pro.sfile3}" type="video/mp4" />
-                                        </video>
-                                    </div>
-                                    <div id="timebar">
-                                        <span id="currentTime"></span>
-                                    </div>
-                                    <div id="buttonbar">
-                                        <button id="restart" class="player_btn"></button>
-                                        <button id="rew" class="player_btn"></button>
-                                        <button id="play" class="player_btn"></button>
-                                        <button id="pause" class="player_btn"></button>
-                                        <button id="stop" class="player_btn"></button>
-                                        <button id="fastFwd" class="player_btn"></button>
-                                        <button id="mute" class="player_btn"></button>
-                                        <button id="unmute" class="player_btn"></button>
-                                        <input id="vol" type="range" value="500" min="0" max="1000">
-                                        <button id="vmup" class="player_btn"></button>
-                                        <button id="vmdown" class="player_btn"></button>
-                                        <button id="volTxt">100%</button>
-                                        <button id="sizeup" class="player_btn"></button>
-                                        <button id="sizedown" class="player_btn"></button>
-                                        <button id="full" class="player_btn"></button>
-                                        <button id="original" class="player_btn"></button>
-                                    </div>
-                                    <div id="progress">
-                                        <div id="progressBar"></div>
-                                    </div>
-                                </div>
+                                <video controls width="640">
+                                    <source src="${path}/resources/upload/${pro.sfile3}" type="video/mp4" />
+                                </video>
                             </c:if>
-                            <script src="${path}/resources/js/vdo.js"></script>
                         </td>
                     </tr>
                     <tr>
-                        <td class="adminbtn">
+                        <td class="adminbtn" style="text-align: center">
                             <c:if test="${not empty pro.sfile4}">
-                                <div class="player">
-                                    <div class="vdo_fr">
-                                        <video id="video">
-                                            <source src="${path}/resources/upload/${pro.sfile4}" type="video/mp4" />
-                                        </video>
-                                    </div>
-                                    <div id="timebar">
-                                        <span id="currentTime"></span>
-                                    </div>
-                                    <div id="buttonbar">
-                                        <button id="restart" class="player_btn"></button>
-                                        <button id="rew" class="player_btn"></button>
-                                        <button id="play" class="player_btn"></button>
-                                        <button id="pause" class="player_btn"></button>
-                                        <button id="stop" class="player_btn"></button>
-                                        <button id="fastFwd" class="player_btn"></button>
-                                        <button id="mute" class="player_btn"></button>
-                                        <button id="unmute" class="player_btn"></button>
-                                        <input id="vol" type="range" value="500" min="0" max="1000">
-                                        <button id="vmup" class="player_btn"></button>
-                                        <button id="vmdown" class="player_btn"></button>
-                                        <button id="volTxt">100%</button>
-                                        <button id="sizeup" class="player_btn"></button>
-                                        <button id="sizedown" class="player_btn"></button>
-                                        <button id="full" class="player_btn"></button>
-                                        <button id="original" class="player_btn"></button>
-                                    </div>
-                                    <div id="progress">
-                                        <div id="progressBar"></div>
-                                    </div>
-                                </div>
+                                <video controls width="640">
+                                    <source src="${path}/resources/upload/${pro.sfile4}" type="video/mp4" />
+                                </video>
                             </c:if>
-                            <script src="${path}/resources/js/vdo.js"></script>
                         </td>
                     </tr>
                     <tr>
-                        <td class="adminbtn">
+                        <td class="adminbtn" style="text-align: center">
                             <c:if test="${not empty pro.sfile5}">
-                                <div class="player">
-                                    <div class="vdo_fr">
-                                        <video id="video">
-                                            <source src="${path}/resources/upload/${pro.sfile5}" type="video/mp4" />
-                                        </video>
-                                    </div>
-                                    <div id="timebar">
-                                        <span id="currentTime"></span>
-                                    </div>
-                                    <div id="buttonbar">
-                                        <button id="restart" class="player_btn"></button>
-                                        <button id="rew" class="player_btn"></button>
-                                        <button id="play" class="player_btn"></button>
-                                        <button id="pause" class="player_btn"></button>
-                                        <button id="stop" class="player_btn"></button>
-                                        <button id="fastFwd" class="player_btn"></button>
-                                        <button id="mute" class="player_btn"></button>
-                                        <button id="unmute" class="player_btn"></button>
-                                        <input id="vol" type="range" value="500" min="0" max="1000">
-                                        <button id="vmup" class="player_btn"></button>
-                                        <button id="vmdown" class="player_btn"></button>
-                                        <button id="volTxt">100%</button>
-                                        <button id="sizeup" class="player_btn"></button>
-                                        <button id="sizedown" class="player_btn"></button>
-                                        <button id="full" class="player_btn"></button>
-                                        <button id="original" class="player_btn"></button>
-                                    </div>
-                                    <div id="progress">
-                                        <div id="progressBar"></div>
-                                    </div>
-                                </div>
+                                <video controls width="640">
+                                    <source src="${path}/resources/upload/${pro.sfile5}" type="video/mp4" />
+                                </video>
                             </c:if>
-                            <script src="${path}/resources/js/vdo.js"></script>
                         </td>
                     </tr>
                 </table>

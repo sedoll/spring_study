@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>로그인</title>
+    <title>강사 로그인</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/neumorphic-login.css">
@@ -64,11 +64,6 @@
 
         .level-item .find{
             margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        .level-item .inst{
-            margin-left: 20px;
         }
 
         img {
@@ -85,7 +80,7 @@
     <div class="hero-body has-text-centered">
         <div class="login box is-rounded">
             <img src="${path}/resources/img/logo_noBackground_blue.png" alt="logo" width="220">
-            <form action="${path }/member/signin.do" method="post" name="loginForm">
+            <form action="${path }/member/instSignin.do" method="post" name="loginForm">
                 <div class="field">
                     <div class="control">
                         <input class="input is-medium is-rounded" name="id" id="id" type="text" placeholder="id" autofocus required/>
@@ -98,21 +93,10 @@
                 </div>
                 <br />
                 <button class="button is-block is-fullwidth is-link is-medium is-rounded" type="submit">
-                    Login
+                    강사 Login
                 </button>
             </form>
             <br>
-            <nav class="level">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <a href="../member/term.do" class="term">회원가입</a>
-                        <a>|</a>
-                        <a href="${path}/member/pw_find.do" class="find">비밀번호 찾기</a>
-                        <a>|</a>
-                        <a href="${path}/member/instLogin.do" class="inst">강사 로그인</a>
-                    </div>
-                </div>
-            </nav>
         </div>
     </div>
 </section>

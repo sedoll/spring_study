@@ -2,21 +2,26 @@
 package kr.ed.haebeop.controller;
 
 import kr.ed.haebeop.domain.Board;
+import kr.ed.haebeop.domain.Instructor;
 import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.service.*;
 import kr.ed.haebeop.service.board.BoardParServiceImpl;
 import kr.ed.haebeop.service.board.BoardServiceImpl;
 import kr.ed.haebeop.service.board.BoardTeaServiceImpl;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -34,7 +39,12 @@ public class AdminController {
     @Autowired
     private NoticeService noticeService; //공지사항
     @Autowired
+    private InstServiceImpl instService; // 강사 관련 기능
+    @Autowired
     HttpSession session; // 세션 생성
+
+    // spring security 이용
+    private BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
 
     @GetMapping("adminMain.do")
@@ -52,6 +62,15 @@ public class AdminController {
         model.addAttribute("memberList", memberList);
         model.addAttribute("title", "회원 목록");
         return "/admin/memberList";
+    }
+
+    //강사 목록
+    @RequestMapping(value = "instList.do", method = RequestMethod.GET)
+    public String instList(Model model) throws Exception {
+        List<Instructor> memberList = instService.getInstructorList();
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("title", "회원 목록");
+        return "/admin/instList";
     }
 
     // 관리자 회원 상세
@@ -223,6 +242,40 @@ public class AdminController {
         } else {
             return "/admin/adminMain";
         }
+    }
+    
+    // 강사 등록폼 이동
+    @GetMapping("instInsert.do")
+    public String instInsertForm(HttpServletRequest req, Model model) throws Exception {
+        return "/admin/instInsert";
+    }
+    
+    // 강사 아이디 중복 확인
+    @RequestMapping(value = "idCheck.do", method = RequestMethod.POST)
+    public void idCheck(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+        String id = request.getParameter("id");
+        Member mem = memberService.getMember(id);
+        boolean result = false;
+        if (mem != null) {
+            result = false;
+        } else {
+            result = true;
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("result", result);
+        PrintWriter out = response.getWriter();
+        out.println(json.toString());
+    }
+    
+    // 강사 등록
+    @PostMapping("instInsert.do")
+    public String instInsert(HttpServletRequest req, Instructor instructor, Model model) throws Exception {
+        String ppw = instructor.getPw();
+        String pw = pwEncoder.encode(ppw);
+        instructor.setPw(pw);
+        instService.addInstructor(instructor);
+        return "/admin/instInsert";
     }
 
 }

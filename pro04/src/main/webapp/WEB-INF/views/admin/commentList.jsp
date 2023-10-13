@@ -43,7 +43,7 @@
         <div class="column is-9">
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><a href="../">Teaspoon</a></li>
+                    <li><a href="../">Haebeop</a></li>
                     <li class="is-active"><a href="#" aria-current="page">Admin</a></li>
                 </ul>
             </nav>
@@ -80,18 +80,10 @@
                     </tr>
             </c:forEach>
             </tbody>
-
-
-
         </table>
-
-
-
-
         </div>
     </div>
 </div>
-
 
     <!-- 푸터 부분 인클루드 -->
     <jsp:include page="../include/footer.jsp"></jsp:include>

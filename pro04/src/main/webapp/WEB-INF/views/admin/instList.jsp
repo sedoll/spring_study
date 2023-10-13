@@ -15,16 +15,11 @@
     <title>관리자 페이지</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
-    <style>
-        .hero{
-            height: 100px;
-        }
-    </style>
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
 <jsp:include page="../include/header.jsp"></jsp:include>
-<section class="hero is-white is-small">
+<section class="hero is-white">
     <div class="hero-body has-text-centered">
         <p class="title is-size-3">
         </p>
@@ -51,42 +46,34 @@
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title" style="text-align: center">
-                            ${categoryKor}게시판 게시글 관리
+                            강사 목록
                         </h1>
                     </div>
                 </div>
             </section>
 
 <%--                    <table class="table" style="width: 100%">--%>
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth" >
             <thead>
             <tr>
-                <th width="80">No</th>
-                <th>Title</th>
-                <th width="120">RegDate</th>
-                <th width="100">Visited</th>
-                <th width="100">비고</th>
+                <th>No</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Tel</th>
+                <th>Email</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${boardList }" var="board" varStatus="status">
+            <c:forEach items="${memberList}" var="member" varStatus="status">
                 <tr>
-                    <td>${status.count }</td>
-                    <td><a href="${path}/${boardCate}/detail.do?bno=${board.bno }">${board.title }</a></td>
-                    <td>
-                        <fmt:parseDate value="${board.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
-                        <fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" />
-                    </td>
-                    <td>${board.cnt }</td>
-                    <td><a href="${path}/admin/boardDelete.do?bno=${board.bno}&category=${category}" class=""><button class="button is-danger is-light"> 삭제 </button></a></td>
-
-
+                    <td>${status.count}</td>
+                    <td><a href="${path}/admin/memberDetail.do?id=${member.id}">${member.id}</a></td>
+                    <td>${member.name}</td>
+                    <td>${member.tel}</td>
+                    <td>${member.email}</td>
                 </tr>
             </c:forEach>
             </tbody>
-
-
-
         </table>
 
 
@@ -97,7 +84,9 @@
 </div>
 
 
+<footer id="footer" class="footer-nav row expanded collapse">
     <!-- 푸터 부분 인클루드 -->
     <jsp:include page="../include/footer.jsp"></jsp:include>
+</footer>
 </body>
 </html>

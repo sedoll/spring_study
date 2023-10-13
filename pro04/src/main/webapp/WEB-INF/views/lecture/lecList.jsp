@@ -36,6 +36,32 @@
             overflow: hidden;
             vertical-align: middle;
         }
+
+        #search_from {
+            text-align: right;
+            font-size: 18px;
+            margin-bottom: 20px; /* 아래쪽 여백 추가 */
+        }
+        #select_filter {
+            padding: 5px; /* 셀렉트 박스 내부 패딩 추가 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            border-radius: 5px; /* 테두리 둥글게 만듭니다. */
+            margin-right: 10px; /* 셀렉트 박스 오른쪽 여백 추가 */
+            font-size: 16px; /* 폰트 크기 조정 */
+        }
+
+        #search_filter {
+            padding: 5px; /* 입력 필드 내부 패딩 추가 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            border-radius: 5px; /* 테두리 둥글게 만듭니다. */
+            font-size: 16px; /* 폰트 크기 조정 */
+        }
+
+        /* 선택된 셀렉트 박스 옵션 스타일 */
+        #select_filter option:checked {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -54,10 +80,21 @@
 <div class="content" id="content">
     <div class="row column text-center">
         <div class="container">
+            <div  id="search_from">
+                <select name="select_filter" id="select_filter">
+                    <option value="0">#</option>
+                    <option value="1">과목</option>
+                    <option value="2">학년</option>
+                    <option value="3">제목</option>
+                </select>
+                <input type="text" name="search_filter" id="search_filter">
+            </div>
             <table id="myTable">
                 <thead>
                 <tr>
                     <th></th>
+                    <th>과목</th>
+                    <th>학년</th>
                     <th>제목</th>
                     <th>조회수</th>
                     <th>비고</th>
@@ -66,27 +103,33 @@
                 <tbody>
                 <c:forEach var="pro" items="${lecList }">
                     <tr>
-                        <td class="item1">
+                        <td>
                             <div class="img_tit"><a href="${path}/lecture/getLecture?no=${pro.no}"><img src="${path }/resources/upload/${pro.simg }"/></a></div>
                         </td>
-                        <td class="item2">
+                        <td>
+                            <p>${pro.cate}</p>
+                        </td>
+                        <td>
+                            <p>${pro.slevel}</p>
+                        </td>
+                        <td>
                             <p>${pro.title}</p>
                         </td>
-                        <td class="item3">
+                        <td>
                             <p>${pro.cnt}</p>
                         </td>
-                        <td class="item4">
+                        <td>
                             <c:if test="${not empty sid}">
                                 <c:set var="isLiked" value="${likedProductIds.contains(pro.no)}" />
-                                <a href="${path }/AddPayment.do?pno=${pro.no }" class="btn1">구매하기</a>
-                                <a href="${path }/AddCart.do?pno=${pro.no }" class="btn1">장바구니</a>
+                                <a href="${path }/AddPayment.do?pno=${pro.no }" class="button is-link is-outlined">수강신청</a>
+                                <a href="${path }/cart/cartInsert.do?lec_no=${pro.no }" class="button is-link is-outlined">장바구니</a>
                                 <c:choose>
                                     <c:when test="${isLiked }">
                                         <%-- 눌러도 새로고침 안되게 처리 ///                         현재 로그인한 사용자 ID                 pro.no을 저장하기 위한 역할 --%>
-                                        <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="likebtn" data-product-id="${pro.no}" style="color: #ff5050">♥</a>
+                                        <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="button is-link is-outlined" data-product-id="${pro.no}" style="color: #ff5050">♥</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="likebtn" data-product-id="${pro.no}"  style="color: #b4b4b4">♥</a>
+                                        <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="button is-link is-outlined" data-product-id="${pro.no}"  style="color: #b4b4b4">♥</a>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -131,42 +174,44 @@
             </table>
             <script>
                 $(document).ready( function () {
-                    $('#myTable').DataTable({
+                    let $table = $('#myTable').DataTable({
                         //search 창 오른쪽 상단으로 이동
                         "dom": '<"top"i>rt<"bottom"flp><"clear">',
 
                         pageLength : 5,
-                        order: [[3, 'desc']], // 0번째 컬럼을 기준으로 내림차순 정렬
+                        order: [[2, 'desc']], // 0번째 컬럼을 기준으로 내림차순 정렬
                         info: false,
                         lengthChange: false, // show entries 제거
                         language: {
                             emptyTable: '등록된 상품이 없습니다.'
                         }
-
                     });
-                } );
-                $(document).ready(function() {
+
                     $('.dataTables_paginate').css({
-                        'textAlign':'left',
+                        'textAlign':'center',
                         'float': 'none',
                         'margin-top':'10px',
                     });
-                    $('.dataTables_filter').css({
-                        'float': 'left',
-                        'margin-top':'14px',
-                        'margin-right':'280px'
-                    });
-                    $('#myTable_paginate').css({
-                        'margin-right':'120px'
+
+                    $('.dataTables_filter').remove();  // dataTable 자체 search input 없애기
+
+                    $('#select_filter').change(function () { // select 선택값에 따라  해당 선택 열 input이 검색하는곳 변경
+                        $table.columns('').search('').draw();
+                        $table.columns(Number($('#select_filter').val())).search($('#search_filter').val()).draw();
                     });
 
-
+                    $('#search_filter').keyup(function () { //input의 값대로 search
+                        let $value = $(this).val();
+                        $table.columns(Number($('#select_filter').val())).search($value).draw();
+                    })
+                });
+                $(document).ready(function() {
                 });
 
             </script>
             <div class="btn_group">
                 <c:if test="${sid eq 'admin' }">
-                    <a href="${path}/lecture/addLectureForm" class="inbtn">상품 등록</a>
+                    <a href="${path}/lecture/addLectureForm" class="button is-link is-outlined">강의 등록</a>
                 </c:if>
             </div>
         </div>

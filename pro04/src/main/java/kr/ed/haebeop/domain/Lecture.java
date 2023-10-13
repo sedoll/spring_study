@@ -12,6 +12,8 @@ import lombok.ToString;
 @ToString
 public class Lecture {
     private int no; // 상품번호
+    private String cate; // 카테고리
+    private String slevel; // 수강 레벨
     private String title; // 강의 제목
     private String content; // 강의 소개글
     private String simg; // 목록 프로필 이미지
@@ -20,7 +22,7 @@ public class Lecture {
     private String sfile3; // 강의 영상2
     private String sfile4; // 강의 영상3
     private String sfile5; // 강의 영상4
-    private int sno; // 과목코드(FK)
+    private int price; // 가격
     private int ino; // 강사 코드(FK)
     private int cnt; // 조회수
     private int lec; // 현재 수강인원

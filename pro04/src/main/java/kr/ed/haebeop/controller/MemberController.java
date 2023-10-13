@@ -1,9 +1,7 @@
 package kr.ed.haebeop.controller;
 
-import kr.ed.haebeop.domain.Board;
-import kr.ed.haebeop.domain.BoardlistVO;
-import kr.ed.haebeop.domain.CommentlistVO;
-import kr.ed.haebeop.domain.Member;
+import kr.ed.haebeop.domain.*;
+import kr.ed.haebeop.service.InstServiceImpl;
 import kr.ed.haebeop.service.MemberService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +27,10 @@ import java.util.Random;
 public class MemberController {
     @Autowired
     private MemberService memberService; // 서비스 생성
-
+    @Autowired
+    private InstServiceImpl instService; // 강사 로그인을 위해 사용
     @Autowired
     HttpSession session; // 세션 생성
-
     @Autowired
     JavaMailSender mailSender;
 
@@ -68,6 +66,34 @@ public class MemberController {
             out.println("<script>alert('로그인 실패');</script>");
             out.flush();
             return "/member/loginForm";
+        }
+    }
+    
+    // 강사 로그인
+    @RequestMapping("instLogin.do")
+    public String instLoginForm(Model model) throws Exception {
+        return "/member/loginForm2";
+    }
+    @PostMapping("instSignin.do")
+    public String instSignIn(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+        String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
+        boolean check = instService.loginCheck(id, pw);
+        if (check) { // 로그인 성공
+            Instructor mem = new Instructor();
+            mem = instService.getInstructor(id);
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 성공');</script>");
+            out.flush();
+            session.setAttribute("sid", id);
+            return "/index";
+        } else { // 로그인 실패
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 실패');</script>");
+            out.flush();
+            return "/member/loginForm2";
         }
     }
 

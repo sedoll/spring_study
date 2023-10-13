@@ -9,8 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Cart {
-    private int cartno;    //카트번호
-    private String id;     //고객아이디
-    private int lec_no;    //강의번호
+public class Instructor {
+    private int no;
+    private String id;
+    private String pw;
+    private String name;
+    private String tel;
+    private String email;
 }

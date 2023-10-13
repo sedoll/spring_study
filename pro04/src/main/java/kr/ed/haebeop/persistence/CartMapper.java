@@ -1,24 +1,21 @@
 package kr.ed.haebeop.persistence;
 
 import kr.ed.haebeop.domain.Cart;
-import kr.ed.haebeop.domain.CartVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface CartMapper {
-    @Select("SELECT * FROM cart WHERE cid = #{cid} AND pno = #{pno}")
-    public Cart cartDetail(Cart cart);
-    @Insert("INSERT INTO cart (cid, pno, amount) VALUES (#{cid}, #{pno}, 1)")
+    @Select("SELECT * FROM cart WHERE id = #{id}")
+    public List<Cart> cartList(String id);
+    @Insert("INSERT INTO cart (id, lec_no) VALUES (#{id}, #{lec_no})")
     @Options(useGeneratedKeys=true, keyProperty="cartno")
-    public void cartInsert(String cid, int pno);
+    public void cartInsert(Cart cart);
     @Delete("DELETE FROM cart WHERE cartno = #{cartno}")
     public void cartDelete(int cartno);
-    @Select("SELECT * FROM cart WHERE cart.cid = #{cid}")
-    public List<CartVO> getByIdCartList(String cid);
-    @Select("SELECT COUNT(*) FROM cart WHERE cid = #{id}")
+    @Select("SELECT COUNT(*) FROM cart WHERE id = #{id}")
     public int cartCnt(String id);
-    public String getCusName(String id);
-    public String getPname(String id);
+    @Select("SELECT COUNT(*) FROM cart WHERE id = #{id} AND lec_no = #{lec_no}")
+    public int getCartCheck(Cart cart);
 }

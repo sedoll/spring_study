@@ -1,6 +1,8 @@
 package kr.ed.haebeop.controller;
 
+import kr.ed.haebeop.domain.Instructor;
 import kr.ed.haebeop.domain.Lecture;
+import kr.ed.haebeop.service.InstServiceImpl;
 import kr.ed.haebeop.service.LectureServiceImpl;
 import kr.ed.haebeop.service.LectureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/lecture/*")
@@ -25,11 +28,15 @@ public class LectureController {
 
     @Autowired
     private LectureServiceImpl lectureService;
+    @Autowired
+    private InstServiceImpl instService;
 
     @RequestMapping(value = "/addLectureForm", method = RequestMethod.GET)
     public String addLectureForm(Model model) {
         String msg = "관리자의 상품 등록폼이 로딩되었습니다.";
+        List<Instructor> instList = instService.getInstructorList();
         model.addAttribute("msg", msg);
+        model.addAttribute("instList", instList);
         return "admin/addLecture";
     }
 
@@ -47,84 +54,114 @@ public class LectureController {
 
         // 다른 폼 필드 처리
         Lecture lecture = new Lecture();
+        lecture.setCate(files.getParameter("cate"));
+        lecture.setSlevel(files.getParameter("level1") + " " + files.getParameter("level2"));
         lecture.setTitle(files.getParameter("title"));
         lecture.setContent(files.getParameter("content"));
-        lecture.setSno(1);
-        lecture.setIno(1);
-        lecture.setLec_max(40);
+        lecture.setPrice(Integer.parseInt(files.getParameter("price")));
+        lecture.setIno(Integer.parseInt(files.getParameter("ino")));
+        lecture.setLec_max(Integer.parseInt(files.getParameter("lec_max")));
         lecture.setAplctClss1(files.getParameter("aplctClss1"));
         lecture.setAplctClss2(files.getParameter("aplctClss2"));
-        lecture.setStudyStart(files.getParameter("studyStart"));
-        lecture.setStudyEnd(files.getParameter("studyEnd"));
+        lecture.setStudyStart(files.getParameter("studystart"));
+        lecture.setStudyEnd(files.getParameter("studyend"));
 
-        if (!simg.isEmpty()) {
-            lecture.setSimg(simg.getOriginalFilename());
-        } else {
-            lecture.setSimg("");
-        }
-        if (!sfile1.isEmpty()) {
-            lecture.setSfile1(sfile1.getOriginalFilename());
-        } else {
-            lecture.setSfile1("");
-        }
-        if (!sfile2.isEmpty()) {
-            lecture.setSfile2(sfile2.getOriginalFilename());
-        } else {
-            lecture.setSfile2("");
-        }
-        if (!sfile3.isEmpty()) {
-            lecture.setSfile3(sfile3.getOriginalFilename());
-        } else {
-            lecture.setSfile3("");
-        }
-        if (!sfile4.isEmpty()) {
-            lecture.setSfile4(sfile4.getOriginalFilename());
-        } else {
-            lecture.setSfile4("");
-        }
-        if (!sfile5.isEmpty()) {
-            lecture.setSfile5(sfile5.getOriginalFilename());
-        } else {
-            lecture.setSfile5("");
-        }
-
-
-        lectureService.addLecture(lecture);
-
-        // 테스트용 파일 저장 경로
+        // 개발 서버 파일 저장 경로
         String uploadDir = "D:/spring_study/pro04/src/main/webapp/resources/upload/";
         // 실제 서버 파일 저장 경로
-        String uploadSev = req.getRealPath("/resources/upload");
-        
-        
-        try {
-            if (!simg.isEmpty()) {
-                simg.transferTo(new File(uploadDir + simg.getOriginalFilename()));
-                simg.transferTo(new File(uploadSev + simg.getOriginalFilename()));
+        String uploadSev = req.getRealPath("/resources/upload/");
+
+        if (!simg.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = simg.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSimg(RandomFileName);
+
+            try {
+                simg.transferTo(new File(uploadDir + RandomFileName));
+                simg.transferTo(new File(uploadSev + RandomFileName));
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
             }
-            if (!sfile1.isEmpty()) {
-                sfile1.transferTo(new File(uploadDir + sfile1.getOriginalFilename()));
-                sfile1.transferTo(new File(uploadSev + sfile1.getOriginalFilename()));
-            }
-            if (!sfile2.isEmpty()) {
-                sfile2.transferTo(new File(uploadDir + sfile2.getOriginalFilename()));
-                sfile2.transferTo(new File(uploadSev + sfile2.getOriginalFilename()));
-            }
-            if (!sfile3.isEmpty()) {
-                sfile3.transferTo(new File(uploadDir + sfile3.getOriginalFilename()));
-                sfile3.transferTo(new File(uploadSev + sfile3.getOriginalFilename()));
-            }
-            if (!sfile4.isEmpty()) {
-                sfile4.transferTo(new File(uploadDir + sfile4.getOriginalFilename()));
-                sfile4.transferTo(new File(uploadSev + sfile4.getOriginalFilename()));
-            }
-            if (!sfile5.isEmpty()) {
-                sfile5.transferTo(new File(uploadDir + sfile5.getOriginalFilename()));
-                sfile5.transferTo(new File(uploadSev + sfile5.getOriginalFilename()));
-            }
-        } catch (IOException e) {
-            e.printStackTrace(); // 오류 처리
         }
+
+        if (!sfile1.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = sfile1.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSfile1(RandomFileName);
+
+            try {
+                sfile1.transferTo(new File(uploadDir + RandomFileName)); // 개발 서버용
+                sfile1.transferTo(new File(uploadSev + RandomFileName)); // 운영 서버용
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
+            }
+        }
+
+        if (!sfile2.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = sfile2.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSfile2(RandomFileName);
+
+            try {
+                sfile2.transferTo(new File(uploadDir + RandomFileName)); // 개발 서버용
+                sfile2.transferTo(new File(uploadSev + RandomFileName)); // 운영 서버용
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
+            }
+        }
+
+        if (!sfile3.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = sfile3.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSfile3(RandomFileName);
+
+            try {
+                sfile3.transferTo(new File(uploadDir + RandomFileName)); // 개발 서버용
+                sfile3.transferTo(new File(uploadSev + RandomFileName)); // 운영 서버용
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
+            }
+        }
+
+        if (!sfile4.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = sfile4.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSfile4(RandomFileName);
+
+            try {
+                sfile4.transferTo(new File(uploadDir + RandomFileName)); // 개발 서버용
+                sfile4.transferTo(new File(uploadSev + RandomFileName)); // 운영 서버용
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
+            }
+        }
+
+        if (!sfile5.isEmpty()) {
+            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+            String OriginalFilename = sfile5.getOriginalFilename();
+            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+            String RandomFileName = randomUUID + Extension;
+            lecture.setSfile5(RandomFileName);
+
+            try {
+                sfile5.transferTo(new File(uploadDir + RandomFileName)); // 개발 서버용
+                sfile5.transferTo(new File(uploadSev + RandomFileName)); // 운영 서버용
+            } catch (IOException e) {
+                e.printStackTrace(); // 오류 처리
+            }
+        }
+
+        lectureService.addLecture(lecture);
 
         return "redirect:/lecture/lecList";
     }
@@ -142,8 +179,19 @@ public class LectureController {
 
     @RequestMapping(value = "/getLecture", method = RequestMethod.GET)
     public String getLecture(Model model, @RequestParam("no") int no) {
+        lectureService.countUp(no); // 조회수 갱신
         Lecture product = lectureService.getLecture(no); // 서비스 클래스에 비즈니스 로직을 정의하고 호출
+        Instructor inst = instService.getInstructorName(product.getIno()); // 강사 번호로 이름 추출
+        // 강의 영상 개수 카운트
+        int cnt = 0;
+        if(product.getSfile2()!=null) cnt += 1;
+        if(product.getSfile3()!=null) cnt += 1;
+        if(product.getSfile4()!=null) cnt += 1;
+        if(product.getSfile5()!=null) cnt += 1;
+        
         model.addAttribute("pro", product);
+        model.addAttribute("cnt", cnt);
+        model.addAttribute("inst", inst);
         return "lecture/getLecture";
     }
 
@@ -162,8 +210,11 @@ public class LectureController {
 
     @RequestMapping(value = "/lecList", method = RequestMethod.GET)
     public String proList(Model model) {
-        List<Lecture> productList = lectureService.getLectureList(); // 서비스 클래스에 비즈니스 로직을 정의하고 호출
+        List<Lecture> productList = lectureService.getLectureList();// 서비스 클래스에 비즈니스 로직을 정의하고 호출
         model.addAttribute("lecList", productList);
-        return "lecture/lecList2";
+        for (Lecture lec: productList) {
+            System.out.println(lec.toString());
+        }
+        return "lecture/lecList";
     }
 }

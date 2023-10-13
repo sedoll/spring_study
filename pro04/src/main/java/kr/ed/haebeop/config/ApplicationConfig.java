@@ -3,6 +3,7 @@ package kr.ed.haebeop.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.ed.haebeop.persistence.*;
 import kr.ed.haebeop.repository.*;
+import kr.ed.haebeop.service.CartServiceImpl;
 import kr.ed.haebeop.service.*;
 import kr.ed.haebeop.service.board.BoardParServiceImpl;
 import kr.ed.haebeop.service.board.BoardServiceImpl;
@@ -108,10 +109,6 @@ public class ApplicationConfig {
     @Bean
     public QnaService qnaService() {return new QnaServiceImpl();}
 
-    // cart
-    @Bean
-    public CartService cartService() {return new CartServiceImpl();}
-
     //product
     @Bean
     public ProductServiceImpl productService() {return new ProductServiceImpl();}
@@ -119,6 +116,15 @@ public class ApplicationConfig {
     // lecture
     @Bean
     public LectureServiceImpl lectureService() {return new LectureServiceImpl();}
+
+    // inst
+    @Bean
+    public InstServiceImpl instService() {return new InstServiceImpl();}
+
+    // cart
+    @Bean
+    public CartServiceImpl cartService() {return new CartServiceImpl();}
+
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }
 }
