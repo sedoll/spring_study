@@ -67,7 +67,8 @@ public class LectureController {
         lecture.setStudyEnd(files.getParameter("studyend"));
 
         // 개발 서버 파일 저장 경로
-        String uploadDir = "D:/spring_study/pro04/src/main/webapp/resources/upload/";
+//        String uploadDir = "D:/spring_study/pro04/src/main/webapp/resources/upload/"; // 회사
+        String uploadDir = "E:/git/spring_study/pro04/src/main/webapp/resources/upload/"; // 집
         // 실제 서버 파일 저장 경로
         String uploadSev = req.getRealPath("/resources/upload/");
 

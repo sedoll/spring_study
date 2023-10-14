@@ -112,34 +112,28 @@
                     </c:if>
                 </div>
                 <div class="buttons">
-                    <c:if test="${not empty sid && sid != 'admin'}"> <%-- 회원으로 로그인한 경우 --%>
-                        <%--<a href="${path1}/member/mypage.do" class="button is-link is-rounded" >--%>
-                        <a href="${path2}/member/mypage.do" class="button is-link is-rounded b1 button-bg" >
+                    <c:if test="${not empty sid and sid ne ''}"> <%-- 회원으로 로그인한 경우 --%>
+                        <a href="${path2}/member/mypage.do" class="button is-link is-rounded b2" >
                             마이페이지
                         </a>
-                        <%--<a href="${path1}/member/logout.do" class="button is-link2 is-rounded" >--%>
-                        <a href="${path2}/member/logout.do" class="button is-link2 is-rounded b2 button-bg2" >
+                        <a href="${path2}/cart/cartList.do" class="button is-link2 is-rounded b2" >
+                            장바구니
+                        </a>
+                        <a href="${path2}/member/logout.do" class="button is-link2 is-rounded b2" >
                             로그아웃
                         </a>
                     </c:if>
                     <c:if test="${empty sid}"> <%-- 로그인을 안 한 경우 --%>
-                        <%--<a href="${path1}/member/term.do" class="button is-link is-rounded" >--%>
-                        <a href="${path2}/member/term.do" class="button is-link is-rounded b1 button-bg" >
+                        <a href="${path2}/member/term.do" class="button is-link is-rounded b2" >
                             회원가입
                         </a>
-                        <%--<a href="${path1}/member/login.do" class="button is-link2 is-rounded" >--%>
-                        <a href="${path2}/member/login.do" class="button is-link2 is-rounded b2 button-bg2" >
+                        <a href="${path2}/member/login.do" class="button is-link2 is-rounded b2" >
                             로그인
                         </a>
                     </c:if>
-                    <c:if test="${sid.equals('admin')}"> <%-- 관리자로 로그인 한 경우 --%>
-                        <%--<a href="${path1}/admin/adminMain.do" class="button is-link is-rounded " >--%>
-                        <a href="${path2}/admin/adminMain.do" class="button is-link is-rounded b1 button-bg" >
+                    <c:if test="${sid eq 'admin'}"> <%-- 관리자로 로그인 한 경우 --%>
+                        <a href="${path2}/admin/adminMain.do" class="button is-link is-rounded b2" >
                             관리자페이지
-                        </a>
-                        <%--<a href="${path1}/member/logout.do" class="button is-link2 is-rounded" >--%>
-                        <a href="${path2}/member/logout.do" class="button is-link2 is-rounded b2 button-bg2" >
-                            로그아웃
                         </a>
                     </c:if>
                 </div>

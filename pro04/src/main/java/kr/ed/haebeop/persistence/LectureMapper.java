@@ -25,4 +25,12 @@ public interface LectureMapper {
     public List<Lecture> getLectureListNew();
     @Update("update lecture set cnt=cnt+1 where no=#{no}")
     public void countUp(int no);
+
+    // 수강인원 +1
+    @Update("update lecture lec cnt=cnt+1 where no=#{no}")
+    public void countUpMem(int no);
+
+    // 수강인원 -1
+    @Update("update lecture lec cnt=cnt-1 where no=#{no}")
+    public void countDownMem(int no);
 }

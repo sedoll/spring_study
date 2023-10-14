@@ -125,6 +125,10 @@ public class ApplicationConfig {
     @Bean
     public CartServiceImpl cartService() {return new CartServiceImpl();}
 
+    // payment
+    @Bean
+    public PaymentService paymentService() {return new PaymentService();}
+
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }
 }

@@ -281,6 +281,8 @@ CREATE TABLE member(
 	cnt INT DEFAULT 0 -- 방문횟수,
 );
 
+ALTER TABLE member DROP COLUMN job;
+
 UPDATE member SET pw='$2a$10$3zl8fmNyd1IsP1Ru0TNVee9AMtpM9E7yz5ZR9Qiofbj8zqqjJiqIi' WHERE pw='1234';
 
 -- 공지사항(순번, 제목, 내용, 작성자, 작성일, 읽은 횟수)
@@ -332,9 +334,6 @@ INSERT INTO instructor VALUES(DEFAULT, '이순신', '01033333333', 'lee@edu.com'
 -- 외래 키 체크를 다시 활성화
 -- SET FOREIGN_KEY_CHECKS = 1;
 
--- 파일 저장할 때 다른 이름으로 저장되도록 하기
-
--- 231012 온라인, 오프라인 추가 요망
 CREATE TABLE lecture(
 	NO INT PRIMARY KEY AUTO_INCREMENT, -- 강의 번호
 	cate VARCHAR(100), -- 과목 (국어, 수학, 영어, ...)
@@ -359,8 +358,6 @@ CREATE TABLE lecture(
 	FOREIGN KEY(ino) REFERENCES instructor(NO)
 );
 
--- ALTER TABLE lecture ADD slevel VARCHAR(100);
-
 -- 상품(pro02 에 있던거 강의 테이블이랑 비교하려고 여기 그냥 넣었음)
 CREATE TABLE product(
 	no INT AUTO_INCREMENT PRIMARY key,
@@ -383,11 +380,12 @@ CREATE TABLE course(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
 	lec_no INT,
 	sid VARCHAR(20),
-	ctime INT DEFAULT 0,
 	CHECK1 VARCHAR(10),
-	FOREIGN KEY(lec_no) REFERENCES lecture(no), 
-	FOREIGN KEY(sid) REFERENCES member(id)
+	-- FOREIGN KEY(lec_no) REFERENCES lecture(no), 
+	-- FOREIGN KEY(sid) REFERENCES member(id)
 	);
+
+-- payment 
 
 -- 교재(교재코드(PK), 교재명, 교재목차, 출판사, 출판일, 저자, 가격, 기타메모)
 CREATE TABLE textbook(
@@ -417,6 +415,21 @@ CREATE TABLE cart(
 	FOREIGN KEY(lec_no) REFERENCES lecture(NO) ON DELETE CASCADE, 
 	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
 	)
+
+-- 결제 내역(강의 구매 내역)
+CREATE TABLE payment(
+	sno INT PRIMARY KEY AUTO_INCREMENT,
+	id VARCHAR(20),
+	lec_no INT,
+	lec_name VARCHAR(200),
+	pmethod VARCHAR(500),
+	pcom VARCHAR(500),
+	cum VARCHAR(500),
+	price INT,
+	FOREIGN KEY(lec_no) REFERENCES lecture(NO),
+	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
+	);
+	
 
 -- 강의 배정
 -- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위

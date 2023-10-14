@@ -121,7 +121,7 @@
                         <td>
                             <c:if test="${not empty sid}">
                                 <c:set var="isLiked" value="${likedProductIds.contains(pro.no)}" />
-                                <a href="${path }/AddPayment.do?pno=${pro.no }" class="button is-link is-outlined">수강신청</a>
+                                <a href="${path }/payment/addPayment.do?lec_no=${pro.no }" class="button is-link is-outlined">수강신청</a>
                                 <a href="${path }/cart/cartInsert.do?lec_no=${pro.no }" class="button is-link is-outlined">장바구니</a>
                                 <c:choose>
                                     <c:when test="${isLiked }">

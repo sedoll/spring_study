@@ -75,11 +75,12 @@
 
                     <div class="transaction-history">
                         <div class="transaction-history__sale">
-                            <a href="${path14}/PaymentList.do">결제정보</a>
+                            <a href="${path14}/PaymentList.do">수강 내역</a>
                         </div>
                         <div class="transaction-history__purchase">
-                            <a href="${path14}/CartList.do">장바구니</a>
+                            <a href="${path14}/cart/cartList.do">장바구니</a>
                         </div>
+                    </div>
                 </article>
             </main>
         </div>

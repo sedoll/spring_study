@@ -45,6 +45,8 @@
                     <th>연번</th>
                     <th>과목</th>
                     <th>강의명</th>
+                    <th>강사</th>
+                    <th>가격</th>
                     <th>비고</th>
                 </tr>
                 </thead>
@@ -52,10 +54,12 @@
                 <c:forEach var="cart" items="${cartList }" varStatus="status">
                     <tr>
                         <td><span>${status.count }</span></td>
-                        <td><span title="${cart.lec_no}">상품</span></td>
-                        <td>강의명</td>
+                        <td><span title="${cart.lec_no}">${lecList.get(status.index).cate}</span></td>
+                        <td>${lecList.get(status.index).title}</td>
+                        <td>${instList.get(status.index).name}</td>
+                        <td><fmt:formatNumber value="${lecList.get(status.index).price}" type="number" pattern="#,##0" /></td>
                         <td>
-                            <a href="${path}/AddPayment.do?pno=${cart.cartno}" class="btn1">구매</a>
+                            <a href="${path}/payment/addPayment.do?lec_no=${cart.lec_no}" class="btn1">구매</a>
                             <a href="${path}/DelCart.do?cartno=${cart.cartno}&from=cart" class="btn1">제거</a>
                         </td>
                     </tr>

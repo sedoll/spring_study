@@ -147,14 +147,14 @@
                     </c:if>
                 </div>
                 <div class="buttons">
-                    <c:if test="${not empty sid && sid != 'admin'}"> <%-- 회원으로 로그인한 경우 --%>
+                    <c:if test="${not empty sid and sid ne ''}"> <%-- 회원으로 로그인한 경우 --%>
                         <a href="${path}/member/mypage.do" class="button is-link is-rounded b1" >
                             마이페이지
                         </a>
-                        <a href="${path}/cart/cartList.do" class="button is-link2 is-rounded b2" >
+                        <a href="${path}/cart/cartList.do" class="button is-link is-rounded b1" >
                             장바구니
                         </a>
-                        <a href="${path}/member/logout.do" class="button is-link2 is-rounded b2" >
+                        <a href="${path}/member/logout.do" class="button is-link is-rounded b1" >
                             로그아웃
                         </a>
                     </c:if>
@@ -162,16 +162,13 @@
                         <a href="${path}/member/term.do" class="button is-link is-rounded b1" >
                             회원가입
                         </a>
-                        <a href="${path}/member/login.do" class="button is-link2 is-rounded b2" >
+                        <a href="${path}/member/login.do" class="button is-link is-rounded b1" >
                             로그인
                         </a>
                     </c:if>
-                    <c:if test="${sid.equals('admin')}"> <%-- 관리자로 로그인 한 경우 --%>
+                    <c:if test="${sid eq 'admin'}"> <%-- 관리자로 로그인 한 경우 --%>
                         <a href="${path}/admin/adminMain.do" class="button is-link is-rounded b1" >
                             관리자페이지
-                        </a>
-                        <a href="${path}/member/logout.do" class="button is-link2 is-rounded b2" >
-                            로그아웃
                         </a>
                     </c:if>
                 </div>

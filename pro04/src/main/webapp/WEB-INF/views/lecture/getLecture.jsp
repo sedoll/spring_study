@@ -100,27 +100,31 @@
                             <tr class="pname">
                                 <th colspan="2">${pro.title}</th>
                             </tr>
-                            <tr class="pprice">
+                            <tr>
                                 <th>과목</th>
                                 <td>${pro.cate}</td>
                             </tr>
-                            <tr class="pprice">
+                            <tr>
                                 <th>강좌 수준</th>
                                 <td>${pro.slevel}</td>
                             </tr>
-                            <tr class="pdate">
+                            <tr>
                                 <th>수강 기간</th>
                                 <td>${pro.studyStart} ~ ${pro.studyEnd}</td>
                             </tr>
-                            <tr class="pda">
+                            <tr>
+                                <th>수강료</th>
+                                <td>${pro.price}</td>
+                            </tr>
+                            <tr>
                                 <th>강사</th>
                                 <td>${inst.name}</td>
                             </tr>
-                            <tr class="pda">
+                            <tr>
                                 <th>이메일</th>
                                 <td>${inst.email}</td>
                             </tr>
-                            <tr class="test2">
+                            <tr>
                                 <th>영상 수</th>
                                 <td>${cnt}</td>
                             </tr>
@@ -128,7 +132,7 @@
                                 <c:if test="${not empty sid}">
                                 <c:set var="isLiked" value="${likedProductIds.contains(pro.no)}" />
                                 <td colspan="2">
-                                    <a href="${path}/AddPayment.do?pno=${pro.no}" class="button is-success inbtn">수강신청</a>
+                                    <a href="${path}/payment/addPayment.do?lec_no=${pro.no}" class="button is-success inbtn">수강신청</a>
                                     <a href="${path}/cart/cartInsert.do?lec_no=${pro.no}" class="button is-info inbtn">장바구니</a>
                                     <c:choose>
                                     <c:when test="${isLiked}">
