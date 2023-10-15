@@ -23,6 +23,11 @@
                     신고한 게시글
                 </a>
             </li>
+            <li>
+                <a href="${path4}/payment/paymentList.do">
+                    수강내역
+                </a>
+            </li>
         </ul>
         <a href="${path4}/qna/list.do" class="mypage-inquiry">
             <div>

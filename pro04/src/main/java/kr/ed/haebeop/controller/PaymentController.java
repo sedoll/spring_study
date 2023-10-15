@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 // 강의 신청, 구매
 
@@ -29,6 +30,8 @@ public class PaymentController {
     private InstServiceImpl instService;
     @Autowired
     private PaymentService paymentService;
+    @Autowired
+    HttpSession session; // 세션 생성
 
     @GetMapping("addPayment.do")
     public String addPayment(@RequestParam int lec_no, HttpServletRequest req, Model model) throws Exception {
@@ -58,6 +61,14 @@ public class PaymentController {
         paymentService.paymentInsert(payment);
         lectureService.countUp(payment.getLec_no());
         return "redirect:/";
+    }
+
+    @GetMapping("paymentList.do")
+    public String paymentList(Model model) {
+        String id = (String) session.getAttribute("sid");
+        List<Payment> payList =  paymentService.paymentMemList(id);
+        model.addAttribute("payList", payList);
+        return "/member/myPage/paymentList";
     }
 
 }

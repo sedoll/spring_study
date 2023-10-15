@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface PaymentMapper {
     // 결제 확인
-    @Insert("insert into payment values (default, #{id}, #{lec_no}, #{lec_name}, #{pmethod}, #{pcom}, #{cnum}, #{price})")
+    @Insert("insert into payment values (default, #{id}, #{lec_no}, #{lec_name}, #{pmethod}, #{pcom}, #{cnum}, #{price}, default)")
     public void paymentInsert(Payment payment);
     
     // 모든 결제 정보 리스트

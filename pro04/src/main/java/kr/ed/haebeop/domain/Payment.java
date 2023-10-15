@@ -18,4 +18,5 @@ public class Payment {
     private String pcom;		    // 결제 대행사
     private String cnum;		    // 결제카드(계좌)번호
     private int price;		        // 결제금액
+    private int state;              // 상품 확인
 }

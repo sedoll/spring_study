@@ -418,18 +418,20 @@ CREATE TABLE cart(
 
 -- 결제 내역(강의 구매 내역)
 CREATE TABLE payment(
-	sno INT PRIMARY KEY AUTO_INCREMENT,
-	id VARCHAR(20),
-	lec_no INT,
-	lec_name VARCHAR(200),
-	pmethod VARCHAR(500),
-	pcom VARCHAR(500),
-	cum VARCHAR(500),
-	price INT,
+	sno INT PRIMARY KEY AUTO_INCREMENT, -- (수강신청, 걸제 내역 번호)
+	id VARCHAR(20), -- 구매자 id(FK)
+	lec_no INT, -- 강의 번호(FK)
+	lec_name VARCHAR(200), -- 강의 이름
+	pmethod VARCHAR(500), -- 결제 방법
+	pcom VARCHAR(500), -- 결제 대행
+	cnum VARCHAR(500), -- 결제번호
+	price INT, -- 가격
+	state INT DEFAULT 0, -- 상태
 	FOREIGN KEY(lec_no) REFERENCES lecture(NO),
 	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
 	);
-	
+-- ALTER TABLE payment ADD COLUMN state INT DEFAULT 0;
+-- alter table payment change cum cnum VARCHAR(500);
 
 -- 강의 배정
 -- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위
