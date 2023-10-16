@@ -202,6 +202,10 @@
                             <td colspan="2"><input type="date" name="studyend" id="studyend" class="indata" placeholder="강의 종료일" required></td>
                         </tr>
                         <tr>
+                            <th>최대 수강일</th>
+                            <td colspan="2"><input type="int" name="endDay" id="endDay" class="indata" placeholder="최대 수강일" required></td>
+                        </tr>
+                        <tr>
                             <th>표지 이미지</th>
                             <td colspan="2"><input type="file" name="simg" id="simg" class="indata" placeholder="표지 이미지" accept=".jpg, .png" required></td>
                         </tr>

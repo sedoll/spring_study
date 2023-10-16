@@ -295,20 +295,6 @@ create table notice(
 	cnt int DEFAULT 0 -- 조회수
 );
 
-
--- 자료실(순번, 제목, 내용, 파일1, 파일2, 파일3, 작성일, 작성자, 읽은 횟수)
-CREATE TABLE FILE(
-	NO INT PRIMARY KEY AUTO_INCREMENT,
-	title VARCHAR(200) NOT null,
-	content VARCHAR(1000),
-	FILE1 VARCHAR(1000),
-	FILE2 VARCHAR(1000),
-	FILE3 VARCHAR(1000),
-	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 작성일
-	id VARCHAR(20),
-	cnt INT DEFAULT 0
-);
-
 -- 강사(강사코드(PK), 강사명, 연락처, 이메일)
 -- DROP TABLE instructor;
 CREATE TABLE instructor(
@@ -355,23 +341,12 @@ CREATE TABLE lecture(
 	aplctClss2 DATE, -- 수강신청 종료일
 	studystart DATE, -- 강의 시작일
 	studyend DATE, -- 강의 종료일
+	endday INT, -- 강의 수강 기간일 지정
 	FOREIGN KEY(ino) REFERENCES instructor(NO)
 );
+-- ALTER TABLE lecture ADD COLUMN endday INT;
+-- UPDATE lecture SET endday = 100; 
 
--- 상품(pro02 에 있던거 강의 테이블이랑 비교하려고 여기 그냥 넣었음)
-CREATE TABLE product(
-	no INT AUTO_INCREMENT PRIMARY key,
-	cate VARCHAR(50) NOT null,
-	pname VARCHAR(100) NOT null,
-	pcomment VARCHAR(2000) NOT null,
-	plist VARCHAR(2000),
-	price INT DEFAULT 1000,
-	imgsrc1 VARCHAR(300),
-	imgsrc2 VARCHAR(300),
-	imgsrc3 VARCHAR(300),
-	resdate timestamp DEFAULT CURRENT_TIMESTAMP()
-);
-	
 
 -- 수강(수강코드(PK), 강의코드(FK), 학생아이디(FK), 수강총시간, 수강완료 여부)
 DROP table course;
@@ -427,11 +402,15 @@ CREATE TABLE payment(
 	cnum VARCHAR(500), -- 결제번호
 	price INT, -- 가격
 	state INT DEFAULT 0, -- 상태
+	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 결제 일
+	buydate TIMESTAMP, -- 구매 확정 일
 	FOREIGN KEY(lec_no) REFERENCES lecture(NO),
 	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
 	);
--- ALTER TABLE payment ADD COLUMN state INT DEFAULT 0;
--- alter table payment change cum cnum VARCHAR(500);
+-- ALTER TABLE payment ADD COLUMN resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP();
+-- ALTER TABLE payment ADD COLUMN buydate TIMESTAMP;
+-- alter table payment change resdate TIMESTAMP;
+ALTER TABLE payment DROP COLUMN resdate;
 
 -- 강의 배정
 -- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위

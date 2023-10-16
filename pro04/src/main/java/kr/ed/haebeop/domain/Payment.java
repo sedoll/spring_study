@@ -19,4 +19,6 @@ public class Payment {
     private String cnum;		    // 결제카드(계좌)번호
     private int price;		        // 결제금액
     private int state;              // 상품 확인
+    private String resdate;         // 결제일
+    private String buydate;         // 구매 확정일
 }

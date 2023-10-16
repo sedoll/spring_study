@@ -60,7 +60,7 @@
                         <td><fmt:formatNumber value="${lecList.get(status.index).price}" type="number" pattern="#,##0" /></td>
                         <td>
                             <a href="${path}/payment/addPayment.do?lec_no=${cart.lec_no}" class="btn1">구매</a>
-                            <a href="${path}/DelCart.do?cartno=${cart.cartno}&from=cart" class="btn1">제거</a>
+                            <a href="${path}/cart/cartDelete.do?cartno=${cart.cartno}" class="btn1">제거</a>
                         </td>
                     </tr>
                 </c:forEach>

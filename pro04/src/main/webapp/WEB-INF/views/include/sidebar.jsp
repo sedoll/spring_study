@@ -6,7 +6,7 @@
 
 <nav style="margin-right: 0">
     <div class="sidebar">
-        <div class="header">티스푼</div>
+        <div class="header">스마트 해법</div>
         <ul>
             <li>
                 <a href="${path4}/member/update.do?id=${sid }" >
@@ -25,6 +25,11 @@
             </li>
             <li>
                 <a href="${path4}/payment/paymentList.do">
+                    결제내역
+                </a>
+            </li>
+            <li>
+                <a href="${path4}/lecture/lecMemList.do">
                     수강내역
                 </a>
             </li>

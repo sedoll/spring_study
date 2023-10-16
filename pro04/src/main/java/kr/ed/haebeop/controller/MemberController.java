@@ -1,7 +1,7 @@
 package kr.ed.haebeop.controller;
 
 import kr.ed.haebeop.domain.*;
-import kr.ed.haebeop.service.InstServiceImpl;
+import kr.ed.haebeop.service.InstService;
 import kr.ed.haebeop.service.MemberService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService; // 서비스 생성
     @Autowired
-    private InstServiceImpl instService; // 강사 로그인을 위해 사용
+    private InstService instService; // 강사 로그인을 위해 사용
     @Autowired
     HttpSession session; // 세션 생성
     @Autowired
@@ -508,12 +508,6 @@ public class MemberController {
         return mav;
     }
 
-
-
-
-
-
-
     //신고한 게시글 목록
     @GetMapping("myReportList.do")
     public String myReportList(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
@@ -523,6 +517,7 @@ public class MemberController {
         System.out.println(boardList.toString());
         return "/member/myPage/myReportList";
     }
+
     @GetMapping("myReportCancel.do")
     public String myReportCancel(HttpServletRequest request, Model model) throws Exception {
         String id = request.getParameter("id");

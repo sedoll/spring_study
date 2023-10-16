@@ -1,10 +1,7 @@
 package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.Instructor;
-import kr.ed.haebeop.domain.Lecture;
-import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.persistence.InstMapper;
-import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InstServiceImpl {
+public class InstService {
     @Autowired
     private InstMapper instMapper;
     private BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();

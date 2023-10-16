@@ -31,7 +31,7 @@
     <link href="${path13}/resources/css/myPage/com_write.css" rel="stylesheet">
     <script type="text/javascript" src="${path13}/resources/js/com_write.js" charset="UTF-8"></script>
 
-    <title>결제 수강 내역</title>
+    <title>수강 내역</title>
 
 
 </head>
@@ -49,41 +49,43 @@
 
                 <div id="ud_tab" style="float:left; margin-left: -20px">
                     <input type="radio" name="ud_tabs" id="tab1" checked>
-                    <label for="tab1">결제 내역</label>
+                    <label for="tab1">수강 내역</label>
 
                     <div id="ud_tab-content1" class="ud_content" style="float:left; margin-left: -20px">
                         <table class="tb1" id="myTable" style="width: 800px; margin-left: -20px">
                             <thead>
                             <tr>
-                                <th class="item1">결제번호</th>
-                                <th class="item2">결제정보</th>
-                                <th class="item3">결제상품</th>
-                                <th class="item4">작업</th>
+                                <th>과목</th>
+                                <th>강의명</th>
+                                <th>강사</th>
+                                <th>수강기간</th>
+                                <th>남은기간</th>
+                                <th>학습</th>
                             </tr>
                             </thead>
                             <c:forEach var="pay" items="${payList }" varStatus="status">
-                                <tr>
-                                    <td class="item1">${pay.sno }</td>
-                                    <td class="item2">
-                                        <p>결제 방법 : ${pay.pmethod }</p>
-                                        <p>결제 대행 : ${pay.pcom }</p>
-                                        <p>결제 카드 : ${pay.cnum }</p>
-                                        <p>결제 금액 : ${pay.price }</p>
-                                        <p>결제 일 : ${pay.resdate }</p>
-                                    </td>
-                                    <td class="item3">
-                                        <span title="${pay.lec_no }">${pay.lec_name }</span>
-                                    </td>
-                                    <td class="item4">
-                                        <c:if test="${pay.state==0}">
-                                            <a href="${path13 }/payment/returnPayment.do?sno=${pay.sno }" class="inbtn">환불요청</a>
-                                            <a href="${path13 }/payment/buyPayment.do?sno=${pay.sno }&lno=${pay.lec_no}&pt=${pay.price / 10}" class="inbtn">구매확정</a>
-                                        </c:if>
-                                        <c:if test="${pay.state==1}">
-                                            <span>구매 확정</span>
-                                        </c:if>
-                                    </td>
-                                </tr>
+                                <c:if test="${pay.state == 1}">
+                                    <tr>
+                                        <td><div>${lecList.get(status.index).cate }</div></td>
+                                        <td><div>${lecList.get(status.index).title }</div></td>
+                                        <td><div>${instList.get(status.index).name }</div></td>
+                                        <td>
+                                            <div>${payChecks.get(status.index).startDate}</div>
+                                            <div>${payChecks.get(status.index).endDate}</div>
+                                        </td>
+                                        <td><div>${payChecks.get(status.index).day}</div></td>
+                                        <td>
+                                            <c:if test="${payChecks.get(status.index).value == 2}">
+                                                <c:if test="${payChecks.get(status.index).check == true}">
+                                                    <a href="${path13}/lecture/getLecVideo?no=${pay.lec_no}">강의보기</a>
+                                                </c:if>
+                                                <c:if test="${payChecks.get(status.index).check == false}">
+                                                    <span>수강 기간 종료</span>
+                                                </c:if>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:if>
                             </c:forEach>
                         </table>
                     </div>

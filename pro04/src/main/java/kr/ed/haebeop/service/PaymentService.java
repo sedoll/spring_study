@@ -19,7 +19,7 @@ public class PaymentService {
         paymentMapper.paymentInsert(payment);
     }
 
-    // 모든 결제 정보 리스트
+    // 모든 결제 정보 리스트, 관리자 전용
     public List<Payment> paymentList(){
         return paymentMapper.paymentList();
     }
@@ -33,4 +33,7 @@ public class PaymentService {
     public void paymentDelete(int sno){
         paymentMapper.paymentDelete(sno);
     }
+
+    // 결제 확정
+    public void buyPayemnt(int sno) {paymentMapper.buyPayemnt(sno);}
 }

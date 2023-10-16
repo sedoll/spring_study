@@ -44,11 +44,13 @@ public interface MemberRepository {
     public Member selectMember(String email) throws Exception;
     public int pwUpdate(Member member) throws Exception;
     public void updateAuthStatus(Map<String, Integer> map) throws Exception;
-  
     //내가 신고한 게시글
     public List<Board> myReportList(String id) throws Exception;
     public  void boardReportCancel(int bno) throws Exception;
     public  void teaReportCancel(int bno) throws Exception;
     public  void parReportCancel(int bno) throws Exception;
+
+    // 포인트 추가
+    public void memberPoint(Member member) throws Exception;
 }
 

@@ -4,8 +4,8 @@ import kr.ed.haebeop.domain.Cart;
 import kr.ed.haebeop.domain.Instructor;
 import kr.ed.haebeop.domain.Lecture;
 import kr.ed.haebeop.service.CartServiceImpl;
-import kr.ed.haebeop.service.InstServiceImpl;
-import kr.ed.haebeop.service.LectureServiceImpl;
+import kr.ed.haebeop.service.InstService;
+import kr.ed.haebeop.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +23,15 @@ public class CartController {
     @Autowired
     private CartServiceImpl cartService;
     @Autowired
-    private LectureServiceImpl lectureService;
+    private LectureService lectureService;
     @Autowired
-    private InstServiceImpl instService;
+    private InstService instService;
     @Autowired
     HttpSession session;
-
+    
+    // 장바구니 목록
     @GetMapping("cartList.do")
-    public String cartList(HttpServletRequest req, Model model) throws Exception {
+    public String cartList(Model model) throws Exception {
         String id = (String) session.getAttribute("sid");
         
         // 장바구니에 들어있는 개수
@@ -54,7 +54,8 @@ public class CartController {
         model.addAttribute("instList", instList);
         return "/cart/cartList";
     }
-
+    
+    // 장바구니 추가
     @GetMapping("cartInsert.do")
     public String cartInsert(@RequestParam int lec_no, Model model) throws Exception {
         String id = (String) session.getAttribute("sid");
@@ -70,6 +71,13 @@ public class CartController {
         }
         System.out.println(cart.toString());
 
+        return "redirect:/cart/cartList.do";
+    }
+    
+    // 장바구니 삭제
+    @GetMapping("cartDelete.do")
+    public String cartDelete(@RequestParam int cartno, Model model) throws Exception {
+        cartService.cartDelete(cartno);
         return "redirect:/cart/cartList.do";
     }
 }

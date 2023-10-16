@@ -269,4 +269,11 @@ public class MemberServiceImpl implements MemberService{
     public void parReportCancel(int bno) throws Exception {
         memberRepository.parReportCancel(bno);
     }
+    
+    
+    // 포인트 추가
+    @Override
+    public void memberPoint(Member member) throws Exception {
+        memberRepository.memberPoint(member);
+    }
 }

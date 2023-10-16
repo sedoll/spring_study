@@ -50,4 +50,8 @@ public interface MemberService {
     public  void teaReportCancel(int bno) throws Exception;
     public  void parReportCancel(int bno) throws Exception;
 
+
+    // 포인트 추가
+    public void memberPoint(Member member) throws Exception;
+
 }

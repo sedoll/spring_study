@@ -109,17 +109,13 @@ public class ApplicationConfig {
     @Bean
     public QnaService qnaService() {return new QnaServiceImpl();}
 
-    //product
-    @Bean
-    public ProductServiceImpl productService() {return new ProductServiceImpl();}
-
     // lecture
     @Bean
-    public LectureServiceImpl lectureService() {return new LectureServiceImpl();}
+    public LectureService lectureService() {return new LectureService();}
 
     // inst
     @Bean
-    public InstServiceImpl instService() {return new InstServiceImpl();}
+    public InstService instService() {return new InstService();}
 
     // cart
     @Bean

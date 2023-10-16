@@ -31,4 +31,5 @@ public class Lecture {
     private String aplctClss2; // 수강신청 종료일
     private String studyStart; // 강의 시작일
     private String studyEnd; // 강의 종료일
+    private int endDay; // 강의 수강 기간일
 }

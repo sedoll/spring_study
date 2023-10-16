@@ -207,53 +207,6 @@
                     </tr>
                 </table>
 
-                <%-- 강의 영상이랑 qna는 강의를 구매한 사람만 볼 수 있도록 설정 --%>
-                <table class="table is-fullwidth">
-                    <thead>
-                    <tr class="title">
-                        <th colspan="5">강의 영상</th>
-                    </tr>
-                    </thead>
-                </table>
-                <table class="table is-fullwidth">
-                    <tr>
-                        <td class="adminbtn" style="text-align: center">
-                            <c:if test="${not empty pro.sfile2}">
-                                <video controls width="640">
-                                    <source src="${path}/resources/upload/${pro.sfile2}" type="video/mp4" />
-                                </video>
-                            </c:if>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="adminbtn" style="text-align: center">
-                            <c:if test="${not empty pro.sfile3}">
-                                <video controls width="640">
-                                    <source src="${path}/resources/upload/${pro.sfile3}" type="video/mp4" />
-                                </video>
-                            </c:if>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="adminbtn" style="text-align: center">
-                            <c:if test="${not empty pro.sfile4}">
-                                <video controls width="640">
-                                    <source src="${path}/resources/upload/${pro.sfile4}" type="video/mp4" />
-                                </video>
-                            </c:if>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="adminbtn" style="text-align: center">
-                            <c:if test="${not empty pro.sfile5}">
-                                <video controls width="640">
-                                    <source src="${path}/resources/upload/${pro.sfile5}" type="video/mp4" />
-                                </video>
-                            </c:if>
-                        </td>
-                    </tr>
-                </table>
-
                 <table class="table is-fullwidth">
                     <thead>
                     <tr class="title">

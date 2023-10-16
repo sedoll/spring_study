@@ -39,7 +39,7 @@ public class AdminController {
     @Autowired
     private NoticeService noticeService; //공지사항
     @Autowired
-    private InstServiceImpl instService; // 강사 관련 기능
+    private InstService instService; // 강사 관련 기능
     @Autowired
     HttpSession session; // 세션 생성
 
