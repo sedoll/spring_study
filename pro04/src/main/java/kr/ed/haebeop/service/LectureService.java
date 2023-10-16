@@ -3,6 +3,7 @@ package kr.ed.haebeop.service;
 import kr.ed.haebeop.domain.Lecture;
 import kr.ed.haebeop.domain.Member;
 import kr.ed.haebeop.persistence.LectureMapper;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,16 @@ public class LectureServiceImpl {
         lectureMapper.delLecture(no);
     }
     public void countUp(int no) {lectureMapper.countUp(no);}
+
+    // 수강인원 +1
+    public void countUpLec(int no) {
+        lectureMapper.countUpLec(no);
+    }
+
+    // 수강인원 -1
+    public void countDownLec(int no) {
+        lectureMapper.countDownLec(no);
+    }
 
 //    public List<RedirectView> getReviewList(int no) {
 //        ReviewDAO dao = new ReviewDAO();
