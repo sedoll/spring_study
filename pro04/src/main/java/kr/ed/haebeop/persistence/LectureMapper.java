@@ -1,5 +1,6 @@
 package kr.ed.haebeop.persistence;
 
+import kr.ed.haebeop.domain.LecFile;
 import kr.ed.haebeop.domain.Lecture;
 import kr.ed.haebeop.domain.Product;
 import org.apache.ibatis.annotations.*;
@@ -15,7 +16,7 @@ public interface LectureMapper {
     @Insert("INSERT INTO lecture VALUES (default, #{cate}, #{slevel}, #{title}, #{content}, #{simg}, #{sfile1}, #{sfile2}, #{sfile3}, #{sfile4}, #{sfile5}, #{price}, #{ino}, default, default, #{lec_max}, #{aplctClss1}, #{aplctClss2}, #{studyStart}, #{studyEnd}, #{endDay})")
     @Options(useGeneratedKeys=true, keyProperty="no")
     public void addLecture(Lecture lec);
-    @Update("UPDATE lecture SET cate = #{cate}, pname = #{pname}, pcomment = #{pcomment}, plist = #{plist}, price = #{price}, imgsrc1 = #{imgSrc1}, resdate = #{resdate} WHERE no = #{no}")
+    @Update("UPDATE lecture SET cate=#{cate}, slevel=#{slevel}, title=#{title}, content=#{content}, simg=#{simg}, sfile1=#{sfile1}, sfile2=#{sfile2}, sfile3=#{sfile3}, sfile4=#{sfile4}, sfile5=#{sfile5}, ino=#{ino} WHERE no=#{no}")
     public void updateLecture(Lecture lec);
     @Delete("DELETE FROM lecture WHERE no = #{no}")
     public void delLecture(int no);
@@ -33,4 +34,16 @@ public interface LectureMapper {
     // 수강인원 -1
     @Update("update lecture set lec=lec-1 where no=#{no}")
     public void countDownLec(int no);
+    
+    // 실제 파일 이름 저장
+    @Insert("insert into lecfile values(default, #{sfile}, #{realName}")
+    public void setLecFile(LecFile lecFile);
+    
+    // 실제 파일 이름 수정
+    @Update("update lecfile set sfile=#{sfile}, realname=#{realName} where no=#{no}")
+    public void updateLecFile(LecFile lecFile);
+    
+    // 기존 파일의 no 출력
+    @Select("select no from lecfile where sfile=#{sfile}")
+    public int selectLecFile(String sfile);
 }

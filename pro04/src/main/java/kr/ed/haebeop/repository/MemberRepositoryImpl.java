@@ -181,4 +181,9 @@ public class MemberRepositoryImpl implements MemberRepository {
         sqlSession.update("member.memberPoint", member);
     }
 
+    @Override
+    public void memberPointSub(Member member) throws Exception {
+        sqlSession.update("member.memberPointSub", member);
+    }
+
 }

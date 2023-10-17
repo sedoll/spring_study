@@ -53,7 +53,7 @@
             </section>
 
 
-            <form action="${path }/member/update.do" method="post" onsubmit="return updateCheck(this)">
+            <form action="${path }/admin/update.do" method="post" onsubmit="return updateCheck(this)">
                 <div class="table_form_wrap">
                     <table class="table_form">
                         <tbody>

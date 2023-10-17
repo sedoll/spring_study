@@ -278,4 +278,44 @@ public class AdminController {
         return "/admin/instInsert";
     }
 
+    // 회원 수정
+    @PostMapping("update.do")
+    public String memberEdit(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+        String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String tel = request.getParameter("tel");
+        String addr1 = request.getParameter("addr1");
+        String addr2 = request.getParameter("addr2");
+        String postcode = request.getParameter("postcode");
+        String birth = request.getParameter("birth");
+
+        Member member = new Member();
+
+        member.setId(id);
+        member.setPw(pw);
+        member.setName(name);
+        member.setEmail(email);
+        member.setTel(tel);
+        member.setAddr1(addr1);
+        member.setAddr2(addr2);
+        member.setPostcode(postcode);
+        member.setBirth(birth);
+
+        memberService.memberUpdate(member);
+        model.addAttribute("member", member);
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('회원님의 정보가 수정되었습니다.');</script>");
+        out.flush();
+
+        List<Member> memberList = memberService.memberList();
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("title", "회원 목록");
+
+        return "/admin/memberList";
+    }
+
 }

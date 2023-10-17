@@ -12,8 +12,8 @@ import java.util.List;
 @Mapper
 public interface PaymentMapper {
     // 결제 확인
-    @Insert("insert into payment(sno, id, lec_no, lec_name, pmethod, pcom, cnum, price, state, resdate) " +
-            "values(default, #{id}, #{lec_no}, #{lec_name}, #{pmethod}, #{pcom}, #{cnum}, #{price}, default, default)")
+    @Insert("insert into payment(sno, id, lec_no, lec_name, pmethod, pcom, cnum, price, state, resdate, pt) " +
+            "values(default, #{id}, #{lec_no}, #{lec_name}, #{pmethod}, #{pcom}, #{cnum}, #{price}, default, default, #{pt})")
     public void paymentInsert(Payment payment);
     
     // 모든 결제 정보 리스트
@@ -23,6 +23,14 @@ public interface PaymentMapper {
     // 해당 회원의 결제 정보
     @Select("select * from payment where id=#{id}")
     public List<Payment> paymentMemList(String id);
+    
+    // 이미 수강하는 강의인지 아닌지 확인
+    @Select("select count(*) from payment where id=#{id} and lec_no=#{lec_no}")
+    public int checkPayment(Payment payment);
+
+    // 결제 번호를 통한 결제 정보
+    @Select("select * from payment where sno=#{sno}")
+    public Payment getPayment(int sno);
 
     // 환불
     @Select("delete from payment where sno=#{sno}")

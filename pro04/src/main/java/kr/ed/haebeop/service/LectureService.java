@@ -1,7 +1,10 @@
 package kr.ed.haebeop.service;
 
+import kr.ed.haebeop.domain.LecFile;
 import kr.ed.haebeop.domain.Lecture;
 import kr.ed.haebeop.persistence.LectureMapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +37,16 @@ public class LectureService {
     public void countDownLec(int no) {
         lectureMapper.countDownLec(no);
     }
+    
+    // 실제 파일 이름 저장
+    public void setLecFile(LecFile lecFile) {lectureMapper.setLecFile(lecFile);}
+    
+    // 기존 파일 수정
+    public void updateLecFile(LecFile lecFile) {lectureMapper.updateLecFile(lecFile);}
 
+    // 기존 파일의 no 출력
+    public int selectLecFile(String sfile) {return lectureMapper.selectLecFile(sfile);}
+    
 //    public List<RedirectView> getReviewList(int no) {
 //        ReviewDAO dao = new ReviewDAO();
 //        return dao.getReviewList(no);

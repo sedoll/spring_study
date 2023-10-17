@@ -41,14 +41,15 @@
     <div class="content" id="contents">
         <div class="row column text-center">
             <div class="container">
-                <form action="${path }/qna/edit.do" method="post">
+                <form action="${path }/qna/commentEdit.do" method="post">
                     <table id="table1">
                         <tbody>
                         <tr>
                             <th style="background-color:#dcdcdc">글 제목</th>
                             <td>
                                 <input type="hidden" name="bno" id="bno" value="${dto.bno }" >
-                                <input type="text" name="title" id="title" class="input" placeholder="제목 입력" value="${dto.title }"  maxlength="98" required>
+                                <input type="hidden" name="par" id="par" value="${dto.par }" >
+                                <input type="text" name="title" id="title" class="input" placeholder="제목 입력" value="댓글" maxlength="98" readonly>
                             </td>
                         </tr>
                         <tr>

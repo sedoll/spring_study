@@ -27,4 +27,5 @@ public class CartServiceImpl {
         System.out.println("service 실행");
         return cartMapper.getCartCheck(cart);
     }
+    public int getCart(Cart cart) {return cartMapper.getCart(cart);}
 }

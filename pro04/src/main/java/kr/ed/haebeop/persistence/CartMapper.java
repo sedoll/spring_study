@@ -18,4 +18,6 @@ public interface CartMapper {
     public int cartCnt(String id);
     @Select("SELECT COUNT(*) FROM cart WHERE id = #{id} AND lec_no = #{lec_no}")
     public int getCartCheck(Cart cart);
+    @Select("SELECT cartno FROM cart WHERE id = #{id} AND lec_no = #{lec_no}")
+    public int getCart(Cart cart);
 }

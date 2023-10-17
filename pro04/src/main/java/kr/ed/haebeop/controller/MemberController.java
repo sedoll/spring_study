@@ -207,7 +207,6 @@ public class MemberController {
         String postcode = request.getParameter("postcode");
         String birth = request.getParameter("birth");
 
-
         Member member = new Member();
 
         member.setId(id);
@@ -327,10 +326,10 @@ public class MemberController {
         }
 
         /* 자료실 */
-        List<BoardlistVO> boardfreelist = memberService.getWriteList4(id);
-        if (boardfreelist != null) {
-            model.addAttribute("boardfreelist", boardfreelist);
-        }
+//        List<BoardlistVO> boardfreelist = memberService.getWriteList4(id);
+//        if (boardfreelist != null) {
+//            model.addAttribute("boardfreelist", boardfreelist);
+//        }
 
 
         /* 자유게시판 댓글 */

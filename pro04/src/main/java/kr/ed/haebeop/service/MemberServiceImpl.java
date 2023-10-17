@@ -276,4 +276,9 @@ public class MemberServiceImpl implements MemberService{
     public void memberPoint(Member member) throws Exception {
         memberRepository.memberPoint(member);
     }
+
+    @Override
+    public void memberPointSub(Member member) throws Exception {
+        memberRepository.memberPointSub(member);
+    }
 }

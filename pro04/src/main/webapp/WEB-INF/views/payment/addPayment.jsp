@@ -19,6 +19,33 @@
             height: 250px;
             margin-top: 40px;
         }
+
+        /* 결제 버튼 스타일 */
+        #pay, #buy {
+            width: 100%;
+        }
+        .label {
+            font-size: 16px; /* 원하는 크기로 조정하세요 */
+        }
+
+        /* Input 스타일링 */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border: 1px solid #007BFF; /* 원하는 포커스 색상으로 조정하세요 */
+        }
     </style>
 </head>
 <body>
@@ -39,107 +66,188 @@
             </li>
         </ul>
     </figure>
-    <div class="content" id="contents">
-        <div class="row column text-center">
-            <div class="container">
-                <form action="${path }/payment/addPayment.do" method="post">
-                    <table id="table1">
-                        <tbody>
-                        <tr>
-                            <th class="item1">강의 과목</th>
-                            <input type="hidden" name="lec_no" id="no" value="${pro.no }" />
-                            <td class="item2" colspan="2">${pro.cate }</td>
-                        </tr>
-                        <tr>
-                            <th class="item1">강의 명</th>
-                            <td class="item2" colspan="2">
-                                ${pro.title }
-                                <input type="hidden" name="lec_name" id="lec_name" value="${pro.title }">
-<%--                                <input type="hidden" name="from" id="from" value="${from }">--%>
-<%--                                <c:if test="${from.equals('cart')}">--%>
-<%--                                    <input type="hidden" name="cartno" id="cartno" value="${cartno }">--%>
-<%--                                </c:if>--%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>강사</th>
-                            <td colspan="2">
-                                ${inst.name }
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>강의 설명</th>
-                            <td colspan="2">
-                                ${pro.content }
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>가격</th>
-                            <td colspan="2">
-                                <fmt:parseNumber var="price" integerOnly="true" value="${pro.price}" />
-                                ${price}
-                                <input type="hidden" name="price" id="price" value="${price}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>남은 수강인원 : ${pro.lec_max - pro.lec}</th>
-                            <td colspan="2">
-                                <input type="number" name="lec" id="lec" value="1" readonly />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table id="table1">
-                        <thead>
-                        <tr>
-                            <th><h3>결제 정보</h3></th>
-                            <input type="hidden" name="id" id="id" value="${member.id }"> <%-- 결제자 id --%>
-                            <input type="hidden" name="name" id="name" value="${member.name }">
-                            <input type="hidden" name="email" id="email" value="${member.email }">
-                            <input type="hidden" name="tel" id="tel" value="${member.tel }">
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th class="item1">결제 수단</th>
-                            <td class="item2" colspan="2">
-                                <select name="pmethod" id="pmethod" required>
-                                    <option value="신용카드">신용카드</option>
-                                    <option value="체크카드">체크카드</option>
-                                    <option value="계좌이체">계좌이체</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>결제사</th>
-                            <td colspan="2">
-                                <select name="pcom" id="pcom">
-                                    <option value="선택안함">선택안함</option>
-                                </select>
-                                <input type="hidden" name="pcom2" id="pcom2" value="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>결제 번호</th>
-                            <td colspan="2">
-                                <input type="text" name="cnum" id="cnum" required>
-                                <input type="hidden" name="payAmount" id="payAmount">
-                                <input type="hidden" name="payCk" id="payCk" value="no">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <input type="button" id="pay" value="결제" class="button is-link is-outlined">
-                                <c:if test="${not empty sid }">
-                                    <input type="submit" class="button is-link is-outlined" value="구매">
-                                </c:if>
-                                <p id="paymentResult" style="color:red; font-size: 20px;"></p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <form action="${path}/payment/addPayment.do" method="post">
+                <div class="columns">
+                    <div class="column is-half">
+                        <div class="box">
+                            <h3 class="title is-4">강의 정보</h3>
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">강의 과목</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="hidden" name="lec_no" id="no" value="${pro.no}">
+                                            <span class="is-capitalized">${pro.cate}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">강의 명</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span>${pro.title}</span>
+                                            <input type="hidden" name="lec_name" id="lec_name" value="${pro.title}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">강사</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span>${inst.name}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">가격</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span>${pro.price}</span>
+                                            <input type="hidden" name="price" id="price" value="${pro.price}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">포인트 사용</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="number" name="pt" id="point" value="0" max="${member.pt}">
+                                            <div class="help is-danger" id="point-check"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">실 결제 금액</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div id="val-result"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">남은 수강인원</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <span>${pro.lec_max - pro.lec}</span>
+                                            <input type="hidden" name="lec" id="lec" value="1" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-half">
+                        <div class="box">
+                            <h3 class="title is-4">결제 정보</h3>
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">결제 수단</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select">
+                                                <select name="pmethod" id="pmethod" required>
+                                                    <option value="신용카드">신용카드</option>
+                                                    <option value="체크카드">체크카드</option>
+                                                    <option value="계좌이체">계좌이체</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">결제사</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="select">
+                                                <select name="pcom" id="pcom">
+                                                    <option value="선택안함">선택안함</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="pcom2" id="pcom2" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class=" is-normal">
+                                    <label class="label">결제 번호</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" name="cnum" id="cnum" required>
+                                            <input type="hidden" name="payAmount" id="payAmount">
+                                            <input type="hidden" name="payCk" id="payCk" value="no">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field ">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="control">
+                                                <input type="button" id="pay" value="결제" class="button is-link is-outlined">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p id="paymentResult" class="has-text-danger is-size-4"></p>
+                                        </div>
+                                        <div class="control">
+                                            <div class="control">
+                                                <input type="submit" id="buy" class="button is-link is-outlined" value="구매">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -195,6 +303,23 @@
         var totalPay=0;
         var proName;
         $("#pay").click(function(){
+            // 포인트가 제대로 됐는지 체크
+            var point = $('#point').val();
+            var maxPoint = $('#point').attr('max');
+            if(point > maxPoint) {
+                alert("사용할 포인트를 수정해주세요");
+                $("#point").focus();
+                return false;
+            }
+
+            // 카드 번호 입력 확인
+            var cnum = $('#cnum').val();
+            if(cnum == '') {
+                alert("카드 번호를 입력해주세요");
+                $("#cnum").focus();
+                return false;
+            }
+
             var email = $("#email").val();
             var cname = $("#name").val();
             var tel = $("#tel").val();
@@ -262,6 +387,39 @@
             return false;
         }
     }
+</script>
+<script>
+    $(document).ready(function() {
+        // 초기 페이지 로딩 시, 계산하고 결과를 표시
+        calculateAndDisplayResult();
+
+        // 사용자가 point를 조정할 때 이벤트 처리
+        $('#point').on('input', function() {
+            calculateAndDisplayResult();
+        });
+
+        function calculateAndDisplayResult() {
+            var proPrice = parseInt($('#price').val()); // pro.price 값을 가져옴
+            var memberPoints = parseInt($('#point').val()); // point 값을 가져옴
+            var maxPoints = parseInt($('#point').attr('max')); // max 속성에서 최대 포인트 값을 가져옴
+
+            if (!isNaN(proPrice) && !isNaN(memberPoints)) {
+                if(memberPoints > maxPoints) {
+                    memberPoints = maxPoints;
+                    $('#point-check').text(`고객님이 사용할 수 있는 포인트가 초과되었습니다.`).css('color','red');
+                } else {
+                    $('#point-check').text(``);
+                }
+                var result = proPrice - memberPoints;
+                if (result < 0) {
+                    result = 0; // 만약 음수가 되면 0으로 설정
+                }
+                $('#val-result').text(result);
+            } else {
+                $('#val-result').text("계산 불가"); // 유효한 숫자가 아닌 경우 표시
+            }
+        }
+    });
 </script>
 <!-- footer imclude -->
 <jsp:include page="../include/footer.jsp"></jsp:include>

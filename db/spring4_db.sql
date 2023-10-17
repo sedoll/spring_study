@@ -404,13 +404,22 @@ CREATE TABLE payment(
 	state INT DEFAULT 0, -- 상태
 	resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 결제 일
 	buydate TIMESTAMP, -- 구매 확정 일
+	pt INT, -- 포인트
 	FOREIGN KEY(lec_no) REFERENCES lecture(NO),
 	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
 	);
 -- ALTER TABLE payment ADD COLUMN resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP();
 -- ALTER TABLE payment ADD COLUMN buydate TIMESTAMP;
 -- alter table payment change resdate TIMESTAMP;
-ALTER TABLE payment DROP COLUMN resdate;
+-- ALTER TABLE payment DROP COLUMN resdate;
+-- ALTER TABLE payment ADD COLUMN pt INT;
+
+-- 실제 파일 이름 저장 경로
+CREATE TABLE lecfile (
+	NO INT PRIMARY KEY AUTO_INCREMENT,
+	sfile VARCHAR(1000),
+	realname VARCHAR(250)
+)
 
 -- 강의 배정
 -- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위

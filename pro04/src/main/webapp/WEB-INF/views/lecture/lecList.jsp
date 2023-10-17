@@ -132,7 +132,9 @@
                                         <a href="javascript:void(0);" onclick="toggleLike(${pro.no}, '${sessionScope.sid}');" class="button is-link is-outlined" data-product-id="${pro.no}"  style="color: #b4b4b4">♥</a>
                                     </c:otherwise>
                                 </c:choose>
-
+                            </c:if>
+                            <c:if test="${sid eq 'admin'}">
+                                <a href="${path }/lecture/updateLectureForm.do?no=${pro.no }" class="button is-link is-outlined">수정</a>
                             </c:if>
                             <script>
                                 function toggleLike(productNo, ${sid }) {

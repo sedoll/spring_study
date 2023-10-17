@@ -55,11 +55,14 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     
     // 접근 권한 위치 지정
     public void addInterceptors(InterceptorRegistry registry) {
+        // 회원 접근 권한
         registry.addInterceptor(userIntercepter())
                 .addPathPatterns("/boardPar/**").addPathPatterns("/boardTea/**")
                 .addPathPatterns("/file/**").addPathPatterns("/infoAct/**")
                 .addPathPatterns("/infoStu/**").addPathPatterns("/infoUni/**")
                 .addPathPatterns("/grade/**").addPathPatterns("/cart/**").addPathPatterns("/payment/**");
+        
+        // 관리자 접근 권한
         registry.addInterceptor(adminIntercepter()).addPathPatterns("/admin/**");
     }
 }
