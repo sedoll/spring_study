@@ -2,7 +2,6 @@ package kr.ed.haebeop.controller;
 
 import kr.ed.haebeop.domain.*;
 import kr.ed.haebeop.service.*;
-import kr.ed.haebeop.util.DateCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 // 강의 신청, 구매
@@ -21,19 +19,19 @@ import java.util.List;
 @RequestMapping("/payment/*")
 public class PaymentController {
     @Autowired
-    private LectureService lectureService;
+    private LectureService lectureService;      // 강의
     @Autowired
-    private MemberServiceImpl memberService;
+    private MemberServiceImpl memberService;    // 회원
     @Autowired
-    private InstService instService;
+    private InstService instService;            // 선생님, 강사
     @Autowired
-    private PaymentService paymentService;
+    private PaymentService paymentService;      // 결제
     @Autowired
-    private CartServiceImpl cartService;
+    private CartServiceImpl cartService;        // 장바구니
     @Autowired
-    HttpSession session; // 세션 생성
-    
-    // 결제 폼
+    HttpSession session;                        // 세션 생성
+
+    // 수강 신청, 결제 폼
     @GetMapping("addPayment.do")
     public String addPayment(@RequestParam int lec_no, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
         String id = (String) session.getAttribute("sid");
@@ -48,7 +46,6 @@ public class PaymentController {
             Instructor instructor = instService.getInstructorName(lecture.getIno());
             // 회원 정보
             Member member = memberService.getMember(id);
-
             model.addAttribute("pro", lecture);
             model.addAttribute("inst", instructor);
             model.addAttribute("member", member);
@@ -70,17 +67,19 @@ public class PaymentController {
     @PostMapping("addPayment.do")
     public String addPaymentPro(@ModelAttribute Payment payment, Model model) throws Exception {
         String id = (String) session.getAttribute("sid");
+        int lec_no = payment.getLec_no();
+
         payment.setId(id);
         paymentService.paymentInsert(payment); // 결제 내역 추가
         Member member = memberService.getMember(id); // 결제한 회원정보 추출
         member.setPt(payment.getPt()); // 포인트
         memberService.memberPointSub(member); // 사용한 포인트 차감
-        lectureService.countUpLec(payment.getLec_no());
+        lectureService.countUpLec(lec_no); // 수강 인원 현황 +1
 
         Cart cart = new Cart();
-        cart.setLec_no(payment.getLec_no());
+        cart.setLec_no(lec_no);
         cart.setId(payment.getId());
-        
+
         // 카트에 있으면 제거
         try {
             int cartno = cartService.getCart(cart);
@@ -88,7 +87,6 @@ public class PaymentController {
         } catch (Exception e) {
 
         }
-
         return "redirect:/";
     }
 
@@ -125,9 +123,12 @@ public class PaymentController {
         member.setPt(payment.getPt());
         memberService.memberPoint(member);
 
-        paymentService.paymentDelete(sno); // 결제 내역 삭제
-        lectureService.countDownLec(payment.getLec_no()); // 수강 인원 -1
+        // 수강 인원 현황 -1
+        lectureService.countDownLec(payment.getLec_no());
         
+        // 결제 내역 삭제
+        paymentService.paymentDelete(sno);
+
         return "redirect:/payment/paymentList.do";
     }
 
