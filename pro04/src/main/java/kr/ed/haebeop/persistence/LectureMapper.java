@@ -36,7 +36,7 @@ public interface LectureMapper {
     public void countDownLec(int no);
     
     // 실제 파일 이름 저장
-    @Insert("insert into lecfile values(default, #{sfile}, #{realName}")
+    @Insert("insert into lecfile values(default, #{sfile}, #{realName})")
     public void setLecFile(LecFile lecFile);
     
     // 실제 파일 이름 수정

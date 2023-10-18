@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class PaymentController {
     
     // 결제 폼
     @GetMapping("addPayment.do")
-    public String addPayment(@RequestParam int lec_no, HttpServletRequest req, Model model) throws Exception {
+    public String addPayment(@RequestParam int lec_no, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
         String id = (String) session.getAttribute("sid");
         Payment payment = new Payment();
         payment.setId(id);
@@ -53,7 +55,13 @@ public class PaymentController {
 
             return "/payment/addPayment";
         } else {
-            
+            res.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = res.getWriter();
+            out.println("<script>");
+            out.println("alert('이미 수강하고 있는 강의 입니다.');");
+            out.println("location.href='"+req.getContextPath()+"/lecture/lecList';"); // 페이지 리디렉션을 JavaScript로 수행
+            out.println("</script>");
+            out.flush();
             return "redirect:/";
         }
     }
@@ -67,6 +75,7 @@ public class PaymentController {
         Member member = memberService.getMember(id); // 결제한 회원정보 추출
         member.setPt(payment.getPt()); // 포인트
         memberService.memberPointSub(member); // 사용한 포인트 차감
+        lectureService.countUpLec(payment.getLec_no());
 
         Cart cart = new Cart();
         cart.setLec_no(payment.getLec_no());
@@ -96,7 +105,6 @@ public class PaymentController {
     @GetMapping("buyPayment.do")
     public String buyPayment(HttpServletRequest req, Model model) throws Exception {
         int sno = Integer.parseInt(req.getParameter("sno"));
-        int lec_no = Integer.parseInt(req.getParameter("lno"));
 
         Member member = new Member();
         String id = (String) session.getAttribute("sid");
@@ -104,7 +112,6 @@ public class PaymentController {
         member.setId(id);
         member.setPt(pt);
         paymentService.buyPayemnt(sno);
-        lectureService.countUpLec(lec_no); // 수강 인원 현황 +1
         memberService.memberPoint(member);
         return "redirect:/payment/paymentList.do";
     }
@@ -118,8 +125,9 @@ public class PaymentController {
         member.setPt(payment.getPt());
         memberService.memberPoint(member);
 
-        paymentService.paymentDelete(sno);
-
+        paymentService.paymentDelete(sno); // 결제 내역 삭제
+        lectureService.countDownLec(payment.getLec_no()); // 수강 인원 -1
+        
         return "redirect:/payment/paymentList.do";
     }
 

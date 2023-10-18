@@ -82,21 +82,23 @@
         <div class="container">
             <div  id="search_from">
                 <select name="select_filter" id="select_filter">
-                    <option value="0">#</option>
                     <option value="1">과목</option>
                     <option value="2">학년</option>
                     <option value="3">제목</option>
+                    <option value="6">상태</option>
                 </select>
                 <input type="text" name="search_filter" id="search_filter">
             </div>
             <table id="myTable">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>프로필</th>
                     <th>과목</th>
                     <th>학년</th>
                     <th>제목</th>
                     <th>조회수</th>
+                    <th>수강인원</th>
+                    <th>상태</th>
                     <th>비고</th>
                 </tr>
                 </thead>
@@ -119,9 +121,22 @@
                             <p>${pro.cnt}</p>
                         </td>
                         <td>
+                            <p>${pro.lec} / ${pro.lec_max}</p>
+                        </td>
+                        <td>
+                            <c:if test="${pro.lec == pro.lec_max}">
+                                <p style="color: red">수강불가</p>
+                            </c:if>
+                            <c:if test="${pro.lec < pro.lec_max}">
+                                <p style="color: #3273dc">수강가능</p>
+                            </c:if>
+                        </td>
+                        <td>
                             <c:if test="${not empty sid}">
                                 <c:set var="isLiked" value="${likedProductIds.contains(pro.no)}" />
-                                <a href="${path }/payment/addPayment.do?lec_no=${pro.no }" class="button is-link is-outlined">수강신청</a>
+                                <c:if test="${pro.lec < pro.lec_max}">
+                                    <a href="${path }/payment/addPayment.do?lec_no=${pro.no }" class="button is-link is-outlined">수강신청</a>
+                                </c:if>
                                 <a href="${path }/cart/cartInsert.do?lec_no=${pro.no }" class="button is-link is-outlined">장바구니</a>
                                 <c:choose>
                                     <c:when test="${isLiked }">

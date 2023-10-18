@@ -74,6 +74,7 @@ public class LectureController {
         lecture.setAplctClss2(files.getParameter("aplctClss2"));
         lecture.setStudyStart(files.getParameter("studystart"));
         lecture.setStudyEnd(files.getParameter("studyend"));
+        lecture.setEndDay(Integer.parseInt(files.getParameter("endDay")));
 
         // 개발 서버 파일 저장 경로
         String uploadDir = "D:/spring_study/pro04/src/main/webapp/resources/upload/"; // 회사
