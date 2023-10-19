@@ -9,8 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LecFile {
-    private int no; // 번호
-    private String sfile; // 난수화된 파일 이름
-    private String realName; // 실제 파일 이름
+public class Review {
+    private int no;
+    private String id;
+    private String content;
+    private String resdate;
+    private int score;
+    private int par;
 }

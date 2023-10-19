@@ -2,7 +2,6 @@ package kr.ed.haebeop.service;
 
 import kr.ed.haebeop.domain.Payment;
 import kr.ed.haebeop.persistence.PaymentMapper;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,4 +41,7 @@ public class PaymentService {
 
     // 결제 확정
     public void buyPayemnt(int sno) {paymentMapper.buyPayemnt(sno);}
+
+    // 리뷰 작성을 위해 state 확인
+    public int statePayemnt(Payment payment) { return paymentMapper.statePayemnt(payment); }
 }

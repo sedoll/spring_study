@@ -125,6 +125,10 @@ public class ApplicationConfig {
     @Bean
     public PaymentService paymentService() {return new PaymentService();}
 
+    //review
+    @Bean
+    public ReviewService reviewService() {return new ReviewService();}
+
     @Bean
     public ObjectMapper mapper() { return new ObjectMapper(); }
 }

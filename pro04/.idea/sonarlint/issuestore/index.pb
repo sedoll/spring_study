@@ -361,3 +361,9 @@ j
 :src/main/java/kr/ed/haebeop/persistence/LectureMapper.java,b\c\bc049fc7a593195c26db71757de0e87471ee309c
 g
 7src/main/java/kr/ed/haebeop/service/LectureService.java,f\a\fa76c6d6c7b8bea20aa142554f4616fd50a2cd9c
+d
+4src/main/webapp/WEB-INF/views/payment/addPayment.jsp,7\0\7028d082ee94240674bbd2ab6953b1a1cf8781e7
+k
+;src/main/webapp/WEB-INF/views/member/myPage/paymentList.jsp,5\b\5b9a7c5bd3006df0ad7aa919db25ee18dcb646b0
+a
+1src/main/webapp/WEB-INF/views/lecture/lecList.jsp,e\a\ead5d36180cc0927c8e32e917498fa2fba77ccb4

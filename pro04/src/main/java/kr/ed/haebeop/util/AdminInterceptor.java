@@ -5,6 +5,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 public class AdminInterceptor extends HandlerInterceptorAdapter {
     @Override
@@ -18,7 +19,13 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
         if(sid.equals("admin")){
             return true;
         } else {
-            response.sendRedirect(request.getContextPath()+"/member/login.do");
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('해당 페이지는 관리자만 접근 가능합니다.');");
+            out.println("location.href='"+request.getContextPath()+"/';"); // 페이지 리디렉션을 JavaScript로 수행
+            out.println("</script>");
+            out.flush();
             return false;
         }
     }

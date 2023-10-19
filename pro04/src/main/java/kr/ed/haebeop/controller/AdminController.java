@@ -4,6 +4,7 @@ package kr.ed.haebeop.controller;
 import kr.ed.haebeop.domain.Board;
 import kr.ed.haebeop.domain.Instructor;
 import kr.ed.haebeop.domain.Member;
+import kr.ed.haebeop.domain.Review;
 import kr.ed.haebeop.service.*;
 import kr.ed.haebeop.service.board.BoardParServiceImpl;
 import kr.ed.haebeop.service.board.BoardServiceImpl;
@@ -40,6 +41,8 @@ public class AdminController {
     private NoticeService noticeService; //공지사항
     @Autowired
     private InstService instService; // 강사 관련 기능
+    @Autowired
+    private ReviewService reviewService; // 리뷰 관련 기능
     @Autowired
     HttpSession session; // 세션 생성
 
@@ -316,6 +319,28 @@ public class AdminController {
         model.addAttribute("title", "회원 목록");
 
         return "/admin/memberList";
+    }
+    
+    // 댓글 관리
+    // 관리자의 전체 리뷰 목록
+    @GetMapping("adminReviewList.do")
+    public String adminReviewList(HttpServletRequest req, Model model) throws Exception{
+        List<Review> rvList = reviewService.getReviewList();
+        model.addAttribute("rvList", rvList);
+        return "/admin/adminRevList";
+    }
+
+    // 관리자 리뷰 제거
+    // 리뷰 제거
+    @GetMapping("adminDeleteReview.do")
+    public String adminDeleteReview(HttpServletRequest req,  Model model) throws Exception {
+        Review review = new Review();
+        String id = req.getParameter("id");
+        int par = Integer.parseInt(req.getParameter("par"));
+        review.setId(id);
+        review.setPar(par);
+        reviewService.deleteReview(review);
+        return "redirect:/admin/adminReviewList.do";
     }
 
 }

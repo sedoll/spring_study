@@ -46,4 +46,8 @@ public interface LectureMapper {
     // 기존 파일의 no 출력
     @Select("select no from lecfile where sfile=#{sfile}")
     public int selectLecFile(String sfile);
+    
+    // 기존 파일 이름 추출
+    @Select("select realname from lecfile where sfile=#{sfile}")
+    public String getLecFileName(String sfile);
 }

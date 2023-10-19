@@ -134,8 +134,8 @@
         .inbtn, .delete_btn {
             display: inline-block;
             border-radius: 5px;
-            width: 50px;
-            line-height: 28px;
+            width: 88px;
+            line-height: 20px;
             text-align: center;
             font-size: 14px;
             cursor: pointer;
@@ -143,8 +143,9 @@
         }
 
         .inbtn {
-            background-color: #333;
+            background-color: #bbd4ff;
             color: #fff;
+            border: none;
         }
 
         .inbtn:hover, .delete_btn:hover {
@@ -248,14 +249,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
-                                <a href="${path}/board/delete.do?bno=${dto.bno}" class="button is-outlined is-danger" >삭제</a>
-                               </c:if>
-                            </td>
-                            <td>
                                 <c:if test="${dto.author eq sid && not empty sid}">
                                     <a href="${path}/board/edit.do?bno=${dto.bno}" class="button is-outlined is-link">수정</a>
                                 </c:if>
+                            </td>
+                            <td>
+                                <c:if test="${not empty sid && (sid eq 'admin' || dto.author eq sid)}">
+                                <a href="${path}/board/delete.do?bno=${dto.bno}" class="button is-outlined is-danger" >삭제</a>
+                            </c:if>
                             </td>
                             <td>${dto.author}</td>
                             <td>${dto.resdate}</td>
@@ -266,13 +267,30 @@
                     <tr>
                         <td colspan="5" class="content">
                             <div>
-                                ${dto.content}
+<%--                                특정 신고 수 이상이면 블라인드 처리  / 일단 신고수 3이상이면 블라인드 되게 테스트 --%>
+
+                                <c:if test="${cntReport < 3}">
+                                    ${dto.content}
+                                </c:if>
+                                <c:if test="${cntReport > 2}">
+                                    <h4 style="text-align: center">[신고가 누적되어 블라인드 처리되었습니다. 관리자에게 문의해주세요]</h4>
+                                </c:if>
                             </div>
                         </td>
                     </tr>
                     <c:if test="${not empty sid}">
                         <tr >
-                            <td colspan="5"style="text-align: right" >
+                            <td colspan="5" style="text-align: right" >
+                                <c:choose>
+                                    <c:when test="${isLiked }">
+                                        <!-- 좋아요를 눌렀을 경우 -->
+                                        <button type="button is-info is-hovered" onclick="toggleLike(${dto.bno}, '${sid}');" class="inbtn" data-board-id="${dto.bno}"><img src="${path1}/resources/img/like_blue.png" alt="!" style="height: 26px; margin-top: 6px "></button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <!-- 좋아요를 누르지 않았을 경우 -->
+                                        <button type="button is-danger is-hovered" onclick="toggleLike(${dto.bno}, '${sid}');" class="inbtn" data-board-id="${dto.bno}"><img src="${path1}/resources/img/like_white.png" alt="!" style="height: 26px; margin-top: 6px"></button>
+                                    </c:otherwise>
+                                </c:choose>
                                 <button class="button is-danger is-hovered" onclick="openReportPopup()">
                                     <img src="${path1}/resources/img/report.png" alt="!" style="height: 20px; margin-right: 6px">신고</button></td>
                         </tr>
@@ -280,6 +298,43 @@
                     </tbody>
 
                 </table>
+                <script>
+                    function toggleLike(boardNo, ${sid }) {
+                        $.ajax({
+                            url: "${path1}/board/boardLike.do",
+                            method: "POST",
+                            data: {
+                                boardNo: boardNo,
+                                sid: ${sid }
+                            },
+                            dataType: "json",
+                            success: function(result) {
+                                var likeButton = $("[data-board-id='" + boardNo + "']");
+                                console.log(result.result);
+                                var chk = result.result;
+
+                                if (chk === "liked") {
+                                    likeButton.html("<img src='${path1}/resources/img/like_blue.png' alt='!' style='height: 26px; margin-top: 6px'/>");
+                                } else if (chk === "unliked") {
+                                    likeButton.html("<img src='${path1}/resources/img/like_white.png' alt='!' style='height: 26px; margin-top: 6px'/>");
+                                } else {
+                                    // likeButton.css("color","#b4b4b4");
+                                    alert("오류가 발생했습니다. 다시 시도해주세요.");
+                                }
+                            }
+                        });
+                    }
+                    $(document).ready(function() {
+                        // 좋아요 상태를 기반으로 버튼 이미지 변경
+                        $(".inbtn").each(function() {
+                            var isLiked = $(this).hasClass("liked");
+                            if (isLiked) {
+                                $(this).addClass("liked");
+                            }
+                        });
+                    });
+                </script>
+
                 <table class="tb2" id="myTable">
                     <thead>
                     <tr>
@@ -297,14 +352,15 @@
                             <td class="item3">${lev.resdate}</td>
                             <td class="item4">
                                 <c:if test="${sid eq lev.author || sid eq 'admin'}">
-                                    <a href="${path}/board/edit.do?bno=${lev.bno}" class="button is-link is-small is-outlined is-rounded ">수정</a>
-                                    <a href="${path}/board/delete.do?bno=${lev.bno}" class="button is-danger is-small is-outlined is-rounded"> 삭제 </a>
+                                    <a href="${path}/board/commentEdit.do?bno=${lev.bno}" class="button is-link is-small is-outlined is-rounded ">수정</a>
+                                    <a href="${path}/board/comDelete.do?bno=${lev.bno}&par=${lev.par}" class="button is-danger is-small is-outlined is-rounded"> 삭제 </a>
                                 </c:if>
                             </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+
                 <script>
                     function openReportPopup() {
                         // 팝업 창의 크기 및 위치를 지정합니다. 필요에 따라 조절할 수 있습니다.

@@ -39,4 +39,8 @@ public interface PaymentMapper {
     // 구매 확정
     @Update("update payment set state=1, buydate=CURRENT_TIMESTAMP() where sno=#{sno}")
     public void buyPayemnt(int sno);
+
+    // 리뷰 작성을 위해 state 확인
+    @Select("select state from payment where id=#{id} and lec_no=#{lec_no}")
+    public int statePayemnt(Payment payment);
 }

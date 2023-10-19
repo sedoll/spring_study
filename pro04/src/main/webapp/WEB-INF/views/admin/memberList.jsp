@@ -15,6 +15,33 @@
     <title>관리자 페이지</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
+    <style>
+        #search_from {
+            text-align: right;
+            font-size: 18px;
+            margin-bottom: 20px; /* 아래쪽 여백 추가 */
+        }
+        #select_filter {
+            padding: 5px; /* 셀렉트 박스 내부 패딩 추가 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            border-radius: 5px; /* 테두리 둥글게 만듭니다. */
+            margin-right: 10px; /* 셀렉트 박스 오른쪽 여백 추가 */
+            font-size: 16px; /* 폰트 크기 조정 */
+        }
+
+        #search_filter {
+            padding: 5px; /* 입력 필드 내부 패딩 추가 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            border-radius: 5px; /* 테두리 둥글게 만듭니다. */
+            font-size: 16px; /* 폰트 크기 조정 */
+        }
+
+        /* 선택된 셀렉트 박스 옵션 스타일 */
+        #select_filter option:checked {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
@@ -51,39 +78,77 @@
                     </div>
                 </div>
             </section>
-
-<%--                    <table class="table" style="width: 100%">--%>
-        <table class="table is-fullwidth" >
-            <thead>
-            <tr>
-                <th>No</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Tel</th>
-                <th>Email</th>
-                <th>RegDate</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${memberList}" var="member" varStatus="status">
+            <div  id="search_from">
+                <select name="select_filter" id="select_filter">
+                    <option value="1">아이디</option>
+                    <option value="2">이름</option>
+                    <option value="3">전화번호</option>
+                    <option value="4">이메일</option>
+                    <option value="5">가입일</option>
+                </select>
+                <input type="text" name="search_filter" id="search_filter">
+            </div>
+            <table class="table is-fullwidth" id="myTable">
+                <thead>
                 <tr>
-                    <td>${status.count}</td>
-                    <td><a href="${path}/admin/memberDetail.do?id=${member.id}">${member.id}</a></td>
-                    <td>${member.name}</td>
-                    <td>${member.tel}</td>
-                    <td>${member.email}</td>
-                    <td>
-                        <fmt:parseDate value="${member.regdate}" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
-                        <fmt:formatDate value="${resdate}" pattern="yyyy-MM-dd" />
-                    </td>
+                    <th>No</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>RegDate</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${memberList}" var="member" varStatus="status">
+                    <tr>
+                        <td>${status.count}</td>
+                        <td><a href="${path}/admin/memberDetail.do?id=${member.id}">${member.id}</a></td>
+                        <td>${member.name}</td>
+                        <td>${member.tel}</td>
+                        <td>${member.email}</td>
+                        <td>
+                            <fmt:parseDate value="${member.regdate}" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:formatDate value="${resdate}" pattern="yyyy-MM-dd" />
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <script>
+                $(document).ready( function () {
+                    let $table = $('#myTable').DataTable({
+                        //search 창 오른쪽 상단으로 이동
+                        "dom": '<"top"i>rt<"bottom"flp><"clear">',
 
+                        pageLength : 5,
+                        order: [[2, 'desc']], // 0번째 컬럼을 기준으로 내림차순 정렬
+                        info: false,
+                        lengthChange: false, // show entries 제거
+                        language: {
+                            emptyTable: '등록된 게시글(이)가 없습니다.'
+                        }
+                    });
 
+                    $('.dataTables_paginate').css({
+                        'textAlign':'center',
+                        'float': 'none',
+                        'margin-top':'10px',
+                    });
 
+                    $('.dataTables_filter').remove();  // dataTable 자체 search input 없애기
 
+                    $('#select_filter').change(function () { // select 선택값에 따라  해당 선택 열 input이 검색하는곳 변경
+                        $table.columns('').search('').draw();
+                        $table.columns(Number($('#select_filter').val())).search($('#search_filter').val()).draw();
+                    });
+
+                    $('#search_filter').keyup(function () { //input의 값대로 search
+                        let $value = $(this).val();
+                        $table.columns(Number($('#select_filter').val())).search($value).draw();
+                    })
+                });
+            </script>
         </div>
     </div>
 </div>

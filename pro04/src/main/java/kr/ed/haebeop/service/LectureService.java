@@ -46,6 +46,9 @@ public class LectureService {
 
     // 기존 파일의 no 출력
     public int selectLecFile(String sfile) {return lectureMapper.selectLecFile(sfile);}
+
+    // 파일의 실제 이름 출력
+    public String getLecFileName(String sfile) {return lectureMapper.getLecFileName(sfile);}
     
 //    public List<RedirectView> getReviewList(int no) {
 //        ReviewDAO dao = new ReviewDAO();

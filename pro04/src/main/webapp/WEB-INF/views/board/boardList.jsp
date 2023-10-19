@@ -39,14 +39,6 @@
 <div class="content" id="content">
     <div class="row column text-center">
         <div class="container">
-            <div  id="search_from">
-                <select name="select_filter" id="select_filter">
-                    <option value="1">제목</option>
-                    <option value="2">게시일</option>
-                    <option value="3">제목</option>
-                </select>
-                <input type="text" name="search_filter" id="search_filter">
-            </div>
             <table id="myTable">
                 <thead>
                 <tr>
@@ -78,38 +70,30 @@
         </div>
         <script>
             $(document).ready( function () {
-                let $table = $('#myTable').DataTable({
-                    //search 창 오른쪽 상단으로 이동
-                    "dom": '<"top"i>rt<"bottom"flp><"clear">',
-
-                    pageLength : 5,
-                    order: [[2, 'desc']], // 0번째 컬럼을 기준으로 내림차순 정렬
+                $('#myTable').DataTable({
+                    pageLength : 10,
+                    order: [[0, 'desc']], // 0번째 컬럼을 기준으로 내림차순 정렬
                     info: false,
-                    lengthChange: false, // show entries 제거
+                    dom: 't<f>p',
                     language: {
-                        emptyTable: '등록된 상품이 없습니다.'
+                        emptyTable: '등록된 글이 없습니다.'
                     }
                 });
-
+            } );
+            $(document).ready(function() {
                 $('.dataTables_paginate').css({
-                    'textAlign':'center',
+                    'textAlign':'left',
                     'float': 'none',
                     'margin-top':'10px',
                 });
-
-                $('.dataTables_filter').remove();  // dataTable 자체 search input 없애기
-
-                $('#select_filter').change(function () { // select 선택값에 따라  해당 선택 열 input이 검색하는곳 변경
-                    $table.columns('').search('').draw();
-                    $table.columns(Number($('#select_filter').val())).search($('#search_filter').val()).draw();
+                $('.dataTables_filter').css({
+                    'float': 'left',
+                    'margin-top':'14px',
+                    'margin-right':'280px'
                 });
-
-                $('#search_filter').keyup(function () { //input의 값대로 search
-                    let $value = $(this).val();
-                    $table.columns(Number($('#select_filter').val())).search($value).draw();
-                })
-            });
-            $(document).ready(function() {
+                $('#myTable_paginate').css({
+                    'margin-right':'120px'
+                });
             });
         </script>
     </div>

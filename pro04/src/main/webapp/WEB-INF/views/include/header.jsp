@@ -38,9 +38,6 @@
                     <a href="${path2}/file/filelist1.do" class="navbar-item">
                         자료실
                     </a>
-                    <a href="${path2}/news/list.do" class="navbar-item">
-                        뉴스
-                    </a>
                 </div>
             </div>
 
@@ -52,25 +49,11 @@
                     <a href="${path2}/board/list.do" class="navbar-item">
                         자유 게시판
                     </a>
-<%--                    <a href="${path2}/boardTea/list.do" class="navbar-item">--%>
-<%--                        선생님 게시판--%>
-<%--                    </a>--%>
-<%--                    <a href="${path2}/boardPar/list.do" class="navbar-item">--%>
-<%--                        학부모 게시판--%>
-<%--                    </a>--%>
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link is-arrowless">
-                    <strong>학교 생활</strong>
-                </a>
-                <div class="navbar-dropdown is-transparent is-size-6 is-dark is-outlined">
+                    <a href="${path2}/news/list.do" class="navbar-item">
+                        뉴스
+                    </a>
                     <a href="${path2}/menu/list.do" class="navbar-item">
                         급식표
-                    </a>
-                    <a href="${path2}/grade/list.do" class="navbar-item">
-                        성적표
                     </a>
                 </div>
             </div>

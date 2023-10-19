@@ -178,10 +178,10 @@ CREATE TABLE qna(
 
 -- 학교 정보
 CREATE TABLE school(
-	eo_code VARCHAR(10),
-	eo_name VARCHAR(100),
-	sc_code VARCHAR(50),
-	sc_name VARCHAR(100)
+	eo_code VARCHAR(10), -- 교육청 코드
+	eo_name VARCHAR(100), -- 교육청 이름
+	sc_code VARCHAR(50), -- 학교 코드
+	sc_name VARCHAR(100) -- 학교 이름
 	);
 
 -- 자료실 db
@@ -342,10 +342,28 @@ CREATE TABLE lecture(
 	studystart DATE, -- 강의 시작일
 	studyend DATE, -- 강의 종료일
 	endday INT, -- 강의 수강 기간일 지정
-	FOREIGN KEY(ino) REFERENCES instructor(NO)
+	FOREIGN KEY(ino) REFERENCES instructor(NO) -- 강사 번호를 외래키로 사용
 );
 -- ALTER TABLE lecture ADD COLUMN endday INT;
 -- UPDATE lecture SET endday = 100; 
+
+-- 강의 리뷰
+CREATE TABLE review(
+    NO INT AUTO_INCREMENT PRIMARY KEY, -- 번호
+    id VARCHAR(20) NOT NULL, -- 작성 아이디
+    content VARCHAR(300) NOT NULL, -- 후기
+    resdate timestamp DEFAULT CURRENT_TIMESTAMP(), -- 작성일
+    score INT CHECK (score >= 1 AND score <= 5), -- 점수 (1부터 5까지의 정수)
+    par INT, -- 강의 번호
+    FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE -- 회원 아이디를 외래키로 선언
+);
+
+-- 실제 파일 이름 저장 경로
+CREATE TABLE lecfile (
+	NO INT PRIMARY KEY AUTO_INCREMENT, -- 번호
+	sfile VARCHAR(1000), -- 난수화된 파일 이름
+	realname VARCHAR(250) -- 실제 파일 이름
+)
 
 
 -- 수강(수강코드(PK), 강의코드(FK), 학생아이디(FK), 수강총시간, 수강완료 여부)
@@ -353,7 +371,7 @@ DROP table course;
 
 CREATE TABLE course(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
-	lec_no INT,
+	lec_no INT, 
 	sid VARCHAR(20),
 	CHECK1 VARCHAR(10),
 	-- FOREIGN KEY(lec_no) REFERENCES lecture(no), 
@@ -383,10 +401,12 @@ CREATE TABLE textbook(
 -- 외래 키 체크를 다시 활성화
 -- SET FOREIGN_KEY_CHECKS = 1;
 -- 여기에서 lecture의 과목, 강의명 컬럼 추가
+
+-- 장바구니 테이블
 CREATE TABLE cart(
-	cartno INT PRIMARY KEY AUTO_INCREMENT,
-	id VARCHAR(20),
-	lec_no INT,
+	cartno INT PRIMARY KEY AUTO_INCREMENT, -- 장바구니 번호
+	id VARCHAR(20), -- 아이디
+	lec_no INT,  -- 과목 번호
 	FOREIGN KEY(lec_no) REFERENCES lecture(NO) ON DELETE CASCADE, 
 	FOREIGN KEY(id) REFERENCES member(id) ON DELETE CASCADE
 	)
@@ -413,13 +433,6 @@ CREATE TABLE payment(
 -- alter table payment change resdate TIMESTAMP;
 -- ALTER TABLE payment DROP COLUMN resdate;
 -- ALTER TABLE payment ADD COLUMN pt INT;
-
--- 실제 파일 이름 저장 경로
-CREATE TABLE lecfile (
-	NO INT PRIMARY KEY AUTO_INCREMENT,
-	sfile VARCHAR(1000),
-	realname VARCHAR(250)
-)
 
 -- 강의 배정
 -- 과목, 강사, 교재 정보를 강의 테이블에 등록하는 행위

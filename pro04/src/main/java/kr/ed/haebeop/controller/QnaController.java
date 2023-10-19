@@ -95,7 +95,7 @@ public class QnaController {
             qna.setPw(pw);
         }
         qnaService.qnaInsert(qna);
-        return "redirect:list.do";
+        return "redirect:/qna/list.do";
     }
 
     @PostMapping("commentInsert.do")
@@ -105,7 +105,7 @@ public class QnaController {
         dto.setBno(Integer.parseInt(request.getParameter("bno")));
         dto.setContent(request.getParameter("content"));
         qnaService.commentInsert(dto);
-        return "redirect:detail.do?bno="+dto.getBno();
+        return "redirect:/qna/detail.do?bno="+dto.getBno();
     }
 
     @GetMapping("delete.do")
@@ -114,7 +114,7 @@ public class QnaController {
         Qna dto = new Qna();
         qnaService.qnaDelete(bno);
         qnaService.commentDeleteAll(bno);
-        return "redirect:detail.do?bno="+dto.getBno();
+        return "redirect:/qna/list.do";
     }
 
     @GetMapping("comDelete.do")
@@ -124,7 +124,7 @@ public class QnaController {
         Qna dto = new Qna();
         dto.setPar(par);
         qnaService.qnaDelete(bno);
-        return "redirect:detail.do?bno="+dto.getPar();
+        return "redirect:/qna/detail.do?bno="+dto.getPar();
     }
 
     @GetMapping("edit.do")
@@ -143,7 +143,7 @@ public class QnaController {
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         qnaService.qnaEdit(dto);
-        return "redirect:detail.do?bno="+dto.getBno();
+        return "redirect:/qna/detail.do?bno="+dto.getBno();
     }
 
     @GetMapping("commentEdit.do")
@@ -165,6 +165,6 @@ public class QnaController {
         dto.setContent(request.getParameter("content"));
         System.out.println(dto.toString());
         qnaService.qnaEdit(dto);
-        return "redirect:detail.do?bno="+dto.getPar();
+        return "redirect:/qna/detail.do?bno="+dto.getPar();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 public class UserInterceptor extends HandlerInterceptorAdapter {
 
@@ -19,7 +20,13 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         } else {
             flag = false;
             System.out.println("** 인터셉터 실패 **"+request.getRequestURI());
-            response.sendRedirect(request.getContextPath()+"/member/login.do");
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('해당 페이지는 회원만 접근 가능합니다.');");
+            out.println("location.href='"+request.getContextPath()+"/member/login.do';"); // 페이지 리디렉션을 JavaScript로 수행
+            out.println("</script>");
+            out.flush();
         }
         return flag;
     }
