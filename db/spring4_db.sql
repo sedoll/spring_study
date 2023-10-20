@@ -253,6 +253,18 @@ CREATE TABLE report_par (
     FOREIGN KEY(reporter) REFERENCES member(id) ON DELETE CASCADE
 );
 
+-- 관리자 댓글 관리 테이블
+CREATE TABLE report_rev (
+    report_id INT PRIMARY KEY AUTO_INCREMENT, -- 신고 번호
+    no INT, -- 댓글 번호
+    reporter VARCHAR(16), -- 신고자
+    reason VARCHAR(255), -- 이유
+    report_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), -- 신고일
+    FOREIGN KEY(no) REFERENCES review(no) ON DELETE CASCADE,
+    FOREIGN KEY(reporter) REFERENCES member(id) ON DELETE CASCADE
+);
+
+
 
 CREATE TABLE test(
 	num INT,

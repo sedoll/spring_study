@@ -274,8 +274,24 @@
                                         <a href="${path}/review/updateReviewForm.do?par=${pro.no}" class="button is-info">수정</a>
                                         <a href="${path}/review/deleteReview.do?par=${pro.no}" class="button is-danger"> 삭제 </a>
                                     </c:if>
+                                    <br><br>
+                                    <c:if test="${not empty sid }">
+                                    <button class="button is-danger is-hovered" onclick="openReportPopup()">
+                                        <img src="${path1}/resources/img/report.png" alt="!" style="height: 20px; margin-right: 6px">신고</button>
+                                    </c:if>
                                 </td>
                             </tr>
+                            <script>
+                                function openReportPopup() {
+                                    // 팝업 창의 크기 및 위치를 지정합니다. 필요에 따라 조절할 수 있습니다.
+                                    let width = 550;
+                                    let height = 300;
+                                    let left = (screen.width/2) - (width/2);
+                                    let top = (screen.height/2) - (height/2);
+
+                                    window.open('${path}/review/reportPopup.do?bno=${lev.no}&id=${sid}', '신고', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
+                                }
+                            </script>
                         </c:forEach>
                     </tbody>
                 </table>

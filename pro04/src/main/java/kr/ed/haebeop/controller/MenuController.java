@@ -49,6 +49,7 @@ public class MenuController {
             Week week = new Week();
 
             List<String> date = week.getDate();
+            System.out.println(date);
 
             String codeS = dto.getSc_code();
             String codeK = dto.getEo_code();

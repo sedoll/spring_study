@@ -1,6 +1,8 @@
 package kr.ed.haebeop.persistence;
 
+import kr.ed.haebeop.domain.Report;
 import kr.ed.haebeop.domain.Review;
+import kr.ed.haebeop.domain.ReviewVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -38,4 +40,32 @@ public interface ReviewMapper {
     // 리뷰 삭제
     @Delete("delete from review where id=#{id} and par=#{par}")
     public void deleteReview(Review review);
+
+    // 관리자가 리뷰 삭제
+    @Delete("delete from review where no=#{no}")
+    public void adminbDeleteReview(int no);
+    
+    // 리뷰 신고 추가
+    @Insert("insert into report_rev values (default, #{board_bno}, #{reporter}, #{reason}, default)")
+    public void insertReportReview(Report report);
+    
+    // 리뷰 신고 글 수
+    @Select("SELECT COUNT(*) FROM report_rev WHERE board_bno = #{board_bno} AND reporter = #{reporter}")
+    public int selectCheckReportCnt(Report report);
+
+    // 리뷰 신고 목록
+    @Select("SELECT" +
+            "    b.*," +
+            "    r.reason," +
+            "    r.report_date," +
+            "    sub.report_count" +
+            "    FROM" +
+            "            (SELECT board_bno, COUNT(board_bno) as report_count FROM report_rev GROUP BY board_bno) AS sub" +
+            "    JOIN" +
+            "    report_rev r ON sub.board_bno = r.board_bno" +
+            "            JOIN" +
+            "    review b ON r.board_bno = b.no" +
+            "    ORDER BY" +
+            "    r.report_date DESC;")
+    public List<ReviewVO> reviewReportList();
 }

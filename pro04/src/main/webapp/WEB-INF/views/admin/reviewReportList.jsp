@@ -81,14 +81,14 @@
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title" style="text-align: center">
-                            ${categoryKor}게시판 신고 내역
+                            강의 후기 신고 내역
                         </h1>
                     </div>
                 </div>
             </section>
             <div  id="search_from">
                 <select name="select_filter" id="select_filter">
-                    <option value="1">제목</option>
+                    <option value="1">내용</option>
                     <option value="2">작성자</option>
                     <option value="3">사유</option>
                     <option value="4">누적신고수</option>
@@ -109,18 +109,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${boardList }" var="board" varStatus="status">
+                <c:forEach items="${revList }" var="review" varStatus="status">
                     <tr class="contentAlign">
                         <td>${status.count }</td>
-                        <td><a href="${path}/${boardCate}/detail.do?bno=${board.bno }">${board.title }</a></td>
-                        <td>${board.author}</td>
-                        <td>${board.reason }</td>
-                        <td>${board.report_count }</td>
+                        <td>${review.content }</td>
+                        <td>${review.id}</td>
+                        <td>${review.reason }</td>
+                        <td>${review.report_count }</td>
                         <td>
-                            <fmt:parseDate value="${board.report_date }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:parseDate value="${review.report_date }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
                             <fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd HH:mm:ss" />
                         </td>
-                        <td><a href="${path}/admin/boardReportDelete.do?bno=${board.bno}&category=${category}" class=""><button class="button is-danger is-light"> 삭제 </button></a></td>
+                        <td>
+                            <a href="${path}/lecture/getLecture?no=${review.par }"><button class="button is-info is-light"> 상세 </button></a>
+                            <a href="${path}/admin/reviewReportDelete.do?no=${review.no}" class=""><button class="button is-danger is-light"> 삭제 </button></a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
