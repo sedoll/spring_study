@@ -306,7 +306,7 @@
             // 포인트가 제대로 됐는지 체크
             var point = $('#point').val();
             var maxPoint = $('#point').attr('max');
-            if(point > maxPoint) {
+            if(parseInt(point) > parseInt(maxPoint)) {
                 alert("사용할 포인트를 수정해주세요");
                 $("#point").focus();
                 return false;
