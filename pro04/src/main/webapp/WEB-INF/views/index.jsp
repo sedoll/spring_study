@@ -13,7 +13,7 @@
 <html lang="zxx">
 <head>
     <meta charset="utf-8">
-    <title>티스푼 메인 페이지</title>
+    <title>해법 메인 페이지</title>
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- theme meta -->
