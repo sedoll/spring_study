@@ -105,12 +105,12 @@
                     <div>
                         <ul class="join_type">
                             <li>
-                                <img class="profile" src="/img/boy.png" alt="">
+                                <img class="profile" src="${path}/img/boy.png" alt="">
                                 <input type="radio" name="job" value="1" id="stu" checked>
                                 <label for="stu">학부모</label><br>
                             </li>
                             <li>
-                                <img class="profile" src="/img/teacher.png" alt="">
+                                <img class="profile" src="${path}/img/teacher.png" alt="">
                                 <input type="radio" name="job" value="2" id="tea">
                                 <label for="tea">교사</label><br>
                             </li>
